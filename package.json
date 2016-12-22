@@ -1,0 +1,19 @@
+{
+  "name": "project-initializer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burly-bulls/project-initializer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burly-bulls/project-initializer/issues"
+  },
+  "homepage": "https://github.com/burly-bulls/project-initializer#readme"
+}
