@@ -23,9 +23,12 @@ router.route('/items') //now we will define what to do with the different types 
       item[key] = req.body[key];
     }
     items.push(item);
-    res.json({message: 'item saved!'});
-  });
+    res.json({message: 'item saved!', data: items});
+  })
 
+  .get(function(req, res) {
+    res.json({data: items});
+  })
 
 app.use('/api', router); //this is where we assign router to all requests starting with /api
 
