@@ -7,9 +7,12 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/homepage', function (req, res) { //just a test route
   res.send('you done connected');
+
 });
 
-app.listen(3000, function () {
+var server = app.listen(3000, function () {
+
   console.log('Project-Init Listening on 3000 yo');
 });
 
+module.exports = server;
