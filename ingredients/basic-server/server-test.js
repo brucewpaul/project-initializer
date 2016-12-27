@@ -9,7 +9,6 @@ var expect = chai.expect;
 chai.use(chaiHttp);
 
 describe ('Server', function () {
-
   it('should connect to localhost', function(done) {
     chai.request(server)
       .get('/')
@@ -17,15 +16,5 @@ describe ('Server', function () {
         res.should.have.status(200);
         done();
       });
-  });
-
-  it('should respond to a given endpoint (/homepage)', function(done) {
-    chai.request(server)
-      .get('/homepage')
-      .end(function(err, res) {
-        expect(err).to.be.null;
-        res.should.have.status(200);
-        done();
-      })
   });
 });
