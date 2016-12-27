@@ -1,9 +1,7 @@
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-
 var app = express();
-
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -35,6 +33,7 @@ app.use('/api', router); //this is where we assign router to all requests starti
 var server = app.listen(3000, function () {
   console.log('Your basic-server is listening on 3000\nGo to \'127.0.0.1:3000\' in a browser to access your web-application!');
 });
+
 module.exports = server;
 
 //post items, users
