@@ -19,11 +19,11 @@ describe ('Server', function () {
       });
   });
 
-
   it('should respond to a given endpoint (/homepage)', function(done) {
     chai.request(server)
-      .get('/hompage')
+      .get('/homepage')
       .end(function(err, res) {
+        expect(err).to.be.null;
         res.should.have.status(200);
         done();
       })
