@@ -1,6 +1,9 @@
+<!-- Here we create a container div, assigned the HomeController -->
+<!-- More Info: https://docs.angularjs.org/api/ng/directive/ngController -->
 <div id='container' ng-controller="HomeController">
-  <!-- Your code here -->
   <p>This is the partial for home.</p>
+  <!-- Foreach item in the data.items, we want to display the item.text -->
+  <!-- More Info: https://docs.angularjs.org/api/ng/directive/ngRepeat -->
   <div ng-repeat='item in data.items'>
     <p>{{item.text}}</p>
   </div>
