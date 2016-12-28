@@ -17,7 +17,9 @@ module.exports = function() {
     package.devDependencies = angular.devDependencies;
   }
 
-  if ( options.backEnd.database === 'Sqlite3' )
+  if ( options.backEnd.database === 'Sqlite3' ) {
+
+  }
 
   return package;
 }
