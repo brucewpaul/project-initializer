@@ -22625,39 +22625,39 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	exports.default = function () {
-		var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-		var action = arguments[1];
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
 
 
-		switch (action.type) {
-			case 'FRAMEWORK_CHOSEN':
-				return Object.assign({}, state, {
-					frontEnd: {
-						framework: action.payload
-					}
-				});
-			case 'DATABASE_CHOSEN':
-				return Object.assign({}, state, {
-					backEnd: {
-						database: action.payload
-					}
-				});
-			default:
-				return state;
-		}
+	  switch (action.type) {
+	    case 'FRAMEWORK_CHOSEN':
+	      return Object.assign({}, state, {
+	        frontEnd: {
+	          framework: action.payload
+	        }
+	      });
+	    case 'DATABASE_CHOSEN':
+	      return Object.assign({}, state, {
+	        backEnd: {
+	          database: action.payload
+	        }
+	      });
+	    default:
+	      return state;
+	  }
 	};
 
 	var initialState = {
-		frontEnd: {
-			framework: null
-		},
-		backEnd: {
-			database: null
-		}
+	  frontEnd: {
+	    framework: null
+	  },
+	  backEnd: {
+	    database: null
+	  }
 	};
 
 /***/ },
@@ -23940,7 +23940,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -23980,19 +23980,19 @@
 	var store = (0, _redux.createStore)(_reducers2.default);
 
 	var routes = _react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: store },
-		_react2.default.createElement(
-			_reactRouter.Router,
-			{ history: _reactRouter.browserHistory },
-			_react2.default.createElement(
-				_reactRouter.Route,
-				{ path: '/', component: _rootComponent2.default },
-				_react2.default.createElement(_reactRouter.IndexRoute, { component: _homepage2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/server', component: _databasepage2.default }),
-				_react2.default.createElement(_reactRouter.Route, { path: '/checkout', component: _checkout2.default })
-			)
-		)
+	  _reactRedux.Provider,
+	  { store: store },
+	  _react2.default.createElement(
+	    _reactRouter.Router,
+	    { history: _reactRouter.browserHistory },
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { path: '/', component: _rootComponent2.default },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: _homepage2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/server', component: _databasepage2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/checkout', component: _checkout2.default })
+	    )
+	  )
 	);
 
 	exports.default = routes;
@@ -29025,7 +29025,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29053,70 +29053,70 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var HomePage = function (_React$Component) {
-		_inherits(HomePage, _React$Component);
+	  _inherits(HomePage, _React$Component);
 
-		function HomePage() {
-			_classCallCheck(this, HomePage);
+	  function HomePage() {
+	    _classCallCheck(this, HomePage);
 
-			return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
+	  }
 
-		_createClass(HomePage, [{
-			key: 'render',
-			value: function render() {
-				var _this2 = this;
+	  _createClass(HomePage, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h1',
-						null,
-						'HomePage'
-					),
-					_react2.default.createElement(
-						'h4',
-						null,
-						' This is React'
-					),
-					_react2.default.createElement(
-						'h5',
-						null,
-						' ',
-						JSON.stringify(this.props.options)
-					),
-					_react2.default.createElement(
-						_reactBootstrap.Button,
-						{
-							bsStyle: 'primary',
-							bsSize: 'large',
-							onClick: function onClick() {
-								return _this2.props.selectFramework('React');
-							} },
-						'React'
-					),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/server' },
-						'To database'
-					)
-				);
-			}
-		}]);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'HomePage'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          ' This is React'
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          ' ',
+	          JSON.stringify(this.props.options)
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          {
+	            bsStyle: 'primary',
+	            bsSize: 'large',
+	            onClick: function onClick() {
+	              return _this2.props.selectFramework('React');
+	            } },
+	          'React'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/server' },
+	          'To database'
+	        )
+	      );
+	    }
+	  }]);
 
-		return HomePage;
+	  return HomePage;
 	}(_react2.default.Component);
 
 	function mapStateToProps(state) {
-		return {
-			options: state.options
-		};
+	  return {
+	    options: state.options
+	  };
 	}
 
 	function matchDispatchToProps(dispatch) {
-		return (0, _redux.bindActionCreators)({
-			selectFramework: _index.selectFramework
-		}, dispatch);
+	  return (0, _redux.bindActionCreators)({
+	    selectFramework: _index.selectFramework
+	  }, dispatch);
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(HomePage);
@@ -29128,20 +29128,20 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	var selectFramework = exports.selectFramework = function selectFramework(framework) {
-		return {
-			type: 'FRAMEWORK_CHOSEN',
-			payload: framework
-		};
+	  return {
+	    type: 'FRAMEWORK_CHOSEN',
+	    payload: framework
+	  };
 	};
 
 	var selectDatabase = exports.selectDatabase = function selectDatabase(database) {
-		return {
-			type: 'DATABASE_CHOSEN',
-			payload: database
-		};
+	  return {
+	    type: 'DATABASE_CHOSEN',
+	    payload: database
+	  };
 	};
 
 /***/ },
@@ -48055,7 +48055,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -48083,70 +48083,70 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var DatabasePage = function (_React$Component) {
-		_inherits(DatabasePage, _React$Component);
+	  _inherits(DatabasePage, _React$Component);
 
-		function DatabasePage() {
-			_classCallCheck(this, DatabasePage);
+	  function DatabasePage() {
+	    _classCallCheck(this, DatabasePage);
 
-			return _possibleConstructorReturn(this, (DatabasePage.__proto__ || Object.getPrototypeOf(DatabasePage)).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, (DatabasePage.__proto__ || Object.getPrototypeOf(DatabasePage)).apply(this, arguments));
+	  }
 
-		_createClass(DatabasePage, [{
-			key: 'render',
-			value: function render() {
-				var _this2 = this;
+	  _createClass(DatabasePage, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h1',
-						null,
-						'database page'
-					),
-					_react2.default.createElement(
-						'h4',
-						null,
-						' This is React'
-					),
-					_react2.default.createElement(
-						'h5',
-						null,
-						' ',
-						JSON.stringify(this.props.options)
-					),
-					_react2.default.createElement(
-						_reactBootstrap.Button,
-						{
-							bsStyle: 'primary',
-							bsSize: 'large',
-							onClick: function onClick() {
-								return _this2.props.selectDatabase('MongoDB');
-							} },
-						'Mongo'
-					),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/checkout' },
-						'To checkout'
-					)
-				);
-			}
-		}]);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'database page'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          ' This is React'
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          ' ',
+	          JSON.stringify(this.props.options)
+	        ),
+	        _react2.default.createElement(
+	          _reactBootstrap.Button,
+	          {
+	            bsStyle: 'primary',
+	            bsSize: 'large',
+	            onClick: function onClick() {
+	              return _this2.props.selectDatabase('MongoDB');
+	            } },
+	          'Mongo'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/checkout' },
+	          'To checkout'
+	        )
+	      );
+	    }
+	  }]);
 
-		return DatabasePage;
+	  return DatabasePage;
 	}(_react2.default.Component);
 
 	function mapStateToProps(state) {
-		return {
-			options: state.options
-		};
+	  return {
+	    options: state.options
+	  };
 	}
 
 	function matchDispatchToProps(dispatch) {
-		return (0, _redux.bindActionCreators)({
-			selectDatabase: _index.selectDatabase
-		}, dispatch);
+	  return (0, _redux.bindActionCreators)({
+	    selectDatabase: _index.selectDatabase
+	  }, dispatch);
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, matchDispatchToProps)(DatabasePage);
@@ -48158,7 +48158,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -48178,40 +48178,40 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Checkout = function (_React$Component) {
-		_inherits(Checkout, _React$Component);
+	  _inherits(Checkout, _React$Component);
 
-		function Checkout() {
-			_classCallCheck(this, Checkout);
+	  function Checkout() {
+	    _classCallCheck(this, Checkout);
 
-			return _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, (Checkout.__proto__ || Object.getPrototypeOf(Checkout)).apply(this, arguments));
+	  }
 
-		_createClass(Checkout, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h1',
-						null,
-						'Checkout'
-					),
-					_react2.default.createElement(
-						'h4',
-						null,
-						' This is React'
-					),
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/' },
-						'To homepage'
-					)
-				);
-			}
-		}]);
+	  _createClass(Checkout, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Checkout'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          ' This is React'
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/' },
+	          'To homepage'
+	        )
+	      );
+	    }
+	  }]);
 
-		return Checkout;
+	  return Checkout;
 	}(_react2.default.Component);
 
 	exports.default = Checkout;
