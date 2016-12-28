@@ -34,4 +34,4 @@ results
 npm-debug.log
 node_modules
 
-client/dist/bundle.js
+bundle.js
