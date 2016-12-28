@@ -14,16 +14,16 @@ import { Provider } from 'react-redux';
 const store = createStore(allReducers);
 
 const routes = (
-		<Provider store={store}>
-			<Router history ={browserHistory} >
-				<Route path='/' component={RootComponent}>
-					<IndexRoute component={HomePage}/>
-					<Route path ='/server' component={DatabasePage}/>
-					<Route path ='/checkout' component={Checkout}/>
-				</Route>
-			</Router>
-		</Provider>
+  <Provider store={store}>
+    <Router history ={browserHistory} >
+      <Route path='/' component={RootComponent}>
+        <IndexRoute component={HomePage}/>
+        <Route path ='/server' component={DatabasePage}/>
+        <Route path ='/checkout' component={Checkout}/>
+      </Route>
+    </Router>
+  </Provider>
 );
 
 
-export default routes ;
+export default routes;
