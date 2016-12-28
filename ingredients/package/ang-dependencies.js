@@ -8,8 +8,6 @@ exports.dependencies = {
   "body-parser": "^1.15.2",
   "bookshelf": "^0.10.2",
   "express": "^4.14.0",
-  "knex": "^0.12.6",
-  "sqlite3": "^3.1.8"
 }
 
 exports.devDependencies = {
