@@ -2,6 +2,8 @@ archives/*
 archives/*.txt
 test/testdata/sites/*
 test/testdata/sites.txt
+server/bundles/*
+ingredients/db-sqlite/data/*
 
 ###OSX###
 

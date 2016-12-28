@@ -3,8 +3,6 @@ var app = express();
 const path = require('path');
 var bodyParser = require('body-parser');
 
-var bundler = require('./util/bundler');
-
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
