@@ -9,6 +9,9 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
+});
 
 app.get('/homepage', function (req, res) { //just a test route
   console.log('we got the request');

@@ -1,15 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { createStore } from 'redux';
+import allReducers from './reducers';
+import { Provider } from 'react-redux';
 
-class Hello extends React.Component {
-	render() {
-		return (
-			<div>
-			<h1>Hello</h1>
-			<h4> This is React</h4>
-			</div>
-			);
-	}
-}
+import routes from './components/router.js';
 
-ReactDom.render(<Hello />, document.getElementById('app'));
+ReactDom.render(routes, document.getElementById('app'));
