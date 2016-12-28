@@ -9,10 +9,10 @@ var assembleFiles = require('./assemble-files.js');
 
 var options = {
   frontEnd:{
-    framework: 'React'
+    framework: 'Angular'
   },
   backEnd: {
-    database: 'Mongo'
+    database: 'Sqlite3'
   }
 }
 
