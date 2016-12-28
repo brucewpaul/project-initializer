@@ -1,26 +1,62 @@
 import React from 'react';
-import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
-import { bindActionCreators} from 'redux';
+import { Link } from 'react-router';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectFramework } from '../actions/index';
-import { Button } from 'react-bootstrap';
+import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
 
 class HomePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>HomePage</h1>
-        <h4> This is React</h4>
-        <h5> {JSON.stringify(this.props.options)}</h5>
-        <Button
-        bsStyle='primary'
-        bsSize='large'
-        onClick={()=> this.props.selectFramework('React')}>React</Button>
-
-        <Link to='/server'>To database</Link>
-      </div>
+      <Grid>
+        <PageHeader className='projectTitle'>
+          Project-Initializer<br/>
+          <small>Your dream project is a click away</small>
+        </PageHeader>
+        <Row>
+          <Col xs={12} className='choiceDirections'>
+            <h4>Select a frontend framework</h4>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} className='selector'>
+            <Button
+              bsStyle='primary'
+              onClick={()=> this.props.selectFramework('React')}
+              block>
+              <h2>React</h2>
+              <Image src ="https://upload.wikimedia.org/wikipedia/commons/5/57/React.js_logo.svg" className="logo"></Image>
+            </Button>
+          </Col>
+          <Col xs={6} className='selector'>
+            <Button
+              bsStyle='danger'
+              onClick={()=> this.props.selectFramework('Angular')}
+              block>
+              <h2>Angular</h2>
+              <Image src ="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" className="logo"></Image>
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} xsOffset={3} className="choiceButtons">
+            <Link to='/server'>
+              <Button bsSize='large'>
+               Database Selection
+              </Button>
+            </Link>
+          </Col>
+          <Col xs={6} xsOffset={3} className="choiceButtons">
+            <Link to='/checkout'>
+              <Button bsSize='large'>
+               Advanced Options
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

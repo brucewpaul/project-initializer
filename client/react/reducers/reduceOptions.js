@@ -11,6 +11,7 @@ export default function(state = initialState, action) {
 
   switch(action.type) {
     case 'FRAMEWORK_CHOSEN':
+    console.log(state);
       return Object.assign({}, state, {
         frontEnd: {
           framework: action.payload
