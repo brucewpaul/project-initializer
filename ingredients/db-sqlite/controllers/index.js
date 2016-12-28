@@ -18,6 +18,7 @@ module.exports = {
       });
     }, // a function which handles a get request for all messages
     post: function(req, res) {
+      console.log('in post');
       Items.create({
         text: req.body.text,
       })
