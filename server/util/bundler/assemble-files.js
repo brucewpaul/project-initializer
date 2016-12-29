@@ -64,7 +64,7 @@ module.exports = function(options, outputPath, id) {
         }
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
-        // TODO: return url/id of fileto send back
+        // TODO: return url/id of file to send back
         return;
       });
     })

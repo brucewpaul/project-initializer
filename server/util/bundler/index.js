@@ -33,7 +33,7 @@ fs.existsAsync(uniquePath)
           } else {
             // assemble the files
             assembleFiles(options, uniquePath, id)
-            // TODO: will eventually receive theurl/id of folder to send back to client
+            // TODO: will eventually receive the url/id of folder to send back to client
           }
         });
     }
