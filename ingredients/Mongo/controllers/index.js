@@ -35,7 +35,7 @@ module.exports = {
         if (err) {
           return console.error(err);
         }
-        res.status(200).send(itemToAdd);
+        res.status(201).send(itemToAdd);
       });
     }
   }

@@ -8,8 +8,6 @@ var defaultCorsHeaders = {
   'access-control-max-age': 10 // Seconds.
 };
 
-console.log('inside controller');
-
 module.exports = {
   items: {
     get: function(req, res) {
@@ -18,12 +16,14 @@ module.exports = {
       });
     }, // a function which handles a get request for all messages
     post: function(req, res) {
-      console.log('in post');
+      itemText = req.body.text || null;
+      itemTitle = req.body.title || null;
       Items.create({
-        text: req.body.text,
+        text: itemText,
+        title: itemTitle
       })
       .then(function(newLink) {
-        res.status(200).send(newLink);
+        res.status(201).send(newLink);
       });
     }
   }

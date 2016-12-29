@@ -52,7 +52,15 @@ module.exports = function(options, outputPath, id) {
   );
 
   // add tasks
+
   // add testing
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test'), path.join(outputPath, 'test'))
+    .then(function() {
+      console.log('test done!');
+    }).catch(function (err) {
+     return console.error('test', err);
+   })
+  );
 
   Promise.all(asyncTasks)
     .then( function() {
