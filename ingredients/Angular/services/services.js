@@ -6,6 +6,7 @@ angular.module('myApp.services', [])
 // Here we are creating a service which exports functions to add and retrieve items from the db
 // More Info: https://docs.angularjs.org/guide/services
 .factory('Items', function ($http, $location) {
+  // TODO: add comments below
   var getAll = function() {
     return $http({
       method: 'GET',
@@ -19,11 +20,10 @@ angular.module('myApp.services', [])
   var addOne = function(item) {
     return $http({
       method: 'POST',
-      url: '/api/Items',
-      data: item
+      url: '/api/items',
+      data: {text: item}
     })
     .then(function(resp) {
-      // $location.path('/home');
     });
   };
 

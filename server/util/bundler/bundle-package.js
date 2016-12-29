@@ -2,6 +2,7 @@ var package = require('../../../ingredients/package/package.js');
 var angular = require('../../../ingredients/package/ang-dependencies.js');
 var react = require('../../../ingredients/package/react-dependencies.js');
 var sqlite = require('../../../ingredients/package/sqlite-dependencies.js');
+var mongo = require('../../../ingredients/package/mongo-dependencies.js');
 
 module.exports = function(options) {
   if ( options.frontEnd.framework === 'Angular' ) {
@@ -12,8 +13,8 @@ module.exports = function(options) {
 
   if ( options.backEnd.database === 'Sqlite3' ) {
     backEndDatabase = sqlite;
-  } else if ( options.frontEnd.framework === 'Mongo' ) {
-    backEndDatabase = Mongo;
+  } else if ( options.backEnd.database === 'Mongo' ) {
+    backEndDatabase = mongo;
   }
 
   package.scripts = frontEndFramework.scripts;

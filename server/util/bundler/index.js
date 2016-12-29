@@ -9,14 +9,16 @@ var assembleFiles = require('./assemble-files.js');
 
 var options = {
   frontEnd:{
-    framework: 'Angular'
+    framework: 'React'
   },
   backEnd: {
-    database: 'Sqlite3'
+    database: 'Mongo'
   }
 }
 
-uniquePath = path.join('../../bundles', new Date().toString());
+var id = new Date().valueOf().toString();
+
+uniquePath = path.join('../../bundles', id);
 
 // check if folder for output already exists
 fs.existsAsync(uniquePath)
@@ -28,7 +30,7 @@ fs.existsAsync(uniquePath)
           if ( err ) {
             console.log(err);
           } else {
-            assembleFiles(options, uniquePath);
+            assembleFiles(options, uniquePath, id)
           }
         });
     }
