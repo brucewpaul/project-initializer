@@ -1,9 +1,7 @@
 var exec = require('child_process').exec;
-var Promise = require('bluebird');
-// var fs = require('fs');
-var fs = Promise.promisifyAll(require("fs"));
 var path = require('path');
-// var ncp = require('ncp').ncp;
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require("fs"));
 var ncp = Promise.promisifyAll(require('ncp'));
 
 ncp.limit = 16;
@@ -27,7 +25,7 @@ module.exports = function(options, outputPath, id) {
     }));
 
   // add server functionality
-  asyncTasks.push(ncp.ncpAsync('../../../ingredients/basic-server', path.join(outputPath, 'server'))
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
     .then(function() {
       console.log('server done!');
     }).catch(function (err) {
@@ -36,48 +34,26 @@ module.exports = function(options, outputPath, id) {
   );
 
   // add db
-  // if ( options.backEnd.database === 'Sqlite3' ) {
-    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'db'))
-      .then(function() {
-        console.log('db done!');
-      }).catch(function (err) {
-       return console.error('db', err);
-     })
-    );
-  // }
-
-  // if ( options.backEnd.database === 'Mongo' ) {
-  //   asyncTasks.push(ncp.ncpAsync('../../../ingredients/db-mongo', path.join(outputPath, 'db'))
-  //     .then(function() {
-  //       console.log('mongo done!');
-  //     }).catch(function (err) {
-  //      return console.error('Mongo', err);
-  //    })
-  //   );
-  // }
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'db'))
+    .then(function() {
+      console.log('db done!');
+    }).catch(function (err) {
+     return console.error('db', err);
+   })
+  );
 
   // add front end
-  // if ( options.frontEnd.framework === 'Angular' ) {
-    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath, 'client'))
-      .then(function() {
-        console.log('Front End Framework done!');
-      }).catch(function (err) {
-       return console.error('frontend', err);
-     })
-    );
-  // }
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath, 'client'))
+    .then(function() {
+      console.log('Front End Framework done!');
+    }).catch(function (err) {
+     return console.error('frontend', err);
+   })
+  );
 
-  // if ( options.frontEnd.framework === 'React' ) {
-  //   asyncTasks.push(ncp.ncpAsync('../../../ingredients/react-app', path.join(outputPath, 'client'))
-  //     .then(function() {
-  //       console.log('React done!');
-  //     }).catch(function (err) {
-  //      return console.error('React', err);
-  //    })
-  //   );
-  // }
   // add tasks
   // add testing
+
   Promise.all(asyncTasks)
     .then( function() {
       console.log("all the files were created");
@@ -88,12 +64,11 @@ module.exports = function(options, outputPath, id) {
         }
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
+        // TODO: return url/id of fileto send back
         return;
       });
     })
     .catch(function(err) {
       console.log('error:', err)
     })
-
-
 }

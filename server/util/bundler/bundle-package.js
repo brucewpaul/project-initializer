@@ -17,11 +17,10 @@ module.exports = function(options) {
     backEndDatabase = mongo;
   }
 
-  package.scripts = frontEndFramework.scripts;
-  package.dependencies = frontEndFramework.dependencies;
-  package.devDependencies = frontEndFramework.devDependencies;
-
-  package.dependencies = Object.assign(package.dependencies, backEndDatabase.dependencies);
+  // combine the different dependencies and scripts from front end and backend modules
+  package.scripts = Object.assign(frontEndFramework.scripts, backEndDatabase.scripts);
+  package.dependencies = Object.assign(frontEndFramework.dependencies, backEndDatabase.dependencies);
+  package.devDependencies = Object.assign(frontEndFramework.devDependencies, backEndDatabase.devDependencies);
 
   return package;
 }
