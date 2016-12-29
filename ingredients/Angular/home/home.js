@@ -23,7 +23,7 @@ angular.module('myApp.home', ['ngRoute', 'myApp.services'])
   // TODO: add comments for below
   $scope.data = {};
   Items.getAll().then(function(resp) {
-    $scope.data.items = resp;
+    $scope.data.items = resp.results;
   });
   $scope.addItem = Items.addOne;
   $scope.submitForm = function(item) {
