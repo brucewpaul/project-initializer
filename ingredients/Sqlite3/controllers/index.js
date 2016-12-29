@@ -14,7 +14,7 @@ module.exports = {
   items: {
     get: function(req, res) {
       Item.where({}).fetchAll().then(function(items) {
-        res.status(200).send(items);
+        res.status(200).send({results: items});
       });
     }, // a function which handles a get request for all messages
     post: function(req, res) {
