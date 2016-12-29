@@ -16,7 +16,10 @@ var options = {
   }
 }
 
-uniquePath = path.join('../../bundles', new Date().toString());
+// TODO: Change this to be unique id of user
+var id = new Date().valueOf().toString();
+
+uniquePath = path.join('../../bundles', id);
 
 // check if folder for output already exists
 fs.existsAsync(uniquePath)
@@ -28,7 +31,9 @@ fs.existsAsync(uniquePath)
           if ( err ) {
             console.log(err);
           } else {
-            assembleFiles(options, uniquePath);
+            // assemble the files
+            assembleFiles(options, uniquePath, id)
+            // TODO: will eventually receive the url/id of folder to send back to client
           }
         });
     }
