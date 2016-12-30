@@ -7,7 +7,7 @@ var options = {
     css: null,
     taskRunner: {
       type: 'grunt',
-      plugins: ['cssmin', 'uglify'],
+      plugins: ['cssmin', 'uglify', 'sass'],
       tasks: [
         {
           name: 'cssmin',
@@ -65,14 +65,30 @@ var pluginConfigs = {
     '        }\n',
     '      }\n',
     '    }\n',
+  ],
+  sass: [
+    '    sass: {\n',
+    '      dist: {\n',
+    '        files: [{\n',
+    '          expand: true,\n',
+    {react: '          cwd: \'public/assets\',\n',
+    angular: '          cwd: \'assets\',\n'},
+    '          src: [\'*.scss\'],\n',
+    {react: '          dest: \'public/assets\',\n',
+    angular: '          cwd: \'assets\',\n'},
+    '          ext: \'.css\'\n',
+    '        }]\n',
+    '      }\n',
+    '    }\n'
   ]
 }
 
 var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
-  uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n'
+  uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
+  sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n'
 }
-// grunt.registerTask('default', ['jshint']);
+
 var createGruntTask = function(task) {
   var gruntTask = '  grunt.registerTask(';
   gruntTask = gruntTask + "'" + task.name + "', [";
