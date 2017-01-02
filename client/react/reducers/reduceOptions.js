@@ -1,13 +1,13 @@
 const initialState = {
   frontEnd:{
     framework: null,
-    styling: 'Javascipt/html/css'
+    styling: 'Javascipt/HTML/CSS'
   },
   backEnd: {
     database: null
   },
-  devtools: {
-    taskrunner: {
+  devTools: {
+    taskRunner: {
       name: 'grunt',
       plugins:['cssmin', 'uglify'],
       tasks:[
