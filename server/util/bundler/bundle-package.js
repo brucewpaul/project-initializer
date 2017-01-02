@@ -1,11 +1,13 @@
-var package = require('../../../ingredients/package/package.js');
 var angular = require('../../../ingredients/package/ang-dependencies.js');
+var mocha = require('../../../ingredients/package/mocha-dependencies.js');
+var mongo = require('../../../ingredients/package/mongo-dependencies.js');
+var package = require('../../../ingredients/package/package.js');
 var react = require('../../../ingredients/package/react-dependencies.js');
 var sqlite = require('../../../ingredients/package/sqlite-dependencies.js');
-var mongo = require('../../../ingredients/package/mongo-dependencies.js');
-var mocha = require('../../../ingredients/package/mocha-dependencies.js');
 
 module.exports = function(options) {
+  var frontEndFramework, backEndDatabase;
+
   if ( options.frontEnd.framework === 'Angular' ) {
     frontEndFramework = angular;
   } else if ( options.frontEnd.framework === 'React' ) {

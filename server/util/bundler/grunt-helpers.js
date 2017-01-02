@@ -1,34 +1,34 @@
 var fs = require('fs');
 var _ = require('lodash');
 
-var options = {
-  frontEnd: {
-    framework: 'react',
-    css: null,
-    taskRunner: {
-      type: 'grunt',
-      plugins: ['cssmin', 'uglify'],
-      tasks: [
-        {
-          name: 'cssmin',
-          plugins: ['cssmin']
-        },
-        {
-          name: 'uglify',
-          plugins: ['uglify']
-        },
-        {
-          name: 'build',
-          plugins: ['cssmin', 'uglify']
-        }
-      ]
-    },
-    testing: null
-  },
-  backend: {
-    database: null
-  }
-}
+// var options = {
+//   frontEnd: {
+//     framework: 'react',
+//     css: null,
+//     taskRunner: {
+//       type: 'grunt',
+//       plugins: ['cssmin', 'uglify'],
+//       tasks: [
+//         {
+//           name: 'cssmin',
+//           plugins: ['cssmin']
+//         },
+//         {
+//           name: 'uglify',
+//           plugins: ['uglify']
+//         },
+//         {
+//           name: 'build',
+//           plugins: ['cssmin', 'uglify']
+//         }
+//       ]
+//     },
+//     testing: null
+//   },
+//   backend: {
+//     database: null
+//   }
+// }
 
 var gruntMain = [
   'module.exports = function(grunt) {\n',
@@ -47,8 +47,8 @@ var pluginConfigs = {
     '      target: {\n',
     '        files: [{\n',
     '          expand: true,\n',
-    {react: '          cwd: \'public/assets\',\n',
-    angular: '          cwd: \'assets\',\n'},
+    {React: '          cwd: \'public/assets\',\n',
+    Angular: '          cwd: \'assets\',\n'},
     '          src: [\'*.css\', \'!*.min.css\'],\n',
     '          dest: \'release/css\',\n',
     '          ext: \'.min.css\'\n',
@@ -60,8 +60,8 @@ var pluginConfigs = {
     '    uglify: {\n',
     '      target: {\n',
     '        files: {\n',
-    {react: '          \'public/assets/script.min.js\': [\'public/assets/script.js\']\n',
-    angular: '          \'assets/script.min.js\': [\'assets/script.js\']\n'},
+    {React: '          \'public/assets/script.min.js\': [\'public/assets/script.js\']\n',
+    Angular: '          \'assets/script.min.js\': [\'assets/script.js\']\n'},
     '        }\n',
     '      }\n',
     '    }\n',
@@ -94,7 +94,7 @@ var createGruntfileContents = function(options) {
   gruntFile += gruntInitConfig[0];
   gruntFile += gruntInitConfig[1];
   // for each plugin, insert it into the config init
-  _.forEach(options.frontEnd.taskRunner.plugins, function(plugin) {
+  _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
     _.forEach(pluginConfigs[plugin], function(line) {
       if (typeof line === 'object') {
         gruntFile += line[options.frontEnd.framework];
@@ -105,22 +105,15 @@ var createGruntfileContents = function(options) {
   });
   gruntFile += gruntInitConfig[2];
   // for each plugin, load npm module
-  _.forEach(options.frontEnd.taskRunner.plugins, function(plugin) {
+  _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
     gruntFile += loadNpmTasks[plugin];
   });
   // for each task, create the task.
-  _.forEach(options.frontEnd.taskRunner.tasks, function(task) {
+  _.forEach(options.devTools.taskRunner.tasks, function(task) {
     gruntFile += createGruntTask(task);
   });
   gruntFile += gruntMain[1];
   return gruntFile;
 }
 
-var createGruntfile = function(options) {
-  fs.writeFile('Gruntfile.js', createGruntfileContents(options), function (err) {
-    if (err) throw err;
-    console.log("Gruntfile.js successfully created");
-  });
-}
-
-module.exports.createGruntfile = createGruntfile;
+module.exports = createGruntfileContents;

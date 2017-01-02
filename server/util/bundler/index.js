@@ -8,18 +8,44 @@ var path = require('path');
 var assembleFiles = require('./assemble-files.js');
 
 var options = {
-  frontEnd:{
-    framework: 'Angular'
-  },
-  backEnd: {
-    database: 'Sqlite3'
-  }
+ frontEnd:{
+   framework: 'React',
+   styling: 'Javascipt/html/css'
+ },
+ backEnd: {
+   database: 'Sqlite3'
+ },
+ devTools: {
+   taskRunner: {
+     name: 'grunt',
+     plugins:['cssmin', 'uglify'],
+     tasks:[
+     {
+       name: 'cssmin',
+       plugins:['cssmin']
+     },
+     {
+       name:'uglify',
+       plugins:['uglify']
+     },
+     {
+       name: 'build',
+       plugins: ['cssmin', 'uglify']
+     }
+     ]
+   },
+   bundler:{
+     name: 'webpack',
+     config:[]
+   },
+   testing: 'mocha/chai'
+ }
 }
 
 // TODO: Change this to be unique id of user
 var id = new Date().valueOf().toString();
 
-uniquePath = path.join('../../bundles', id);
+var uniquePath = path.join('../../bundles', id);
 
 // check if folder for output already exists
 fs.existsAsync(uniquePath)
