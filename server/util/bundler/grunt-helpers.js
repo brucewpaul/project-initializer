@@ -42,22 +42,36 @@ var pluginConfigs = {
     '      dist: {\n',
     '        files: [{\n',
     '          expand: true,\n',
-    {react: '          cwd: \'public/assets\',\n',
-    angular: '          cwd: \'assets\',\n'},
+    {React: '          cwd: \'public/assets\',\n',
+    Angular: '          cwd: \'assets\',\n'},
     '          src: [\'*.scss\'],\n',
-    {react: '          dest: \'public/assets\',\n',
-    angular: '          cwd: \'assets\',\n'},
+    {React: '          dest: \'public/assets\',\n',
+    Angular: '          cwd: \'assets\',\n'},
     '          ext: \'.css\'\n',
     '        }]\n',
     '      }\n',
     '    }\n'
+  ],
+  less: [
+    '    less: {',
+    '      development: {',
+    '        options: {',
+    '          paths: ['assets/css']',
+    '        },'
+    '        files: {'
+    {React: '          \'public/assets/styles.css': 'public/assets/styles.less\'\n',
+    Angular: '          \'assets/styles.css': 'assets/styles.less\'\n'},
+    '        }',
+    '      }',
+    '    }'
   ]
 }
 
 var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
   uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
-  sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n'
+  sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n',
+  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n'
 }
 
 var createGruntTask = function(task) {
