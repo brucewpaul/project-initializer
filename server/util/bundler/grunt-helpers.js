@@ -1,34 +1,34 @@
 var fs = require('fs');
 var _ = require('lodash');
 
-// var options = {
-//   frontEnd: {
-//     framework: 'react',
-//     css: null,
-//     taskRunner: {
-//       type: 'grunt',
-//       plugins: ['cssmin', 'uglify'],
-//       tasks: [
-//         {
-//           name: 'cssmin',
-//           plugins: ['cssmin']
-//         },
-//         {
-//           name: 'uglify',
-//           plugins: ['uglify']
-//         },
-//         {
-//           name: 'build',
-//           plugins: ['cssmin', 'uglify']
-//         }
-//       ]
-//     },
-//     testing: null
-//   },
-//   backend: {
-//     database: null
-//   }
-// }
+var options = {
+  frontEnd: {
+    framework: 'React',
+    css: null,
+    taskRunner: {
+      type: 'grunt',
+      plugins: ['cssmin', 'uglify', 'sass'],
+      tasks: [
+        {
+          name: 'cssmin',
+          plugins: ['cssmin']
+        },
+        {
+          name: 'uglify',
+          plugins: ['uglify']
+        },
+        {
+          name: 'build',
+          plugins: ['cssmin', 'uglify']
+        }
+      ]
+    },
+    testing: null
+  },
+  backend: {
+    database: null
+  }
+}
 
 var gruntMain = [
   'module.exports = function(grunt) {\n',
@@ -65,14 +65,30 @@ var pluginConfigs = {
     '        }\n',
     '      }\n',
     '    }\n',
+  ],
+  sass: [
+    '    sass: {\n',
+    '      dist: {\n',
+    '        files: [{\n',
+    '          expand: true,\n',
+    {react: '          cwd: \'public/assets\',\n',
+    angular: '          cwd: \'assets\',\n'},
+    '          src: [\'*.scss\'],\n',
+    {react: '          dest: \'public/assets\',\n',
+    angular: '          cwd: \'assets\',\n'},
+    '          ext: \'.css\'\n',
+    '        }]\n',
+    '      }\n',
+    '    }\n'
   ]
 }
 
 var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
-  uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n'
+  uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
+  sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n'
 }
-// grunt.registerTask('default', ['jshint']);
+
 var createGruntTask = function(task) {
   var gruntTask = '  grunt.registerTask(';
   gruntTask = gruntTask + "'" + task.name + "', [";
