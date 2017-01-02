@@ -7,6 +7,7 @@ var ncp = Promise.promisifyAll(require('ncp'));
 ncp.limit = 16;
 
 var bundlePackage = require('./bundle-package.js');
+var bundleGruntfile = require('./grunt-helpers.js');
 
 module.exports = function(options, outputPath, id) {
   var frontEndFramework = options.frontEnd.framework;
@@ -22,6 +23,13 @@ module.exports = function(options, outputPath, id) {
     .then((err) => {
       if (err) throw err;
       console.log('package.json done!');
+    }));
+
+  // create Gruntfile.js
+  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
+    .then((err) => {
+      if (err) throw err;
+      console.log('Gruntfile.js done!');
     }));
 
   // add server functionality

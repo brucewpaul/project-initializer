@@ -11,10 +11,6 @@ class HomePage extends React.Component {
   render() {
     return (
       <Grid>
-        <PageHeader className='projectTitle'>
-          Project-Initializer<br/>
-          <small>Your dream project is a click away</small>
-        </PageHeader>
         <Row>
           <Col xs={12} className='choiceDirections'>
             <h4>Select a frontend framework</h4>
