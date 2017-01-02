@@ -25,7 +25,7 @@ var pluginConfigs = {
     '          ext: \'.min.css\'\n',
     '        }]\n',
     '      }\n',
-    '    }\n'
+    '    },\n'
   ],
   uglify: [
     '    uglify: {\n',
@@ -35,7 +35,7 @@ var pluginConfigs = {
     Angular: '          \'assets/script.min.js\': [\'assets/script.js\']\n'},
     '        }\n',
     '      }\n',
-    '    }\n',
+    '    },\n',
   ],
   sass: [
     '    sass: {\n',
@@ -50,20 +50,28 @@ var pluginConfigs = {
     '          ext: \'.css\'\n',
     '        }]\n',
     '      }\n',
-    '    }\n'
+    '    },\n'
   ],
   less: [
-    '    less: {',
-    '      development: {',
-    '        options: {',
-    '          paths: ['assets/css']',
-    '        },'
-    '        files: {'
+    '    less: {\n',
+    '      development: {\n',
+    '        options: {\n',
+    '          paths: [\'assets/css\']\n',
+    '        },\n'
+    '        files: {\n'
     {React: '          \'public/assets/styles.css': 'public/assets/styles.less\'\n',
     Angular: '          \'assets/styles.css': 'assets/styles.less\'\n'},
-    '        }',
-    '      }',
-    '    }'
+    '        }\n',
+    '      }\n',
+    '    },\n'
+  ],
+  watch: [
+    '    watch: {\n',
+    '      src: {\n',
+    '        files: [\'lib/*.js\', \'css/**/*.scss\', \'!lib/dontwatch.js\'],\n',
+    '        tasks: [\'default\'],\n',
+    '      }\n',
+    '    },\n',
   ]
 }
 
@@ -71,7 +79,8 @@ var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
   uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
   sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n',
-  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n'
+  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n',
+  watch: '  grunt.loadNpmTasks(\'grunt-contrib-watch\');\n'
 }
 
 var createGruntTask = function(task) {
