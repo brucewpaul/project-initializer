@@ -1,9 +1,11 @@
-var angular = require('../../../ingredients/package/ang-dependencies.js');
-var mocha = require('../../../ingredients/package/mocha-dependencies.js');
-var mongo = require('../../../ingredients/package/mongo-dependencies.js');
-var package = require('../../../ingredients/package/package.js');
-var react = require('../../../ingredients/package/react-dependencies.js');
-var sqlite = require('../../../ingredients/package/sqlite-dependencies.js');
+var path = require('path');
+
+var angular = require(path.join(__dirname, '../../../ingredients/package/ang-dependencies.js'));
+var mocha = require(path.join(__dirname, '../../../ingredients/package/mocha-dependencies.js'));
+var mongo = require(path.join(__dirname, '../../../ingredients/package/mongo-dependencies.js'));
+var package = require(path.join(__dirname, '../../../ingredients/package/package.js'));
+var react = require(path.join(__dirname, '../../../ingredients/package/react-dependencies.js'));
+var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-dependencies.js'));
 
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase;

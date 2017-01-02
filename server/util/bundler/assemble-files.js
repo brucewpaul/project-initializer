@@ -9,10 +9,10 @@ ncp.limit = 16;
 var bundlePackage = require('./bundle-package.js');
 var bundleGruntfile = require('./grunt-helpers.js');
 
-module.exports = function(options, outputPath, id) {
+module.exports = function(options, outputPath, id, cb) {
   var frontEndFramework = options.frontEnd.framework;
   var backEndDatabase = options.backEnd.database;
-  var ingredientsPath = '../../../ingredients';
+  var ingredientsPath = path.join(__dirname, '../../../ingredients');
 
   var asyncTasks = [];
 
@@ -73,7 +73,7 @@ module.exports = function(options, outputPath, id) {
   Promise.all(asyncTasks)
     .then( function() {
       console.log("all the files were created");
-      exec(`cd ../../bundles && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
+      exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
           return;
@@ -81,7 +81,7 @@ module.exports = function(options, outputPath, id) {
         console.log(`stdout: ${stdout}`);
         console.log(`stderr: ${stderr}`);
         // TODO: return url/id of file to send back
-        return;
+        cb(`${id}.tar.gz`);
       });
     })
     .catch(function(err) {
