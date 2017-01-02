@@ -57,10 +57,10 @@ var pluginConfigs = {
     '      development: {\n',
     '        options: {\n',
     '          paths: [\'assets/css\']\n',
-    '        },\n'
-    '        files: {\n'
-    {React: '          \'public/assets/styles.css': 'public/assets/styles.less\'\n',
-    Angular: '          \'assets/styles.css': 'assets/styles.less\'\n'},
+    '        },\n',
+    '        files: {\n',
+    {React: '          \'public/assets/styles.css\': \'public/assets/styles.less\'\n',
+    Angular: '          \'assets/styles.css\': \'assets/styles.less\'\n'},
     '        }\n',
     '      }\n',
     '    },\n'
