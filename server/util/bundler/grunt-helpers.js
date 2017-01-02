@@ -1,35 +1,6 @@
 var fs = require('fs');
 var _ = require('lodash');
 
-var options = {
-  frontEnd: {
-    framework: 'React',
-    css: null,
-    taskRunner: {
-      type: 'grunt',
-      plugins: ['cssmin', 'uglify', 'sass'],
-      tasks: [
-        {
-          name: 'cssmin',
-          plugins: ['cssmin']
-        },
-        {
-          name: 'uglify',
-          plugins: ['uglify']
-        },
-        {
-          name: 'build',
-          plugins: ['cssmin', 'uglify']
-        }
-      ]
-    },
-    testing: null
-  },
-  backend: {
-    database: null
-  }
-}
-
 var gruntMain = [
   'module.exports = function(grunt) {\n',
   '}\n'
