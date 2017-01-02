@@ -11,3 +11,24 @@ export const selectDatabase = (database) => {
     payload: database
   }
 }
+
+export const selectStyling = (styling) => {
+  return {
+    type: 'STYLING_CHOSEN',
+    payload: styling
+  }
+}
+
+export const taskRunner = (taskrunner) => {
+  return {
+    type: 'TASKRUNNER_CHOSEN',
+    payload: taskrunner
+  }
+}
+
+export const addTask = (task) => {
+  return {
+    type: 'TASK_ADDED',
+    payload: task
+  }
+}

@@ -1,17 +1,55 @@
 import React from 'react';
-import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
+import { Link } from 'react-router';
+import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 
 class Checkout extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Checkout</h1>
-        <h4> This is React</h4>
-        <Link to='/'>To homepage</Link>
-      </div>
+      <Grid>
+        <Row>
+          <Col xs={6} xsOffset={3}>
+            <ListGroup>
+              <ListGroupItem active>Project Details</ListGroupItem>
+              <ListGroupItem> Framework: {this.props.options.frontEnd.framework}</ListGroupItem>
+              <ListGroupItem> CSS styling: {this.props.options.frontEnd.styling}</ListGroupItem>
+              <ListGroupItem> Database: {this.props.options.backEnd.database}</ListGroupItem>
+            </ListGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={6} xsOffset={3} className="choiceButtons">
+            <Link to='/'>
+              <Button bsSize='large'>
+               Homepage Page
+              </Button>
+            </Link>
+          </Col>
+          <Col xs={6} xsOffset={3} className="choiceButtons">
+            <Link to='/'>
+              <Button bsSize='large'>
+               Advanced Options
+              </Button>
+            </Link>
+          </Col>
+          <Col xs={6} xsOffset={3} className="choiceButtons">
+            <Button
+              bsSize='large'
+              onClick={() => console.log(this.props.options)}>
+              Download Project
+            </Button>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
 
-export default Checkout;
+function mapStateToProps(state) {
+  return {
+    options: state.options
+  };
+}
+
+export default connect(mapStateToProps)(Checkout);
