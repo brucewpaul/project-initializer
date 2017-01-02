@@ -68,8 +68,9 @@ var pluginConfigs = {
   watch: [
     '    watch: {\n',
     '      src: {\n',
-    '        files: [\'lib/*.js\', \'css/**/*.scss\', \'!lib/dontwatch.js\'],\n',
-    '        tasks: [\'default\'],\n',
+    {React: '        files: [\'public/assets/*.scss\', \'public/assets/*.less\'],\n',
+    Angular: '        files: [\'assets/*.scss\', \'assets/*.less\'],\n'},
+    '        tasks: [\'precompile\'],\n',
     '      }\n',
     '    },\n',
   ]
