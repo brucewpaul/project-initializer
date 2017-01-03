@@ -16,6 +16,20 @@ var expect = chai.expect;
 
 chai.use(chaiHttp);
 
+var deleteFolderRecursive = function(path) {
+    if( fs.existsSync(path) ) {
+      fs.readdirSync(path).forEach(function(file,index){
+        var curPath = path + "/" + file;
+        if(fs.lstatSync(curPath).isDirectory()) { // recurse
+          deleteFolderRecursive(curPath);
+        } else { // delete file
+          fs.unlinkSync(curPath);
+        }
+      });
+      fs.rmdirSync(path);
+    }
+  };
+
 var options = {
  frontEnd:{
    framework: 'React',
@@ -54,8 +68,8 @@ var options = {
 describe ('Bundler', function () {
 
   it('should create unique folder', function(done) {
-    bundler(options, function(url) {
-      var fileName = url + '.tar.gz';
+    bundler(options, function(err, folderName) {
+      var fileName = folderName + '.tar.gz';
       var uniquePath = path.resolve(__dirname, '..', 'server/bundles', fileName );
 
       fs.exists(uniquePath, (exists) => {
@@ -98,16 +112,76 @@ describe ('bundle-package', function () {
 
 describe ('assemble-files', function () {
 
+  var callback = function() {
+    return true;
+  }
+
+  var id = 1234;
+
+  var outputPath = path.join(__dirname, `./${id}`);
+
+  beforeEach(function(done) {
+    fs.mkdirAsync(outputPath)
+      .then((err) => {
+        if ( err ) {
+          console.log(err);
+        }
+        done();
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  });
+
+  afterEach(function(done) {
+    fs.exists(outputPath, (exists) => {
+      if ( exists ) {
+        deleteFolderRecursive(outputPath);
+      }
+      fs.exists(`${outputPath}.tar.gz`, (exists) => {
+        if ( exists ) {
+          fs.unlinkSync(`${outputPath}.tar.gz`);
+        }
+        done();
+      });
+    });
+  });
+
   it('should assemble files at path', function(done) {
+    assemble(options, outputPath, id, function(err) {
+      fs.exists(outputPath, (exists) => {
+        if ( exists ) {
+          done();
+        }
+      });
+    })
   });
 
   it('should assemble a zipper file with same name', function(done) {
+    assemble(options, outputPath, id, function(err) {
+      fs.exists(`${outputPath}.tar.gz`, (exists) => {
+        if ( exists ) {
+          done();
+        }
+      });
+    })
   });
 
   it('should fire callback', function(done) {
+    assemble(options, outputPath, id, function(err) {
+      if ( !err ) {
+        done();
+      }
+    })
   });
 
   it('callback should handle error', function(done) {
-  });
+    assemble(options, './not-here', id, function(err) {
+      // expect(err).to.be.an('error');
+      if ( err ) {
 
+      done();
+      }
+    })
+  });
 });
