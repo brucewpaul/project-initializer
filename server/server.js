@@ -13,64 +13,19 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.get('/bundle/:id', (req, res) => {
+  var fileName = req.params.id + '.tar.gz';
+  res.download(path.resolve(__dirname, 'bundles', fileName ));
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
 });
 
-var options = {
- frontEnd:{
-   framework: 'React',
-   styling: 'Javascipt/html/css'
- },
- backEnd: {
-   database: 'Sqlite3'
- },
- devTools: {
-   taskRunner: {
-     name: 'grunt',
-     plugins:['cssmin', 'uglify'],
-     tasks:[
-     {
-       name: 'cssmin',
-       plugins:['cssmin']
-     },
-     {
-       name:'uglify',
-       plugins:['uglify']
-     },
-     {
-       name: 'build',
-       plugins: ['cssmin', 'uglify']
-     }
-     ]
-   },
-   bundler:{
-     name: 'webpack',
-     config:[]
-   },
-   testing: 'mocha/chai'
- }
-}
-
 app.post('/build/', function (req, res) {
-
-  bundler(options, function(url) {
-    bundleUrl = path.join(__dirname, 'bundles', url)
-    var file = fs.readFileAsync(bundleUrl, 'binary')
-      .then(() => {
-        res.setHeader('Content-Length', bundleUrl.length);
-        res.write(bundleUrl, 'binary');
-        res.end();
-      })
-      .catch((e) => {
-        res.status(500).send('Something broke!')
-      });
-
-
+  bundler(req.body, function(url) {
+    res.status(200).send(url)
   });
-
-
-  // res.send('you done connected');
 });
 
 app.get('/homepage', function (req, res) { //just a test route

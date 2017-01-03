@@ -16,7 +16,7 @@ module.exports = function(options) {
     frontEndFramework = react;
   }
 
-  if ( options.backEnd.database === 'Sqlite3' ) {
+  if ( options.backEnd.database === 'Sqlite' ) {
     backEndDatabase = sqlite;
   } else if ( options.backEnd.database === 'Mongo' ) {
     backEndDatabase = mongo;

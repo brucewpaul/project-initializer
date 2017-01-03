@@ -78,10 +78,10 @@ module.exports = function(options, outputPath, id, cb) {
           console.error(`exec error: ${error}`);
           return;
         }
-        console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
+        // console.log(`stdout: ${stdout}`);
+        // console.log(`stderr: ${stderr}`);
         // TODO: return url/id of file to send back
-        cb(`${id}.tar.gz`);
+        cb(`${id}`);
       });
     })
     .catch(function(err) {

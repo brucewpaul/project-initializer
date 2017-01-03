@@ -10,10 +10,8 @@ var assembleFiles = require('./assemble-files.js');
 module.exports = function(options, cb) {
   // TODO: Change this to be unique id of user
   var id = new Date().valueOf().toString();
-
   var uniquePath = path.join(__dirname, '../../bundles', id);
 
-  console.log(uniquePath)
   // check if folder for output already exists
   fs.existsAsync(uniquePath)
     .then((exists) => {
