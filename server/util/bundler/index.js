@@ -7,64 +7,29 @@ var path = require('path');
 
 var assembleFiles = require('./assemble-files.js');
 
-var options = {
- frontEnd:{
-   framework: 'React',
-   styling: 'Javascipt/html/css'
- },
- backEnd: {
-   database: 'Sqlite3'
- },
- devTools: {
-   taskRunner: {
-     name: 'grunt',
-     plugins:['cssmin', 'uglify'],
-     tasks:[
-     {
-       name: 'cssmin',
-       plugins:['cssmin']
-     },
-     {
-       name:'uglify',
-       plugins:['uglify']
-     },
-     {
-       name: 'build',
-       plugins: ['cssmin', 'uglify']
-     }
-     ]
-   },
-   bundler:{
-     name: 'webpack',
-     config:[]
-   },
-   testing: 'mocha/chai'
- }
-}
+module.exports = function(options, cb) {
+  // TODO: Change this to be unique id of user
+  var id = new Date().valueOf().toString();
+  var uniquePath = path.join(__dirname, '../../bundles', id);
 
-// TODO: Change this to be unique id of user
-var id = new Date().valueOf().toString();
-
-var uniquePath = path.join('../../bundles', id);
-
-// check if folder for output already exists
-fs.existsAsync(uniquePath)
-  .then((exists) => {
-    if ( !exists ) {
-      // create folder for output
-      fs.mkdirAsync(uniquePath)
-        .then((err) => {
-          if ( err ) {
-            console.log(err);
-          } else {
-            // assemble the files
-            assembleFiles(options, uniquePath, id)
-            // TODO: will eventually receive the url/id of folder to send back to client
-          }
-        });
-    }
-});
-
-module.exports = function() {
-
+  // check if folder for output already exists
+  fs.existsAsync(uniquePath)
+    .then((exists) => {
+      if ( !exists ) {
+        // create folder for output
+        fs.mkdirAsync(uniquePath)
+          .then((err) => {
+            if ( err ) {
+              console.log(err);
+            } else {
+              // assemble the files
+              assembleFiles(options, uniquePath, id, cb)
+              // TODO: will eventually receive the url/id of folder to send back to client
+            }
+          })
+          .catch((err) => {
+            throw new Error(err);
+          });
+      }
+  });
 }
