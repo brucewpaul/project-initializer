@@ -8,7 +8,7 @@ var gruntMain = [
 
 var gruntInitConfig = [
   '  grunt.initConfig({\n',
-  '    pkg: grunt.file.readJSON(\'package.json\')\n',
+  '    pkg: grunt.file.readJSON(\'package.json\'),\n',
   '  });\n'
 ]
 
@@ -21,7 +21,8 @@ var pluginConfigs = {
     {React: '          cwd: \'public/assets\',\n',
     Angular: '          cwd: \'assets\',\n'},
     '          src: [\'*.css\', \'!*.min.css\'],\n',
-    '          dest: \'release/css\',\n',
+    {React: '          dest: \'public/assets\',\n',
+    Angular: '          dest: \'assets\',\n'},
     '          ext: \'.min.css\'\n',
     '        }]\n',
     '      }\n',
@@ -30,23 +31,28 @@ var pluginConfigs = {
   uglify: [
     '    uglify: {\n',
     '      target: {\n',
-    '        files: {\n',
-    {React: '          \'public/assets/script.min.js\': [\'public/assets/script.js\']\n',
-    Angular: '          \'assets/script.min.js\': [\'assets/script.js\']\n'},
-    '        }\n',
+    '        files: [{\n',
+    '          expand: true,\n',
+    {React: '          cwd: \'public/assets\',\n',
+    Angular: '          cwd: \'assets\',\n'},
+    '          src: [\'*.js\', \'!*.min.js\'],\n',
+    {React: '          dest: \'public/assets\',\n',
+    Angular: '          dest: \'assets\',\n'},
+    '          ext: \'.min.js\'\n',
+    '        }]\n',
     '      }\n',
-    '    },\n',
+    '    },\n'
   ],
   sass: [
     '    sass: {\n',
-    '      dist: {\n',
+    '      target: {\n',
     '        files: [{\n',
     '          expand: true,\n',
     {React: '          cwd: \'public/assets\',\n',
     Angular: '          cwd: \'assets\',\n'},
     '          src: [\'*.scss\'],\n',
     {React: '          dest: \'public/assets\',\n',
-    Angular: '          cwd: \'assets\',\n'},
+    Angular: '          dest: \'assets\',\n'},
     '          ext: \'.css\'\n',
     '        }]\n',
     '      }\n',
@@ -54,25 +60,18 @@ var pluginConfigs = {
   ],
   less: [
     '    less: {\n',
-    '      development: {\n',
-    '        options: {\n',
-    '          paths: [\'assets/css\']\n',
-    '        },\n'
-    '        files: {\n'
-    {React: '          \'public/assets/styles.css': 'public/assets/styles.less\'\n',
-    Angular: '          \'assets/styles.css': 'assets/styles.less\'\n'},
-    '        }\n',
+    '      target: {\n',
+    '        files: [{\n',
+    '          expand: true,\n',
+    {React: '          cwd: \'public/assets\',\n',
+    Angular: '          cwd: \'assets\',\n'},
+    '          src: [\'*.less\'],\n',
+    {React: '          dest: \'public/assets\',\n',
+    Angular: '          dest: \'assets\',\n'},
+    '          ext: \'.css\'\n',
+    '        }]\n',
     '      }\n',
     '    },\n'
-  ],
-  watch: [
-    '    watch: {\n',
-    '      src: {\n',
-    {React: '        files: [\'public/assets/*.scss\', \'public/assets/*.less\'],\n',
-    Angular: '        files: [\'assets/*.scss\', \'assets/*.less\'],\n'},
-    '        tasks: [\'precompile\'],\n',
-    '      }\n',
-    '    },\n',
   ]
 }
 
@@ -80,8 +79,7 @@ var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
   uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
   sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n',
-  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n',
-  watch: '  grunt.loadNpmTasks(\'grunt-contrib-watch\');\n'
+  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n'
 }
 
 var createGruntTask = function(task) {
