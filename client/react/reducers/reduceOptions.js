@@ -29,7 +29,7 @@ const initialState = {
       name: 'webpack',
       config:[]
     },
-    testing: 'mocha/chai'
+    testing: 'Mocha'
   }
 }
 
