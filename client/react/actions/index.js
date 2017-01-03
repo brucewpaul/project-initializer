@@ -32,3 +32,17 @@ export const addTask = (task) => {
     payload: task
   }
 }
+
+export const changeDisplayType = (display) => {
+  return {
+    type: 'CHANGE_DISPLAY',
+    payload: display
+  }
+}
+
+export const changeCheckoutFormat = (page) => {
+  return {
+    type: 'CHANGE_PAGE',
+    payload: page
+  }
+}

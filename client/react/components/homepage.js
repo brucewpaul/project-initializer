@@ -2,22 +2,29 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectFramework } from '../actions/index';
+import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
+
+import ProjectCart from './cartview';
+import { cart } from '../actions/actionhelper';
 
 
 class HomePage extends React.Component {
+
+  componentDidMount() {
+    this.props.changeCheckoutFormat(cart);
+  }
 
   render() {
     return (
       <Grid>
         <Row>
-          <Col xs={12} className='choiceDirections'>
+          <Col xs={8} className='choiceDirections'>
             <h4>Select a frontend framework</h4>
           </Col>
         </Row>
         <Row>
-          <Col xs={6} className='selector'>
+          <Col xs={4} className='selector'>
             <Button
               bsStyle='primary'
               onClick={()=> this.props.selectFramework('React')}
@@ -26,7 +33,7 @@ class HomePage extends React.Component {
               <Image src ="https://upload.wikimedia.org/wikipedia/commons/5/57/React.js_logo.svg" className="logo"></Image>
             </Button>
           </Col>
-          <Col xs={6} className='selector'>
+          <Col xs={4} className='selector'>
             <Button
               bsStyle='danger'
               onClick={()=> this.props.selectFramework('Angular')}
@@ -35,18 +42,21 @@ class HomePage extends React.Component {
               <Image src ="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" className="logo"></Image>
             </Button>
           </Col>
+          <ProjectCart/>
         </Row>
         <Row>
-          <Col xs={6} xsOffset={3} className="choiceButtons">
+          <Col xs={4} xsOffset={2} className="choiceButtons">
             <Link to='/server'>
               <Button bsSize='large'>
                Database Selection
               </Button>
             </Link>
           </Col>
-          <Col xs={6} xsOffset={3} className="choiceButtons">
+          <Col xs={4} xsOffset={2} className="choiceButtons">
             <Link to='/checkout'>
-              <Button bsSize='large'>
+              <Button
+                bsSize='large'
+                onClick={()=> this.props.changeDisplayType('advanced')}>
                Advanced Options
               </Button>
             </Link>
@@ -59,13 +69,16 @@ class HomePage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    options: state.options
+    options: state.options,
+    display: state.display
   };
 }
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectFramework: selectFramework
+    selectFramework: selectFramework,
+    changeDisplayType: changeDisplayType,
+    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 

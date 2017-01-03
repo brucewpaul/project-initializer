@@ -2,21 +2,28 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectDatabase } from '../actions/index';
+import { selectDatabase, changeDisplayType, changeCheckoutFormat } from '../actions/index';
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
+import ProjectCart from './cartview';
+import { cart } from '../actions/actionhelper';
 
 class DatabasePage extends React.Component {
+
+  componentDidMount() {
+    this.props.changeCheckoutFormat(cart);
+  }
+
   render() {
     return (
       <Grid>
         <Row>
-          <Col xs={12} className='choiceDirections'>
+          <Col xs={8} className='choiceDirections'>
             <h4>Select a database </h4>
           </Col>
         </Row>
         <Row>
-          <Col xs={6} className='selector'>
+          <Col xs={4} className='selector'>
             <Button
               bsStyle='primary'
               onClick={()=> this.props.selectDatabase('MongoDB')}
@@ -27,7 +34,7 @@ class DatabasePage extends React.Component {
                 className="mongologo"></Image>
             </Button>
           </Col>
-          <Col xs={6} className='selector'>
+          <Col xs={4} className='selector'>
             <Button
               bsStyle='danger'
               onClick={()=> this.props.selectDatabase('Sqlite')}
@@ -38,16 +45,17 @@ class DatabasePage extends React.Component {
               className="logo"></Image>
             </Button>
           </Col>
+          <ProjectCart />
         </Row>
         <Row>
-          <Col xs={6} xsOffset={3} className="choiceButtons">
+          <Col xs={4} xsOffset={2} className="choiceButtons">
             <Link to='/checkout'>
               <Button bsSize='large'>
                Checkout Page
               </Button>
             </Link>
           </Col>
-          <Col xs={6} xsOffset={3} className="choiceButtons">
+          <Col xs={4} xsOffset={2} className="choiceButtons">
             <Link to='/checkout'>
               <Button bsSize='large'>
                Advanced Options
@@ -61,13 +69,16 @@ class DatabasePage extends React.Component {
 }
 function mapStateToProps(state) {
   return {
-    options: state.options
+    options: state.options,
+    display: state.display
   };
 }
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectDatabase: selectDatabase
+    selectDatabase: selectDatabase,
+    changeDisplayType: changeDisplayType,
+    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 
