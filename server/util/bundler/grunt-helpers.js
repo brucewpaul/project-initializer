@@ -75,11 +75,60 @@ var pluginConfigs = {
   ]
 }
 
+var watchOptions = {
+  uglify: [
+    '      uglify: {\n',
+    {React: '        files: \'public/assets/*.js\',\n',
+    Angular: '        files: \'assets/*.js\',\n'},
+    '        tasks: [\'uglify\']\n',
+    '      },\n'
+  ],
+  sass: [
+    '      sass: {\n',
+    {React: '        files: \'public/assets/*.scss\',\n',
+    Angular: '        files: \'assets/*.scss\',\n'},
+    '        tasks: [\'sass\']\n',
+    '      },\n'
+  ],
+  less: [
+    '      less: {\n',
+    {React: '        files: \'public/assets/*.less\',\n',
+    Angular: '        files: \'assets/*.less\',\n'},
+    '        tasks: [\'less\']\n',
+    '      },\n'
+  ],
+  cssmin: [
+    '      cssmin: {\n',
+    {React: '        files: \'public/assets/*.css\',\n',
+    Angular: '        files: \'assets/*.css\',\n'},
+    '        tasks: [\'cssmin\']\n',
+    '      },\n'
+  ]
+}
+
 var loadNpmTasks = {
   cssmin: '  grunt.loadNpmTasks(\'grunt-contrib-cssmin\');\n',
   uglify: '  grunt.loadNpmTasks(\'grunt-contrib-uglify\');\n',
   sass: '  grunt.loadNpmTasks(\'grunt-contrib-sass\');\n',
-  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n'
+  less: '  grunt.loadNpmTasks(\'grunt-contrib-less\');\n',
+  watch: '  grunt.loadNpmTasks(\'grunt-contrib-watch\');\n'
+}
+
+var buildWatchConfig = function(options) {
+  var watchConfig = '    watch: {\n';
+  _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
+    if (plugin !== 'watch') {
+      _.forEach(watchOptions[plugin], function(line) {
+        if (typeof line === 'object') {
+          watchConfig += line[options.frontEnd.framework];
+        } else {
+          watchConfig += line;
+        }
+      });
+    }
+  });
+  watchConfig += '    },\n';
+  return watchConfig;
 }
 
 var createGruntTask = function(task) {
@@ -104,13 +153,17 @@ var createGruntfileContents = function(options) {
   gruntFile += gruntInitConfig[1];
   // for each plugin, insert it into the config init
   _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
-    _.forEach(pluginConfigs[plugin], function(line) {
-      if (typeof line === 'object') {
-        gruntFile += line[options.frontEnd.framework];
-      } else {
-        gruntFile += line;
-      }
-    });
+    if (plugin !== 'watch') {
+      _.forEach(pluginConfigs[plugin], function(line) {
+        if (typeof line === 'object') {
+          gruntFile += line[options.frontEnd.framework];
+        } else {
+          gruntFile += line;
+        }
+      });
+    } else {
+      gruntFile += buildWatchConfig(options);
+    }
   });
   gruntFile += gruntInitConfig[2];
   // for each plugin, load npm module
