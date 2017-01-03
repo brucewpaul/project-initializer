@@ -8,38 +8,30 @@ var path = require('path');
 var assembleFiles = require('./assemble-files.js');
 
 var options = {
- frontEnd:{
-   framework: 'React',
-   styling: 'Javascipt/html/css'
- },
- backEnd: {
-   database: 'Sqlite3'
- },
- devTools: {
-   taskRunner: {
-     name: 'grunt',
-     plugins:['cssmin', 'uglify'],
-     tasks:[
-     {
-       name: 'cssmin',
-       plugins:['cssmin']
-     },
-     {
-       name:'uglify',
-       plugins:['uglify']
-     },
-     {
-       name: 'build',
-       plugins: ['cssmin', 'uglify']
-     }
-     ]
-   },
-   bundler:{
-     name: 'webpack',
-     config:[]
-   },
-   testing: 'mocha/chai'
- }
+  frontEnd:{
+    framework: 'React',
+    styling: 'Javascipt/html/css'
+  },
+  backEnd: {
+    database: 'Sqlite3'
+  },
+  devTools: {
+    taskRunner: {
+      name: 'grunt',
+      plugins:['cssmin', 'uglify'],
+      tasks:[
+      {
+        name: 'build',
+        plugins: ['cssmin', 'uglify']
+      }
+      ]
+    },
+    bundler:{
+      name: 'webpack',
+      config:[]
+    },
+    testing: 'mocha/chai'
+  }
 }
 
 // TODO: Change this to be unique id of user
