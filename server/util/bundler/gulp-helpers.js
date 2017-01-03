@@ -12,7 +12,7 @@ var gulpModules = [
 var gulpOptions = {
   sass: 'var sass = require(\'gulp-sass\');\n',
   less: 'var less = require(\'gulp-less\');\n',
-  null: '\n'
+  css: '\n'
 };
 
 var gulpTasks = {
@@ -21,18 +21,18 @@ var gulpTasks = {
   css: 'gulp.task(\'cssminify\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});'
 }
 
-var gulpWatch = 'gulp.watch(\'client/public/assets\', [' + options.devTools.
-plugins[0] + ']);\n';
-
 function createGulpFile (options) {
+  var gulpWatch = 'gulp.watch(\'client/public/assets\', [\'' + options.devTools.styling + '\']);\n';
+
+
   var gulpFile = '';
   gulpModules.push(gulpOptions[options.devTools.
-  plugins[0]]); //set up the dependancies with less/sass
+  styling]); //set up the dependancies with less/sass
   _.forEach(gulpModules, function(dependency) {
     gulpFile += dependency;
   });
   gulpFile += gulpTasks[options.devTools.
-  plugins[0]];
+  styling];
   gulpFile += gulpWatch;
   return gulpFile;
 };
