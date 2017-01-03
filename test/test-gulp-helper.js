@@ -50,5 +50,16 @@ describe('gulp-helper', function () {
     done();
   });
 
-  it('should update the \'.min.css\' files whenever a stylesheet changes');
+  it('should create .min.css files when \'gulp css\' is called', function(done) {
+
+    done();
+  });
+
+  it('should create .min.css files when \'gulp less\' is called');
+
+  it('should create .min.css files when \'gulp sass\' is called');
+
+  it('should update the \'.min.css\' files whenever a stylesheet changes', function () {
+
+  });
 });
