@@ -2,7 +2,7 @@ archives/*
 archives/*.txt
 test/testdata/sites/*
 test/testdata/sites.txt
-server/bundles/*
+server/bundles/!*.txt
 ingredients/db-sqlite/data/*
 
 ###OSX###
@@ -37,3 +37,5 @@ npm-debug.log
 node_modules
 
 bundle.js
+
+
