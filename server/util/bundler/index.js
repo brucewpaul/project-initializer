@@ -11,7 +11,6 @@ module.exports = function(options, cb) {
   // TODO: Change this to be unique id of user
   var id = new Date().valueOf().toString();
   var uniquePath = path.join(__dirname, '../../bundles', id);
-
   // check if folder for output already exists
   fs.existsAsync(uniquePath)
     .then((exists) => {
@@ -31,5 +30,8 @@ module.exports = function(options, cb) {
             throw new Error(err);
           });
       }
-  });
+    })
+    .catch((err) => {
+      throw new Error(err)
+    });
 }

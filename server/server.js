@@ -24,7 +24,7 @@ app.get('*', (req, res) => {
 
 app.post('/build/', function (req, res) {
   bundler(req.body, function(url) {
-    res.status(200).send(url)
+    res.status(201).send(url)
   });
 });
 

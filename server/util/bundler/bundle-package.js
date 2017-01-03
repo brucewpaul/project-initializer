@@ -10,22 +10,44 @@ var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-d
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase;
 
-  if ( options.frontEnd.framework === 'Angular' ) {
+  if ( options && options.frontEnd.framework === 'Angular' ) {
     frontEndFramework = angular;
-  } else if ( options.frontEnd.framework === 'React' ) {
+  } else if ( options && options.frontEnd.framework === 'React' ) {
     frontEndFramework = react;
+  } else {
+    frontEndFramework = {
+      scripts: {},
+      dependencies: {},
+      devDependencies: {}
+    }
   }
 
-  if ( options.backEnd.database === 'Sqlite' ) {
+  if ( options && options.backEnd.database === 'Sqlite' ) {
     backEndDatabase = sqlite;
-  } else if ( options.backEnd.database === 'Mongo' ) {
+  } else if ( options && options.backEnd.database === 'Mongo' ) {
     backEndDatabase = mongo;
+  } else {
+    backEndDatabase = {
+      scripts: {},
+      dependencies: {},
+      devDependencies: {}
+    }
+  }
+
+  if ( options && options.devTools.testing === 'Mocha' ) {
+    tesing = mocha;
+  } else {
+    tesing = {
+      scripts: {},
+      dependencies: {},
+      devDependencies: {}
+    }
   }
 
   // combine the different dependencies and scripts from front end and backend modules
-  package.scripts = Object.assign(frontEndFramework.scripts, backEndDatabase.scripts, mocha.scripts);
-  package.dependencies = Object.assign(frontEndFramework.dependencies, backEndDatabase.dependencies, mocha.dependencies);
-  package.devDependencies = Object.assign(frontEndFramework.devDependencies, backEndDatabase.devDependencies, mocha.devDependencies);
+  package.scripts = Object.assign(frontEndFramework.scripts, backEndDatabase.scripts, tesing.scripts);
+  package.dependencies = Object.assign(frontEndFramework.dependencies, backEndDatabase.dependencies, tesing.dependencies);
+  package.devDependencies = Object.assign(frontEndFramework.devDependencies, backEndDatabase.devDependencies, tesing.devDependencies);
 
   return package;
 }
