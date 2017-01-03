@@ -22,20 +22,20 @@ module.exports = function(options, outputPath, id, cb) {
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2))
     .then((err) => {
       if (err) throw err;
-      console.log('package.json done!');
+      // console.log('package.json done!');
     }));
 
   // create Gruntfile.js
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
     .then((err) => {
       if (err) throw err;
-      console.log('Gruntfile.js done!');
+      // console.log('Gruntfile.js done!');
     }));
 
   // add server functionality
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
     .then(function() {
-      console.log('server done!');
+      // console.log('server done!');
     }).catch(function (err) {
      return console.error('server', err);
    })
@@ -44,7 +44,7 @@ module.exports = function(options, outputPath, id, cb) {
   // add db
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'db'))
     .then(function() {
-      console.log('db done!');
+      // console.log('db done!');
     }).catch(function (err) {
      return console.error('db', err);
    })
@@ -53,7 +53,7 @@ module.exports = function(options, outputPath, id, cb) {
   // add front end
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath, 'client'))
     .then(function() {
-      console.log('Front End Framework done!');
+      // console.log('Front End Framework done!');
     }).catch(function (err) {
      return console.error('frontend', err);
    })
@@ -64,7 +64,7 @@ module.exports = function(options, outputPath, id, cb) {
   // add testing
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test'), path.join(outputPath, 'test'))
     .then(function() {
-      console.log('test done!');
+      // console.log('test done!');
     }).catch(function (err) {
      return console.error('test', err);
    })
@@ -72,7 +72,7 @@ module.exports = function(options, outputPath, id, cb) {
 
   Promise.all(asyncTasks)
     .then( function() {
-      console.log("all the files were created");
+      // console.log("all the files were created");
       exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
