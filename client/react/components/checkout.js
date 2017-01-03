@@ -65,10 +65,9 @@ function matchDispatchToProps(dispatch) {
 }
 
 function sendOptionsToServer(options) {
-  axios.post('/build',{
-    options: JSON.stringify(options)
-  }).then((response)=>{
-    console.log(response);
+  axios.post('/build',options)
+  .then((response)=>{
+    window.location.assign('/bundle/' + response.data);
   }).catch((err)=>{
     console.log(err);
   })

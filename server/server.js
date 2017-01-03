@@ -20,6 +20,7 @@ app.post('/build/', function (req, res) {
 });
 
 app.get('/bundle/:id', (req, res) => {
+
   var fileName = req.params.id + '.tar.gz';
   res.download(path.resolve(__dirname, 'bundles', fileName ));
 });
