@@ -20,6 +20,7 @@ module.exports = function(options, cb) {
           .then((err) => {
             if ( err ) {
               console.log(err);
+              return cb(new Error(err));
             } else {
               // assemble the files
               assembleFiles(options, uniquePath, id, cb)
@@ -27,11 +28,11 @@ module.exports = function(options, cb) {
             }
           })
           .catch((err) => {
-            throw new Error(err);
+            return cb(new Error(err));
           });
       }
     })
     .catch((err) => {
-      throw new Error(err)
+      return cb(new Error(err));
     });
 }
