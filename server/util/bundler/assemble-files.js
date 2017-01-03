@@ -21,14 +21,18 @@ module.exports = function(options, outputPath, id, cb) {
 
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2))
     .then((err) => {
-      if (err) throw err;
+      if (err) {
+        // return cb(new Error(err));
+      }
       // console.log('package.json done!');
     }));
 
   // create Gruntfile.js
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
     .then((err) => {
-      if (err) throw err;
+      if (err) {
+        // return cb(new Error(err));
+      }
       // console.log('Gruntfile.js done!');
     }));
 
@@ -37,7 +41,7 @@ module.exports = function(options, outputPath, id, cb) {
     .then(function() {
       // console.log('server done!');
     }).catch(function (err) {
-     return console.error('server', err);
+      // return cb(new Error(err));
    })
   );
 
@@ -46,7 +50,7 @@ module.exports = function(options, outputPath, id, cb) {
     .then(function() {
       // console.log('db done!');
     }).catch(function (err) {
-     return console.error('db', err);
+      // return cb(new Error(err));
    })
   );
 
@@ -55,7 +59,7 @@ module.exports = function(options, outputPath, id, cb) {
     .then(function() {
       // console.log('Front End Framework done!');
     }).catch(function (err) {
-     return console.error('frontend', err);
+      // return cb(new Error(err));
    })
   );
 
@@ -66,7 +70,7 @@ module.exports = function(options, outputPath, id, cb) {
     .then(function() {
       // console.log('test done!');
     }).catch(function (err) {
-     return console.error('test', err);
+      // return cb(new Error(err));
    })
   );
 
@@ -75,16 +79,15 @@ module.exports = function(options, outputPath, id, cb) {
       // console.log("all the files were created");
       exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
-          console.error(`exec error: ${error}`);
-          return;
+          return cb(new Error(error));
         }
         // console.log(`stdout: ${stdout}`);
         // console.log(`stderr: ${stderr}`);
         // TODO: return url/id of file to send back
-        cb(`${id}`);
+        return cb(null, `${id}`);
       });
     })
     .catch(function(err) {
-      console.log('error:', err)
+      return cb(new Error(err));
     })
 }

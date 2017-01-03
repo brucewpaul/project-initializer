@@ -14,8 +14,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.post('/build/', function (req, res) {
-  bundler(req.body, function(url) {
-    res.status(201).send(url)
+  bundler(req.body, function(err, folderName) {
+    if ( err ) {
+      res.status(500);
+    } else {
+      res.status(201).send(folderName);
+    }
   });
 });
 
