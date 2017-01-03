@@ -26,7 +26,7 @@ class DatabasePage extends React.Component {
           <Col xs={4} className='selector'>
             <Button
               bsStyle='primary'
-              onClick={()=> this.props.selectDatabase('MongoDB')}
+              onClick={()=> this.props.selectDatabase('Mongo')}
               block>
               <h2>MongoDB</h2>
               <Image

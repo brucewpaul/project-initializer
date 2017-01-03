@@ -13,6 +13,12 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.post('/build/', function (req, res) {
+  bundler(req.body, function(url) {
+    res.status(201).send(url)
+  });
+});
+
 app.get('/bundle/:id', (req, res) => {
   var fileName = req.params.id + '.tar.gz';
   res.download(path.resolve(__dirname, 'bundles', fileName ));
@@ -20,21 +26,6 @@ app.get('/bundle/:id', (req, res) => {
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
-});
-
-app.post('/build/', function (req, res) {
-  bundler(req.body, function(url) {
-    res.status(201).send(url)
-  });
-});
-
-app.get('/homepage', function (req, res) { //just a test route
-  console.log('we got the request');
-  res.send('you done connected');
-});
-
-app.post('/build', function (req, res) {
-  res.send('options sent');
 });
 
 
