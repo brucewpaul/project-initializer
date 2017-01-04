@@ -62,7 +62,7 @@ module.exports = function(options, outputPath, id, cb) {
   );
 
   // add front end
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath, 'client'))
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath))
     .then(function() {
       // console.log('Front End Framework done!');
     }).catch(function (err) {
