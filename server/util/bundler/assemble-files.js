@@ -28,13 +28,16 @@ module.exports = function(options, outputPath, id, cb) {
     }));
 
   // create Gruntfile.js
-  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
-    .then((err) => {
-      if (err) {
-        // return cb(new Error(err));
-      }
-      // console.log('Gruntfile.js done!');
-    }));
+  if (options.devTools.taskRunner.name === 'grunt') {
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
+      .then((err) => {
+        if (err) {
+          // return cb(new Error(err));
+        }
+        // console.log('Gruntfile.js done!');
+      }));
+  }
+
 
   // add server functionality
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
