@@ -18,11 +18,11 @@ var gulpOptions = {
 var gulpTasks = {
   sass: 'gulp.task(\'sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass().on(\'error\', sass.logError))\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
   less: 'gulp.task(\'less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  css: 'gulp.task(\'cssminify\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});'
+  css: 'gulp.task(\'cssminify\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n'
 }
 
 function createGulpFile (options) {
-  var gulpWatch = 'gulp.watch(\'client/public/assets\', [\'' + options.devTools.styling + '\']);\n';
+  var gulpWatch = '\ngulp.watch(\'client/public/assets\', [\'' + options.devTools.styling + '\']);\n';
 
 
   var gulpFile = '';
