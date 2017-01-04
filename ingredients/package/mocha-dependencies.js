@@ -1,5 +1,5 @@
 exports.scripts = {
-  "test": "mocha",
+  "test": "mocha --recursive",
 }
 
 exports.dependencies = {
