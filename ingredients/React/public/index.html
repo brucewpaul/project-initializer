@@ -1,3 +1,12 @@
+<!--
+This is the only file served from the server. This is the base of the Single Page Application (SPA)
+concept. All page routing is done on the client side, usually through React Router. In general,
+for an SPA, the client should not have to make a request to the server (Node w/ Express) to change the
+view.
+
+SPA: https://www.codeschool.com/beginners-guide-to-web-development/single-page-applications
+React Router: https://github.com/ReactTraining/react-router
+-->
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,17 +16,8 @@
     <link rel="stylesheet" type="text/css" href="assets/styles.css">
   </head>
   <body>
+    <!-- All of the react components will render within the div below with the id of 'root' -->
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
     <script src="dist/bundle.js"></script>
   </body>
 </html>
