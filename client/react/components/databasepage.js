@@ -56,7 +56,7 @@ class DatabasePage extends React.Component {
             </Link>
           </Col>
           <Col xs={4} xsOffset={2} className="choiceButtons">
-            <Link to='/checkout'>
+            <Link to='/advanced'>
               <Button bsSize='large'>
                Advanced Options
               </Button>

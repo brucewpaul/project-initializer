@@ -13,6 +13,7 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.props.changeCheckoutFormat(cart);
+    this.props.changeDisplayType('basic');
   }
 
   render() {
@@ -53,10 +54,8 @@ class HomePage extends React.Component {
             </Link>
           </Col>
           <Col xs={4} xsOffset={2} className="choiceButtons">
-            <Link to='/checkout'>
-              <Button
-                bsSize='large'
-                onClick={()=> this.props.changeDisplayType('advanced')}>
+            <Link to='/advanced'>
+              <Button bsSize='large'>
                Advanced Options
               </Button>
             </Link>
