@@ -10,7 +10,7 @@ var controller = require('../db/controllers');
 
 var router = express.Router(); //router will handle all calls to /API
 router.use(function(req, res, next) {
-  console.log('Router received request to \''+ req.originalUrl + '\' and will redirect to the appropriate route');
+  // console.log('Router received request to \''+ req.originalUrl + '\' and will redirect to the appropriate route');
   next();
 }); //basic format of middleware. Purpose here is to display endpoint in terminal
 
@@ -21,7 +21,7 @@ router.route('/items') //now we will define what to do with the different types 
 app.use('/api', router); //this is where we assign router to all requests starting with /api
 
 var server = app.listen(3000, function () {
-  console.log('Your basic-server is listening on 3000\nGo to \'127.0.0.1:3000\' in a browser to access your web-application!');
+  // console.log('Your basic-server is listening on 3000\nGo to \'127.0.0.1:3000\' in a browser to access your web-application!');
 });
 
 module.exports = server;
