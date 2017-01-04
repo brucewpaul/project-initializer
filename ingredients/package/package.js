@@ -5,7 +5,11 @@ module.exports = {
   "repository": "https://github.com/burly-bulls/project-initializer.git",
   "author": "Burly Bulls",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node server/server.js",
+    "start-nodemon": "nodemon server/server.js",
+  },
   "dependencies": {},
   "devDependencies": {}
 }

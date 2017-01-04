@@ -1,6 +1,6 @@
 exports.scripts = {
-  "start": "node server/server.js",
-  "start-nodemon": "nodemon server/server.js",
+  "postinstall": "bower install",
+  "pretest": "npm install",
 }
 
 exports.dependencies = {
