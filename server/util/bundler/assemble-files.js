@@ -16,6 +16,10 @@ module.exports = function(options, outputPath, id, cb) {
 
   var asyncTasks = [];
 
+  fs.mkdir(path.join(outputPath, 'Test'), function() {
+    console.log('test')
+  });
+
   // create package.json
   packageJSON = bundlePackage(options);
 
@@ -58,7 +62,7 @@ module.exports = function(options, outputPath, id, cb) {
   );
 
   // add front end
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath, 'client'))
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath))
     .then(function() {
       // console.log('Front End Framework done!');
     }).catch(function (err) {
@@ -68,8 +72,17 @@ module.exports = function(options, outputPath, id, cb) {
 
   // add tasks
 
-  // add testing
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test'), path.join(outputPath, 'test'))
+  // add testing for server
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test/Server'), path.join(outputPath, 'test/Server'))
+    .then(function() {
+      // console.log('test done!');
+    }).catch(function (err) {
+      // return cb(new Error(err));
+   })
+  );
+
+  // add testing for db
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', backEndDatabase), path.join(outputPath, 'test', backEndDatabase))
     .then(function() {
       // console.log('test done!');
     }).catch(function (err) {

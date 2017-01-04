@@ -9,7 +9,7 @@ var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-d
 var grunt = require(path.join(__dirname, '../../../ingredients/package/grunt-dependencies.js'));
 
 module.exports = function(options) {
-  var frontEndFramework, backEndDatabase;
+  var frontEndFramework, backEndDatabase, taskRunnerDependencies;
 
   if ( options && options.frontEnd.framework === 'Angular' ) {
     frontEndFramework = angular;
@@ -34,7 +34,7 @@ module.exports = function(options) {
       devDependencies: {}
     }
   }
-  var taskRunnerDependencies;
+
   if ( options && options.devTools.taskRunner.name === 'grunt' ) {
     taskRunnerDependencies = Object.assign({}, grunt.mainDependencies);
     _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
