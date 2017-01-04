@@ -1,7 +1,7 @@
 exports.scripts = {
   "start": "node server/server.js",
   "start-nodemon": "nodemon server/server.js",
-  "start-webpack": "webpack --config config.webpack.js --watch --colors --progress"
+  "start-webpack": "webpack --config webpack.config.js --watch --colors --progress"
 }
 
 exports.dependencies = {
