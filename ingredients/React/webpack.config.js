@@ -12,7 +12,7 @@ https://webpack.js.org/concepts/
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: path.join(__dirname, 'public/dist'),
+    path: path.join(__dirname, 'client/dist'),
     filename: 'bundle.js',
   },
   module: {
@@ -24,10 +24,6 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      },
-      {
-        test: /\.css$/,
-        loader: "css-loader"
       }
     ]
   }

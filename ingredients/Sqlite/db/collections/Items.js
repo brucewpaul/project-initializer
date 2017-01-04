@@ -1,5 +1,5 @@
-var db = require('../config');
-var Item = require('../models/item');
+var db = require('../index.js');
+var Item = require('../models/Item.js');
 
 var Items = new db.Collection();
 

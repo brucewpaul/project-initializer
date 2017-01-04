@@ -21,5 +21,4 @@ db.knex.schema.hasTable('items').then(function(exists) {
   }
 });
 
-
 module.exports = db;

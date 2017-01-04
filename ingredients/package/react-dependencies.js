@@ -8,7 +8,8 @@ exports.dependencies = {
   "express": "^4.14.0",
   "body-parser": "^1.15.2",
   "react": "^15.4.1",
-  "react-dom": "^15.4.1"
+  "react-dom": "^15.4.1",
+  "axios": "^0.15.3"
 }
 
 exports.devDependencies = {
