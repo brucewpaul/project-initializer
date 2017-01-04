@@ -42,18 +42,8 @@ module.exports = function(options, outputPath, id, cb) {
       }));
   }
 
-
-  // add server functionality
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
-    .then(function() {
-      // console.log('server done!');
-    }).catch(function (err) {
-      // return cb(new Error(err));
-   })
-  );
-
-  // add db
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'db'))
+  // add db and server functionality
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'server'))
     .then(function() {
       // console.log('db done!');
     }).catch(function (err) {
