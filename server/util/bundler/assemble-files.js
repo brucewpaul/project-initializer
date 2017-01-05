@@ -52,6 +52,7 @@ module.exports = function(options, outputPath, id, cb) {
         }
         // console.log('Gruntfile.js done!');
       }));
+
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, '.bowerrc'), JSON.stringify(bowerrcFile, null, 2))
       .then((err) => {
         if (err) {
@@ -59,6 +60,15 @@ module.exports = function(options, outputPath, id, cb) {
         }
         // console.log('Gruntfile.js done!');
       }));
+
+    // add testing for db
+    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', frontEndFramework), path.join(outputPath, 'test', frontEndFramework))
+      .then(function() {
+        // console.log('test done!');
+      }).catch(function (err) {
+        // return cb(new Error(err));
+     })
+    );
   }
 
   // add server functionality
