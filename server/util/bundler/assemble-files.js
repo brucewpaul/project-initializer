@@ -9,6 +9,9 @@ ncp.limit = 16;
 var bundlePackage = require('./bundle-package.js');
 var bundleGruntfile = require('./grunt-helpers.js');
 
+var bowerFile = require('../../../ingredients/bower/bower.js');
+var bowerrcFile = require('../../../ingredients/bower/bowerrc.js');
+
 module.exports = function(options, outputPath, id, cb) {
   var frontEndFramework = options.frontEnd.framework;
   var backEndDatabase = options.backEnd.database;
@@ -16,9 +19,7 @@ module.exports = function(options, outputPath, id, cb) {
 
   var asyncTasks = [];
 
-  fs.mkdir(path.join(outputPath, 'Test'), function() {
-    console.log('test')
-  });
+  fs.mkdir(path.join(outputPath, 'Test'));
 
   // create package.json
   packageJSON = bundlePackage(options);
@@ -34,6 +35,24 @@ module.exports = function(options, outputPath, id, cb) {
   // create Gruntfile.js
   if (options.devTools.taskRunner.name === 'grunt') {
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
+      .then((err) => {
+        if (err) {
+          // return cb(new Error(err));
+        }
+        // console.log('Gruntfile.js done!');
+      }));
+  }
+
+  // add bower if is angular
+  if (frontEndFramework === 'Angular') {
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'bower.json'), JSON.stringify(bowerFile, null, 2))
+      .then((err) => {
+        if (err) {
+          // return cb(new Error(err));
+        }
+        // console.log('Gruntfile.js done!');
+      }));
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, '.bowerrc'), JSON.stringify(bowerrcFile, null, 2))
       .then((err) => {
         if (err) {
           // return cb(new Error(err));

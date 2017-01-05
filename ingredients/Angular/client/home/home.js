@@ -21,15 +21,23 @@ angular.module('myApp.home', ['ngRoute', 'myApp.services'])
 // More Info (Controller): https://docs.angularjs.org/guide/controller
 .controller('HomeController', ['$scope', 'Items', function($scope, Items) {
   // TODO: add comments for below
-  $scope.data = {};
+  $scope.data = {
+    items: []
+  };
   Items.getAll().then(function(resp) {
-    $scope.data.items = resp.results;
+    if ( resp ) {
+      $scope.data.items = resp.results;
+    } else {
+      $scope.data.items = {};
+    }
   });
   $scope.addItem = Items.addOne;
   $scope.submitForm = function(item) {
     $scope.addItem(item);
     $scope.data.items.push({text: item});
-    $scope.newItem.$setPristine(true);
+    if ( $scope.newItem ) {
+      $scope.newItem.$setPristine(true);
+    }
     $scope.item = null;
   }
 }]);

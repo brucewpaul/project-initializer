@@ -54,9 +54,26 @@ module.exports = function(options) {
   }
 
   // combine the different dependencies and scripts from front end and backend modules
-  package.scripts = Object.assign(frontEndFramework.scripts, backEndDatabase.scripts, tesing.scripts);
-  package.dependencies = Object.assign(frontEndFramework.dependencies, backEndDatabase.dependencies, tesing.dependencies);
-  package.devDependencies = Object.assign(package.devDependencies, frontEndFramework.devDependencies, backEndDatabase.devDependencies, tesing.devDependencies);
+  package.scripts = Object.assign(
+    package.scripts,
+    frontEndFramework.scripts,
+    backEndDatabase.scripts,
+    tesing.scripts
+  );
+
+  package.dependencies = Object.assign(
+    package.dependencies,
+    frontEndFramework.dependencies,
+    backEndDatabase.dependencies,
+    tesing.dependencies
+  );
+
+  package.devDependencies = Object.assign(
+    package.devDependencies,
+    frontEndFramework.devDependencies,
+    backEndDatabase.devDependencies,
+    tesing.devDependencies
+  );
 
   return package;
 }
