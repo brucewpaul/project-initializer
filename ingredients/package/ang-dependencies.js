@@ -1,6 +1,6 @@
 exports.scripts = {
   "postinstall": "bower install",
-  "pretest": "npm install",
+  "test-client": "karma start",
 }
 
 exports.dependencies = {
@@ -11,5 +11,14 @@ exports.dependencies = {
 }
 
 exports.devDependencies = {
-  "nodemon": "^1.11.0"
+  "nodemon": "^1.11.0",
+  "bower": "^1.7.7",
+  "karma": "^0.13.22",
+  "karma-mocha": "^1.3.0",
+  "karma-junit-reporter": "^0.4.1",
+  "karma-phantomjs-launcher": "^1.0.2",
+  "karma-chai": "^0.1.0",
+  "sinon": "^1.17.7",
+  "karma-sinon": "^1.0.5",
+  "grunt-karma": "^2.0.0",
 }
