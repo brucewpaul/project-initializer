@@ -24,6 +24,7 @@ angular.module('myApp.services', [])
       data: {text: item}
     })
     .then(function(resp) {
+      return resp;
     });
   };
 
