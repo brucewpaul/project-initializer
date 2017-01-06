@@ -5,6 +5,7 @@ import HomePage from './homepage';
 import RootComponent from './rootComponent';
 import DatabasePage from './databasepage';
 import Checkout from './checkout';
+import AdvancedPage from './advancedPage';
 
 import { createStore } from 'redux';
 import allReducers from '../reducers';
@@ -19,6 +20,7 @@ const routes = (
       <Route path='/' component={RootComponent}>
         <IndexRoute component={HomePage}/>
         <Route path ='/server' component={DatabasePage}/>
+        <Route path ='advanced' component={AdvancedPage}/>
         <Route path ='/checkout' component={Checkout}/>
       </Route>
     </Router>

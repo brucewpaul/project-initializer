@@ -2,28 +2,16 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectDatabase, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectDatabase, selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
-import ProjectCart from './cartview';
-import { cart } from '../actions/actionhelper';
+class DatabaseOptions extends React.Component {
 
-class DatabasePage extends React.Component {
-
-  componentDidMount() {
-    this.props.changeCheckoutFormat(cart);
-  }
-
-  render() {
-    return (
+	render() {
+    return(
       <Grid>
         <Row>
-          <Col xs={8} className='choiceDirections'>
-            <h4>Select a database </h4>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4} className='selector'>
+          <Col xs={3} className='selector'>
             <Button
               bsStyle='primary'
               onClick={()=> this.props.selectDatabase('Mongo')}
@@ -34,7 +22,7 @@ class DatabasePage extends React.Component {
                 className="mongologo"></Image>
             </Button>
           </Col>
-          <Col xs={4} className='selector'>
+          <Col xs={3} className='selector'>
             <Button
               bsStyle='danger'
               onClick={()=> this.props.selectDatabase('Sqlite')}
@@ -44,29 +32,12 @@ class DatabasePage extends React.Component {
               src = 'https://upload.wikimedia.org/wikipedia/commons/9/97/Sqlite-square-icon.svg'
               className="logo"></Image>
             </Button>
-          </Col>
-          <ProjectCart />
-        </Row>
-        <Row>
-          <Col xs={4} xsOffset={2} className="choiceButtons">
-            <Link to='/checkout'>
-              <Button bsSize='large'>
-               Checkout Page
-              </Button>
-            </Link>
-          </Col>
-          <Col xs={4} xsOffset={2} className="choiceButtons">
-            <Link to='/advanced'>
-              <Button bsSize='large'>
-               Advanced Options
-              </Button>
-            </Link>
-          </Col>
-        </Row>
+          </Col>        </Row>
       </Grid>
-    );
+    )
   }
 }
+
 function mapStateToProps(state) {
   return {
     options: state.options,
@@ -82,4 +53,4 @@ function matchDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(DatabasePage);
+export default connect(mapStateToProps, matchDispatchToProps)(DatabaseOptions);

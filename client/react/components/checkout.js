@@ -30,7 +30,7 @@ class Checkout extends React.Component {
             </Link>
           </Col>
           <Col xs={6} xsOffset={3} className="choiceButtons">
-            <Link to='/'>
+            <Link to='/advanced'>
               <Button bsSize='large'>
                Advanced Options
               </Button>
