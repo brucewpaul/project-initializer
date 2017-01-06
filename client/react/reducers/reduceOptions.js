@@ -25,10 +25,6 @@ const initialState = {
       }
       ]
     },
-    bundler:{
-      name: 'webpack',
-      config:[]
-    },
     testing: 'Mocha'
   }
 }
@@ -58,11 +54,14 @@ export default function(state = initialState, action) {
       })
     case 'TASKRUNNER_CHOSEN':
       return Object.assign({} , state, {
-        devtools: {
-          taskrunner: {
-            name: action.payload.name,
+        devTools: {
+          taskRunner: {
+            name: action.payload,
+            plugins:[],
             tasks:[]
-          }
+          },
+          bundler: state.devTools.bundler,
+          testing: state.devTools.testing
         }
       })
     case 'TASK_ADDED':
@@ -79,7 +78,9 @@ export default function(state = initialState, action) {
             }
 
             ]
-          }
+          },
+          bundler: state.devTools.bundeler,
+          testing: state.devTools.testing
         }
       })
     default:

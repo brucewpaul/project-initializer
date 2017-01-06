@@ -10,7 +10,7 @@
     "start-nodemon": "nodemon server/server.js",
     "start-webpack": "webpack --config webpack.config.js --progress --colors --watch",
     "test": "mocha",
-    "jest": "jest test/test-frontend.js"
+    "jest": "jest"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -24,6 +24,8 @@
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "cli": "^1.0.1",
+    "enzyme": "^2.7.0",
     "eslint": "^3.12.2",
     "express": "^4.14.0",
     "grunt": "^1.0.1",
@@ -42,5 +44,13 @@
     "sinon": "^1.17.7",
     "socket-io": "^0.0.0",
     "webpack": "^1.14.0"
+  },
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "./node_modules/react",
+      "./node_modules/react-dom",
+      "./node_modules/react-addons-test-utils"
+    ],
+    "scriptPreprocessor": "./node_modules/babel-jest"
   }
 }
