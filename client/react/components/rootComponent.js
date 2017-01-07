@@ -9,7 +9,7 @@ class Root extends React.Component {
   render() {
     return (
       <div>
-        <Navbar bsStyle='inverse'>
+        <Navbar>
           <Nav pullRight>
             <NavItem eventKey={1} disabled>Login</NavItem>
           </Nav>
