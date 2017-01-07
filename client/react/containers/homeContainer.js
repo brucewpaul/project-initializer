@@ -8,34 +8,43 @@ import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-boot
 class HomePage extends React.Component {
   render() {
     return(
+      <div>
+      <Grid className='homepage-header' fluid>
+        <h3><span>Stackbear</span> is a modular node.js application scaffolding tool.</h3>
+      </Grid>
       <Grid>
-        <Row>
-          <Col xs={6} xsOffset={6}>
-            <Image src='http://jamiepettisart.com/wp-content/uploads/2014/09/Wolflogo700px.png' className='homeLogo'/>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6} xsOffset={3} className='tagline' >
-            <h4>Project Initializer is a modular Node.js application scaffolding tool</h4>
-          </Col>
-        </Row>
         <Row className='homeButtons'>
-          <Col xs={4} xsOffset={3}>
+          <Col xs={3} xsOffset={3}>
+            <div className='button-description'>
+              <h4>Guided</h4>
+              <ul>
+                <li>Explore our stack creator, step by step</li>
+                <li>Web developer nubs start here!</li>
+              </ul>
+            </div>
             <Link to='/guided'>
-              <Button bsSize='large' >
-               Guided Selection
+              <Button className='selector guided' bsSize='large' >
+                Guided Selection
               </Button>
             </Link>
           </Col>
-          <Col xs={4} xsOffset={0}>
+          <Col xs={3}>
+            <div className='button-description'>
+              <h4>Advanced</h4>
+              <ul>
+                <li>Coming soon!</li>
+                <li>Quickly create the application you want</li>
+              </ul>
+            </div>
             <Link to='/advanced'>
-              <Button bsSize='large' disabled>
-               Advanced Selection
+              <Button className='selector advanced' bsSize='large' disabled>
+                Advanced Selection
               </Button>
             </Link>
           </Col>
         </Row>
       </Grid>
+      </div>
     )
   }
 }
