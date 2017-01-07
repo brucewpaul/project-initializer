@@ -1,11 +1,11 @@
 const initialDisplay = {
   display: 'basic',
   page: {
-    name: 'cart',
-    listTitle: 'Cart',
+    name: 'frontend',
+    listTitle: 'Front End Framework',
     colSize: 4,
     colOffset:0
-  }
+  },
 }
 
 export default function(state = initialDisplay, action) {
@@ -25,3 +25,4 @@ export default function(state = initialDisplay, action) {
       return state
   }
 }
+

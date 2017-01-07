@@ -46,3 +46,10 @@ export const changeCheckoutFormat = (page) => {
     payload: page
   }
 }
+
+export const addTesting = (testing)=> {
+  return {
+    type: 'TESTING_CHOSEN',
+    payload: testing
+  }
+}

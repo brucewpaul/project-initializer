@@ -1,3 +1,77 @@
+.row {
+
+}
+
+.navBar {
+  background-color: red;
+}
+
+.homeLogo {
+    width: 50%;
+    margin-left: -28%;
+}
+
+.tagline{
+  margin-top: 5%
+}
+
+.homeButtons {
+  margin-top: 10%
+}
+
+.homeButtons .btn {
+  color: #696a72;
+  background-color: #222222;
+  border-radius: 0%;
+}
+
+.optionsView {
+  z-index: 1;
+  width: 70%;
+  height: 100%;
+}
+
+.cartView {
+  float: right;
+  width: 30%;
+  margin-right: 2%;
+  z-index: 2;
+}
+.cart {
+  height: 80%;
+}
+
+.guidedHeader {
+  text-align: center;
+  padding-right: 6%;
+  margin-top: 5%;
+}
+.guidedButtons {
+
+}
+
+.guidedButtons .btn {
+  border-radius: 0%;
+  padding-top: 30%;
+  padding-bottom: 30%;
+
+  margin-top: 60%;
+  margin-bottom: 50%;
+  margin-left: 20%;
+}
+
+.navButtons .btn {
+  border-radius: 0%;
+  margin-left: 20%;
+  margin-bottom: 30%;
+  margin-top: 30%;
+}
+.cartHeader {
+  text-align: center;
+}
+
+
+
 .projectTitle {
 	text-align: center;
 }
