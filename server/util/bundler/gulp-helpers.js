@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 
 var gulpModules = [
+'\'use strict\';\n',
 'var gulp = require(\'gulp\');\n',
 'var cleanCSS = require(\'gulp-clean-css\');\n',
 'var extname = require(\'gulp-extname\');\n'
@@ -16,13 +17,13 @@ var gulpOptions = {
 };
 
 var gulpTasks = {
-  sass: 'gulp.task(\'sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass().on(\'error\', sass.logError))\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  less: 'gulp.task(\'less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  css: 'gulp.task(\'cssminify\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n'
+  sass: '\ngulp.task(\'build-sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass().on(\'error\', sass.logError))\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  less: '\ngulp.task(\'build-less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  css: '\ngulp.task(\'build-css\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n'
 }
 
 function createGulpFile (options) {
-  var gulpWatch = '\ngulp.watch(\'client/public/assets\', [\'' + options.devTools.styling + '\']);\n';
+  var gulpWatch = '\ngulp.task(\'watch\', function() {\n  gulp.watch(\'client/public/assets\', [\'' + "build-" + options.devTools.styling + '\']);\n});';
 
 
   var gulpFile = '';
@@ -31,9 +32,11 @@ function createGulpFile (options) {
   _.forEach(gulpModules, function(dependency) {
     gulpFile += dependency;
   });
+  gulpModules.pop();
+  gulpFile += gulpWatch;
   gulpFile += gulpTasks[options.devTools.
   styling];
-  gulpFile += gulpWatch;
+
   return gulpFile;
 };
 
