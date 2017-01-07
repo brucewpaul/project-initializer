@@ -8,6 +8,7 @@ ncp.limit = 16;
 
 var bundlePackage = require('./bundle-package.js');
 var bundleGruntfile = require('./grunt-helpers.js');
+var bundleReadme = require('./readme-generator.js');
 
 var bowerFile = require('../../../ingredients/bower/bower.js');
 var bowerrcFile = require('../../../ingredients/bower/bowerrc.js');
@@ -25,6 +26,14 @@ module.exports = function(options, outputPath, id, cb) {
   packageJSON = bundlePackage(options);
 
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2))
+    .then((err) => {
+      if (err) {
+        // return cb(new Error(err));
+      }
+      // console.log('package.json done!');
+    }));
+
+  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'README.md'), bundleReadme(options))
     .then((err) => {
       if (err) {
         // return cb(new Error(err));
