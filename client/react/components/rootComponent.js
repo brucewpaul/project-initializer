@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 class Root extends React.Component {
   constructor(props) {
@@ -9,10 +9,11 @@ class Root extends React.Component {
   render() {
     return (
       <div>
-        <PageHeader className='projectTitle'>
-          Project-Initializer<br/>
-          <small>Your dream project is a click away</small>
-        </PageHeader>
+        <Navbar bsStyle='inverse'>
+          <Nav pullRight>
+            <NavItem eventKey={1} disabled>Login</NavItem>
+          </Nav>
+        </Navbar>
         {this.props.children}
       </div>
     )

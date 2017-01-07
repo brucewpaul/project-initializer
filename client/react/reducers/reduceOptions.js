@@ -8,22 +8,22 @@ const initialState = {
   },
   devTools: {
     taskRunner: {
-      name: 'grunt',
+      name: 'Grunt',
       plugins:['cssmin', 'uglify'],
       tasks:[
-      {
-        name: 'cssmin',
-        plugins:['cssmin']
-      },
-      {
-        name:'uglify',
-        plugins:['uglify']
-      },
-      {
-        name: 'build',
-        plugins: ['cssmin', 'uglify']
-      }
-      ]
+        {
+          name: 'cssmin',
+          plugins:['cssmin']
+        },
+        {
+          name:'uglify',
+          plugins:['uglify']
+        },
+        {
+          name: 'build',
+          plugins: ['cssmin', 'uglify']
+        }
+      ],
     },
     testing: 'Mocha'
   }
@@ -68,7 +68,7 @@ export default function(state = initialState, action) {
       return Object.assign({} , state, {
         devtools: {
           taskrunner: {
-            name: state.devtools.taskrunner.name,
+            name: state.devTools.taskRunner.name,
             tasks:[
             ...state.devtools.taskrunner.tasks,
 
@@ -81,6 +81,18 @@ export default function(state = initialState, action) {
           },
           bundler: state.devTools.bundeler,
           testing: state.devTools.testing
+        }
+      })
+      case 'TESTING_CHOSEN':
+      return Object.assign({} , state, {
+        devTools: {
+          taskRunner: {
+            name: state.devTools.taskRunner.name,
+            plugins:[],
+            tasks:[]
+          },
+          bundler: state.devTools.bundler,
+          testing: action.payload
         }
       })
     default:

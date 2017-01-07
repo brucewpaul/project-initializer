@@ -1,7 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, Link, IndexRoute, browserHistory } from 'react-router';
-import HomePage from './homepage';
+import HomePage from '../containers/homeContainer';
+import GuidedContainer from '../containers/guidedContainer';
+import SummaryContainer from '../containers/summaryContainer';
+import DownloadContainer from '../containers/downloadContainer';
+import AdvancedContainer from '../containers/advancedContainer';
 import RootComponent from './rootComponent';
 import DatabasePage from './databasepage';
 import Checkout from './checkout';
@@ -19,9 +23,10 @@ const routes = (
     <Router history ={browserHistory} >
       <Route path='/' component={RootComponent}>
         <IndexRoute component={HomePage}/>
-        <Route path ='/server' component={DatabasePage}/>
-        <Route path ='advanced' component={AdvancedPage}/>
-        <Route path ='/checkout' component={Checkout}/>
+        <Route path ='/guided' component={GuidedContainer}/>
+        <Route path ='/advanced' component={AdvancedContainer}/>
+        <Route path ='/checkout' component={SummaryContainer}/>
+        <Route path ='/download' component={DownloadContainer}/>
       </Route>
     </Router>
   </Provider>
