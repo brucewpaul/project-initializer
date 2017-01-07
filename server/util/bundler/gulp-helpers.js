@@ -22,10 +22,9 @@ var gulpTasks = {
   css: '\ngulp.task(\'build-css\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n'
 }
 
+
 function createGulpFile (options) {
   var gulpWatch = '\ngulp.task(\'watch\', function() {\n  gulp.watch(\'client/public/assets\', [\'' + "build-" + options.devTools.styling + '\']);\n});';
-
-
   var gulpFile = '';
   gulpModules.push(gulpOptions[options.devTools.
   styling]); //set up the dependancies with less/sass
@@ -36,7 +35,6 @@ function createGulpFile (options) {
   gulpFile += gulpWatch;
   gulpFile += gulpTasks[options.devTools.
   styling];
-
   return gulpFile;
 };
 
