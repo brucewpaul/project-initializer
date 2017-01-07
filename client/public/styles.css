@@ -69,6 +69,7 @@ body {
 }
 
 .homeButtons .selector {
+  position: relative;
   width: 100%;
   border-radius: 0px;
   border-bottom-left-radius: 10px;
@@ -79,12 +80,35 @@ body {
   font-weight: bold;
   color: #ffffff;
   padding: 13px;
+  z-index: 1;
 }
 
 .homeButtons .selector.guided {
-  background-color: #248117;
+  background-color: #2ca01c;
 }
 
 .homeButtons .selector.advanced {
   background-color: #f6a623;
 }
+
+.homeButtons .button-shadow {
+  width: 100%;
+  border-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 45px;
+  z-index: 0;
+  position: absolute;
+  width: 262px;
+  bottom: -3px;
+}
+
+.homeButtons .button-shadow-guided {
+  background-color: #248117;
+}
+
+.homeButtons .button-shadow-advanced {
+  background-color: #cd8c21;
+}
+
+

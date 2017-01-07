@@ -24,8 +24,9 @@ class HomePage extends React.Component {
             </div>
             <Link to='/guided'>
               <Button className='selector guided' bsSize='large' >
-                Guided Selection
+                Get started
               </Button>
+              <div className='button-shadow button-shadow-guided'></div>
             </Link>
           </Col>
           <Col xs={3}>
@@ -38,8 +39,9 @@ class HomePage extends React.Component {
             </div>
             <Link to='/advanced'>
               <Button className='selector advanced' bsSize='large' disabled>
-                Advanced Selection
+                Customize
               </Button>
+              <div className='button-shadow button-shadow-advanced'></div>
             </Link>
           </Col>
         </Row>
