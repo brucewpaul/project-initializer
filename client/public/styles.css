@@ -51,8 +51,17 @@ body {
   padding: 25px;
 }
 
+.homeButtons .button-description h4 {
+  font-family: 'Roboto Mono';
+  color: #404040;
+}
+
 .homeButtons .button-description ul {
   padding-left: 22px;
+}
+
+.homeButtons .button-description li {
+  padding-top: 10px;
 }
 
 .homeButtons .selector {
