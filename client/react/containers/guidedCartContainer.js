@@ -24,7 +24,9 @@ class GuidedCart extends React.Component {
         </Navbar>
         <FrontendCartView/>
         <BackendCartView/>
-        <Button>Build</Button>
+        <Link to='/checkout'>
+          <Button>Build</Button>
+        </Link>
       </div>
     )
   }
