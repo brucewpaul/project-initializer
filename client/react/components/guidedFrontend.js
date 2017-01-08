@@ -20,7 +20,6 @@ class GuidedFrontend extends React.Component {
                onClick={
                 ()=> {
                   this.props.selectFramework('React');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                block> React </Button>
@@ -31,7 +30,6 @@ class GuidedFrontend extends React.Component {
                 onClick={
                 ()=> {
                   this.props.selectFramework('Angular');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                 block> Angular </Button>
@@ -42,7 +40,6 @@ class GuidedFrontend extends React.Component {
                 onClick={
                 ()=> {
                   this.props.selectFramework('Vue');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                 block disabled> Vue </Button>
