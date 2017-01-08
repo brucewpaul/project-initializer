@@ -24,15 +24,16 @@ export const mysqlDesc = {
 }
 
 export const githubDesc = {
-
+  description: 'Push The Thing'
 }
 
 export const downloadDesc = {
+  description: 'Get The Thing'
 
 }
 
 export const saveDesc = {
-
+  description: 'Save The Thing'
 }
 
 

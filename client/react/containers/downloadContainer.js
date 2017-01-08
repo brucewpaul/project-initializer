@@ -7,7 +7,8 @@ import axios from 'axios';
 import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
 
 import { frontend } from '../actions/actionhelper';
-
+import { githubDesc, downloadDesc, saveDesc } from '../utils/descriptions'
+;
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 class DownloadContainer extends React.Component {
@@ -18,20 +19,34 @@ class DownloadContainer extends React.Component {
         <Grid>
           <Row>
             <Col xs={3}>
-              <Button disabled>
-                Upload to github
-              </Button>
+              <div>
+                <h4>Push to Github</h4>
+                {githubDesc.description}<br/>
+                <Button
+                  bsSize='large'
+                  disabled
+                >Push</Button>
+              </div>
             </Col>
             <Col xs={3}>
-              <Button
-                bsSize='large'
-                onClick={()=> sendOptionsToServer(this.props.options)}
-              > Download File</Button>
+              <div>
+                <h4>Download Zip</h4>
+                {downloadDesc.description}<br/>
+                <Button
+                  bsSize='large'
+                  onClick={()=> sendOptionsToServer(this.props.options)}
+                >Download</Button>
+              </div>
             </Col>
             <Col xs={3}>
-              <Button disabled>
-                Save Stack
-              </Button>
+              <div>
+                <h4>Save the Stack</h4>
+                {saveDesc.description}<br/>
+                <Button
+                  bsSize='large'
+                  disabled
+                >Save</Button>
+              </div>
             </Col>
           </Row>
         </Grid>
