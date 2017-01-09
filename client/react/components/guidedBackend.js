@@ -16,7 +16,6 @@ class GuidedBackend extends React.Component {
           <div className='guidedButtons'>
             <Col xs={3} xsOffset={0}>
               <Button
-               bsStyle='primary'
                onClick={
                 ()=> {
                   this.props.selectDatabase('Mongo');
@@ -26,7 +25,6 @@ class GuidedBackend extends React.Component {
             </Col>
             <Col xs={3}>
               <Button
-                bsStyle='danger'
                 onClick={
                 ()=> {
                   this.props.selectDatabase('Sqlite');
@@ -37,7 +35,6 @@ class GuidedBackend extends React.Component {
             </Col>
             <Col xs={3}>
               <Button
-                bsStyle='warning'
                 onClick={
                 ()=> {
                   this.props.selectDatabase('Mysql');

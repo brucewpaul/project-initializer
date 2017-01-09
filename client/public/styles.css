@@ -111,4 +111,91 @@ body {
   background-color: #cd8c21;
 }
 
+.guidedHeader {
+  width: 100%;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.guidedHeader h4 {
+  font-family: 'Roboto Mono';
+  font-size: 24px;
+  color: #404040;
+  margin: 70px 0px 20px 0px;
+}
+
+.guidedButtons {
+  margin: 20px 0px 40px 0px;
+}
+
+.guidedButton {
+  height: 216px;
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.guidedButton .title, .guidedButton .logo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.guidedButton .logo {
+  bottom: 60px;
+}
+
+.guidedButton .logo img {
+  display: block;
+  margin: auto;
+}
+
+.guidedButton .title p {
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  text-align: center;
+  color: #babec5;
+  margin: 18px 0px 18px 0px;
+}
+
+.navButtons .navButton-wrap {
+  position: relative;
+}
+
+.navButtons .navButton {
+  position: absolute;
+  margin: 0px 15px 0px 15px;
+}
+
+.navButtons .navButton.prev {
+  left: 0;
+}
+
+.navButtons .prevButton {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: 'Roboto Mono';
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #d8d8d8;
+}
+
+.navButtons .navButton.next {
+  right: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  font-family: 'Roboto Mono';
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #4990e2;
+}
+
+.optionsView .row {
+  margin-bottom: 20px;
+}
+
 
