@@ -11,59 +11,72 @@ class GuidedFrontend extends React.Component {
 
   render() {
     return (
-      <Grid>
-        <Row >
+      <div>
+        <Row>
           <div className='guidedButtons'>
-            <Col xs={3} xsOffset={0}>
-              <Button
-               bsStyle='primary'
-               onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('React');
                   }
                 }
-               block> React </Button>
+                >
+                <div className='logo'>
+                  <img src='images/react-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>React</p>
+                </div>
+              </div>
             </Col>
-            <Col xs={3}>
-              <Button
-                bsStyle='danger'
-                onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('Angular');
                   }
                 }
-                block> Angular </Button>
+                >
+                <div className='logo'>
+                  <img src='images/angular-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>Angular</p>
+                </div>
+              </div>
             </Col>
-            <Col xs={3}>
-              <Button
-                bsStyle='warning'
-                onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('Vue');
                   }
                 }
-                block disabled> Vue </Button>
-            </Col>
-          </div>
-          <div className='navButtons'>
-            <Col xs={3} xsOffset={1}>
-              <Link to='/'>
-              <Button bsSize='large' className='navButtons' block>
-              Home
-              </Button>
-            </Link>
-            </Col>
-            <Col xs={3} xsOffset={1}>
-              <Button
-                bsSize='large'
-                onClick={()=>this.props.changeCheckoutFormat(backend)}
-                block>
-                Next
-              </Button>
+                >
+                <div className='logo'>
+                  <img src='images/vue-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>Vue</p>
+                </div>
+              </div>
             </Col>
           </div>
         </Row>
-      </Grid>
+        <Row className='navButtons'>
+          <Col className='navButton-wrap' xs={3}>
+            <Link to='/' className='navButton prev'>
+            <Button className='prevButton' bsSize='large'>
+            Home
+            </Button>
+          </Link>
+          </Col>
+          <Col className='navButton-wrap' xs={3} xsOffset={6}>
+            <Button
+              bsSize='large'
+              className='navButton next'
+              onClick={()=>this.props.changeCheckoutFormat(backend)}
+              >
+              Next
+            </Button>
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

@@ -9,49 +9,75 @@ import { frontend } from '../actions/actionhelper';
 import { selectFramework, changeCheckoutFormat } from '../actions/index';
 
 
-import { Button, Image } from 'react-bootstrap';
+import { Row, Col, Button, Image } from 'react-bootstrap';
 
 
 class FrontendSummary extends React.Component {
   render() {
     if(this.props.options.frontEnd.framework ==='React'){
       return(
-        <div>
-        <Image src='https://s-media-cache-ak0.pinimg.com/236x/9e/b5/26/9eb526b177570ae3d06398e0b8922cae.jpg'></Image>
-        <h5>{reactDesc.description}</h5>
-        <Button
-        onClick={()=> this.props.selectFramework(null)}
-        >
-          Remove
-        </Button>
-        <Link to='/guided'>
-          <Button
-          onClick={()=> this.props.changeCheckoutFormat(frontend)}
-          >
-            Update
-          </Button>
-        </Link>
-        </div>
+        <Row className='summary-row'>
+          <Col xs={2}>
+            <div className='summary-image-wrap'>
+              <Image src='images/react-logo.png'></Image> 
+            </div>
+          </Col>
+          <Col xs={8}>
+            <h4>{this.props.options.frontEnd.framework}</h4>
+            <ul>
+              <li>{reactDesc.description}</li>
+            </ul>
+          </Col>
+          <Col xs={2}>
+            <div className='summary-modify-wrap'>
+              <Row>
+                <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.props.selectFramework(null)}></i>
+              </Row>
+              <Row>
+                <Link to='/guided'>
+                  <i
+                  className='fa fa-pencil'
+                  onClick={()=> this.props.changeCheckoutFormat(frontend)}
+                  >
+                  </i>
+                </Link>
+              </Row>
+            </div>
+          </Col>
+        </Row>
       )
     }
     if(this.props.options.frontEnd.framework ==='Angular'){
       return(
-        <div>
-        <Image src='https://s-media-cache-ak0.pinimg.com/236x/9e/b5/26/9eb526b177570ae3d06398e0b8922cae.jpg'></Image>
-        <h5>{angularDesc.description}</h5>
-        <Button
-        onClick={()=> this.props.selectFramework(null)}
-        >
-          Remove
-        </Button>
-        <Link to='/guided'>
-          <Button
-          onClick={()=> this.props.changeCheckoutFormat(frontend)}
-          >
-            Update
-          </Button>
-        </Link>
-        </div>
+        <Row className='summary-row'>
+          <Col xs={2}>
+            <div className='summary-image-wrap'>
+              <Image src='images/angular-logo.png'></Image> 
+            </div>
+          </Col>
+          <Col xs={8}>
+            <h4>{this.props.options.frontEnd.framework}</h4>
+            <ul>
+              <li>{angularDesc.description}</li>
+            </ul>
+          </Col>
+          <Col xs={2}>
+            <div className='summary-modify-wrap'>
+              <Row>
+                <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.props.selectFramework(null)}></i>
+              </Row>
+              <Row>
+                <Link to='/guided'>
+                  <i
+                  className='fa fa-pencil'
+                  onClick={()=> this.props.changeCheckoutFormat(frontend)}
+                  >
+                  </i>
+                </Link>
+              </Row>
+            </div>
+          </Col>
+        </Row>
       )
     } else {
       return <div></div>
