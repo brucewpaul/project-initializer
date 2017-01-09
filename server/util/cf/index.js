@@ -5,146 +5,146 @@ var queueInstance = require('./queue.js');
 var util = require('./util.js');
 
 // will eventually be in a db
-var storage = {
-  'all': {
-    'cssmin': {
-      'uglify': {
-        'value': 10
-      },
-      'watch': {
-        'value': 16
-      },
-      'sass': {
-        'value': 15
-      },
-    },
-    'uglify': {
-      'cssmin': {
-        'value': 10
-      },
-      'watch': {
-        'value': 2
-      },
-      'sass': {
-        'value': 7
-      },
-    },
-    'watch': {
-      'uglify': {
-        'value': 2
-      },
-      'cssmin': {
-        'value': 16
-      },
-      'sass': {
-        'value': 4
-      },
-    },
-    'sass': {
-      'uglify': {
-        'value': 7
-      },
-      'watch': {
-        'value': 4
-      },
-      'cssmin': {
-        'value': 15
-      },
-    }
-  },
-  'react': {
-    'cssmin': {
-      'uglify': {
-        'value': 5
-      },
-      'watch': {
-        'value': 12
-      },
-      'sass': {
-        'value': 5
-      },
-    },
-    'uglify': {
-      'cssmin': {
-        'value': 5
-      },
-      'watch': {
-        'value': 1
-      },
-      'sass': {
-        'value': 7
-      },
-    },
-    'watch': {
-      'uglify': {
-        'value': 1
-      },
-      'cssmin': {
-        'value': 12
-      },
-      'sass': {
-        'value': 2
-      },
-    },
-    'sass': {
-      'uglify': {
-        'value': 7
-      },
-      'watch': {
-        'value': 2
-      },
-      'cssmin': {
-        'value': 5
-      },
-    }
-  },
-  'angular': {
-    'cssmin': {
-      'uglify': {
-        'value': 5
-      },
-      'watch': {
-        'value': 4
-      },
-      'sass': {
-        'value': 10
-      },
-    },
-    'uglify': {
-      'cssmin': {
-        'value': 5
-      },
-      'watch': {
-        'value': 1
-      },
-      'sass': {
-        'value': 0
-      },
-    },
-    'watch': {
-      'uglify': {
-        'value': 1
-      },
-      'cssmin': {
-        'value': 4
-      },
-      'sass': {
-        'value': 2
-      },
-    },
-    'sass': {
-      'uglify': {
-        'value': 0
-      },
-      'watch': {
-        'value': 2
-      },
-      'cssmin': {
-        'value': 10
-      },
-    }
-  },
-}
+// var storage = {
+//   'all': {
+//     'cssmin': {
+//       'uglify': {
+//         'value': 10
+//       },
+//       'watch': {
+//         'value': 16
+//       },
+//       'sass': {
+//         'value': 15
+//       },
+//     },
+//     'uglify': {
+//       'cssmin': {
+//         'value': 10
+//       },
+//       'watch': {
+//         'value': 2
+//       },
+//       'sass': {
+//         'value': 7
+//       },
+//     },
+//     'watch': {
+//       'uglify': {
+//         'value': 2
+//       },
+//       'cssmin': {
+//         'value': 16
+//       },
+//       'sass': {
+//         'value': 4
+//       },
+//     },
+//     'sass': {
+//       'uglify': {
+//         'value': 7
+//       },
+//       'watch': {
+//         'value': 4
+//       },
+//       'cssmin': {
+//         'value': 15
+//       },
+//     }
+//   },
+//   'react': {
+//     'cssmin': {
+//       'uglify': {
+//         'value': 5
+//       },
+//       'watch': {
+//         'value': 12
+//       },
+//       'sass': {
+//         'value': 5
+//       },
+//     },
+//     'uglify': {
+//       'cssmin': {
+//         'value': 5
+//       },
+//       'watch': {
+//         'value': 1
+//       },
+//       'sass': {
+//         'value': 7
+//       },
+//     },
+//     'watch': {
+//       'uglify': {
+//         'value': 1
+//       },
+//       'cssmin': {
+//         'value': 12
+//       },
+//       'sass': {
+//         'value': 2
+//       },
+//     },
+//     'sass': {
+//       'uglify': {
+//         'value': 7
+//       },
+//       'watch': {
+//         'value': 2
+//       },
+//       'cssmin': {
+//         'value': 5
+//       },
+//     }
+//   },
+//   'angular': {
+//     'cssmin': {
+//       'uglify': {
+//         'value': 5
+//       },
+//       'watch': {
+//         'value': 4
+//       },
+//       'sass': {
+//         'value': 10
+//       },
+//     },
+//     'uglify': {
+//       'cssmin': {
+//         'value': 5
+//       },
+//       'watch': {
+//         'value': 1
+//       },
+//       'sass': {
+//         'value': 0
+//       },
+//     },
+//     'watch': {
+//       'uglify': {
+//         'value': 1
+//       },
+//       'cssmin': {
+//         'value': 4
+//       },
+//       'sass': {
+//         'value': 2
+//       },
+//     },
+//     'sass': {
+//       'uglify': {
+//         'value': 0
+//       },
+//       'watch': {
+//         'value': 2
+//       },
+//       'cssmin': {
+//         'value': 10
+//       },
+//     }
+//   },
+// }
 
 var queue = queueInstance();
 
@@ -166,11 +166,12 @@ var saveConfig = function(config) { // config = {packages: ['cssmin', 'watch']}
   var combos = util.combination(config.packages, 2);
 
   for ( var i = 0; i < combos.length; i++ ) {
-    console.log(combos[i][0])
     controller.createRelationship({
       package: combos[i][0],
       otherPackage: combos[i][1],
       framework: config.framework
+    }, function(pkg) {
+      console.log('relation created', pkg)
     });
   }
 
@@ -221,48 +222,63 @@ var saveConfig = function(config) { // config = {packages: ['cssmin', 'watch']}
   // return storage;
 }
 
-var getRecommendations = function(framework, packages) {
-  if (!packages) {
-    return
+var getRecommendations = function(pkg) {
+  if (!pkg) {
+    return;
   };
-
-  if (packages.length === 1) {
-    if ( !storage[framework][packages[0]] ) {
-      return null;
-    } else {
-      // sort this
-      return storage[framework][packages[0]];
-    }
-  }
-
-  var recommendations = {};
-
-  packages.forEach((pkg) => {
-    if ( storage[framework][pkg] ) {
-      for ( var k in storage[framework][pkg] ) {
-        if ( recommendations[k] ) {
-          recommendations[k] += storage[framework][pkg][k]
-        } else {
-          recommendations[k] = storage[framework][pkg][k]
-        }
-      }
-    }
-    // add this combo to storage
-  });
 
   var results = [];
 
-  for ( var k in recommendations ) {
-    var input = {
-      package: k,
-      rating: recommendations[k]
-    }
-    results.push(input);
+  for ( var i = 0; i < pkg.length; i++) {
+    controller.retreiveRelationship(pkg[i], function(relation) {
+      console.log(relation)
+      results.push(relation)
+    });
   }
 
-  return results.sort(function(a, b) {
-    return b.rating - a.rating
-  });
+  console.log('getRecommendations', results)
+
+  // return results.sort(function(a, b) {
+  //   return b.rating - a.rating
+  // });
+
+  // if (packages.length === 1) {
+  //   if ( !storage[framework][packages[0]] ) {
+  //     return null;
+  //   } else {
+  //     // sort this
+  //     return storage[framework][packages[0]];
+  //   }
+  // }
+
+  // var recommendations = {};
+
+  // packages.forEach((pkg) => {
+  //   if ( storage[framework][pkg] ) {
+  //     for ( var k in storage[framework][pkg] ) {
+  //       if ( recommendations[k] ) {
+  //         recommendations[k] += storage[framework][pkg][k]
+  //       } else {
+  //         recommendations[k] = storage[framework][pkg][k]
+  //       }
+  //     }
+  //   }
+  //   // add this combo to storage
+  // });
+
+  // var results = [];
+
+  // for ( var k in recommendations ) {
+  //   var input = {
+  //     package: k,
+  //     rating: recommendations[k]
+  //   }
+  //   results.push(input);
+  // }
+
+  // return results.sort(function(a, b) {
+  //   return b.rating - a.rating
+  // });
 }
 
 var generateValues = function() {
@@ -275,6 +291,6 @@ var addPackage = function() {
 
 // saveConfig({framework: 'react', packages: ['cssmin', 'watch', 'uglify']});
 
-// controller.retreiveAllRelationships(function(packages) {
-//   console.log(packages)
-// })
+controller.retreiveAllRelationships(function(packages) {
+  getRecommendations(packages[0].framework, packages);
+})

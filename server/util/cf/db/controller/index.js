@@ -39,7 +39,7 @@ module.exports.createPackage = function(pkg) {
 
 // Package Stat
 
-module.exports.incrementPackageStat = function(pkg) {
+module.exports.incrementPackageStat = function(pkg, cb) {
   Model.findAndModify(
     {
       $or: [
@@ -50,9 +50,9 @@ module.exports.incrementPackageStat = function(pkg) {
     { $inc: { fieldToIncrement: 1 } },
     function(err, relationship) {
       if (err) {
-        return console.error(err);
+        cb(new Error(err));
       }
-      return relationship;
+      cb(relationship);
     }
   );
 }
@@ -63,27 +63,27 @@ module.exports.retreiveAllRelationships = function(cb) {
   // get all relationships
   Relationship.find(function(err, relationship) {
     if (err) {
-      return console.error(err);
+      cb(new Error(err));
     }
     cb(relationship);
   });
 }
 
-module.exports.retreiveRelationship = function(pkg) {
+module.exports.retreiveRelationship = function(pkg, cb) {
   // get all relationships with a package and a framework
   Relationship.find({
     $or: [
       { 'package': pkg.package, 'framework': pkg.framework},
       { 'otherPackage': pkg.otherPackage, 'framework': pkg.framework}
-    ] }, function(err, relationships) {
+    ] }, function(err, relationship) {
       if (err) {
-        return console.error(err);
+        cb(new Error(err));
       }
-      return relationships;
+      cb(relationship);
   });
 }
 
-module.exports.createRelationship = function(pkg) {
+module.exports.createRelationship = function(pkg, cb) {
   // add new relationship
   var framework = pkg.framework || null
   var packageToAdd = new Relationship({
@@ -92,10 +92,12 @@ module.exports.createRelationship = function(pkg) {
     framework: framework
   });
 
+  console.log(packageToAdd)
+
   packageToAdd.save(function(err, packageToAdd) {
     if (err) {
-      return console.error(err);
+      cb(new Error(err));
     }
-    return packageToAdd;
+    cb(packageToAdd);
   });
 }
