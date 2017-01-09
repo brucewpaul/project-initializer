@@ -17,7 +17,6 @@ class GuidedFrontend extends React.Component {
             <Col xs={4}>
               <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('React');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                 >
@@ -32,7 +31,6 @@ class GuidedFrontend extends React.Component {
             <Col xs={4}>
               <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('Angular');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                 >
@@ -47,7 +45,6 @@ class GuidedFrontend extends React.Component {
             <Col xs={4}>
               <div className='guidedButton' onClick={()=> {
                   this.props.selectFramework('Vue');
-                  this.props.changeCheckoutFormat(backend);
                   }
                 }
                 >

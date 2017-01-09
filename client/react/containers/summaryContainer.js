@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 
 import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
 
+import FrontendSummary from '../components/frontendSummary';
+import BackendSummary from '../components/backendSummary';
+
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
 class SummaryContainer extends React.Component {
@@ -12,10 +15,16 @@ class SummaryContainer extends React.Component {
     return(
       <div>
         <div>
-
-
+          <h2>Review Your Stack</h2>
+          <div>
+            <h4>{this.props.options.frontEnd.framework}</h4>
+            <FrontendSummary/>
+          </div>
+          <div>
+            <h4>{this.props.options.backEnd.database}</h4>
+            <BackendSummary/>
+          </div>
         </div>
-        this is the summary page
         <Link to ='/download'>
           <Button>
             download page
