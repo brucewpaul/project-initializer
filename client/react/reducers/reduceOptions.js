@@ -12,14 +12,6 @@ const initialState = {
       plugins:['cssmin', 'uglify'],
       tasks:[
         {
-          name: 'cssmin',
-          plugins:['cssmin']
-        },
-        {
-          name:'uglify',
-          plugins:['uglify']
-        },
-        {
           name: 'build',
           plugins: ['cssmin', 'uglify']
         }
