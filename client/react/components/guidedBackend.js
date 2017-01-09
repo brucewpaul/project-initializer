@@ -11,64 +11,74 @@ class GuidedBackend extends React.Component {
 
   render() {
     return (
-      <Grid>
+      <div>
         <Row>
           <div className='guidedButtons'>
-            <Col xs={3} xsOffset={0}>
-              <Button
-               bsStyle='primary'
-               onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectDatabase('Mongo');
                   }
                 }
-               block> Mongo </Button>
+                >
+                <div className='logo'>
+                  <img src='images/mongo-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>MongoDB</p>
+                </div>
+              </div>
             </Col>
-            <Col xs={3}>
-              <Button
-                bsStyle='danger'
-                onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectDatabase('Sqlite');
-                  // this.props.changeCheckoutFormat(taskRunner);
                   }
                 }
-                block> SQlite3 </Button>
+                >
+                <div className='logo'>
+                  <img src='images/sqlite-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>SQLite3</p>
+                </div>
+              </div>
             </Col>
-            <Col xs={3}>
-              <Button
-                bsStyle='warning'
-                onClick={
-                ()=> {
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
                   this.props.selectDatabase('Mysql');
-                  // this.props.changeCheckoutFormat(taskRunner);
                   }
                 }
-                block disabled> MySQL </Button>
-            </Col>
-          </div>
-          <div className='navButtons'>
-            <Col xs={3} xsOffset={1}>
-              <Button
-              	bsSize='large'
-              	className='navButtons'
-              	onClick={()=> this.props.changeCheckoutFormat(frontend)}
-              	block>
-              Back
-              </Button>
-            </Col>
-            <Col xs={3} xsOffset={1}>
-              <Link to='/checkout'>
-                <Button
-                	bsSize='large'
-                	block>
-                  Next
-                </Button>
-              </Link>
+                >
+                <div className='logo'>
+                  <img src='images/mysql-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>MySQL</p>
+                </div>
+              </div>
             </Col>
           </div>
         </Row>
-      </Grid>
+        <Row className='navButtons'>
+          <Col className='navButton-wrap' xs={3}>
+            <Button 
+              className='prevButton'
+              onClick={()=> this.props.changeCheckoutFormat(frontend)} 
+              bsSize='large'>
+              Back
+            </Button>
+          </Col>
+          <Col className='navButton-wrap' xs={3} xsOffset={6}>
+            <Link to='/checkout'>
+              <Button
+                bsSize='large'
+                className='navButton next'
+                >
+                Next
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

@@ -22,28 +22,22 @@ class GuidedContainer extends React.Component {
   render() {
     if(this.props.display.page.name === 'frontend'){
       return (
-        <div>
-          <div className='cartView'>
-            <GuidedCartContainer />
-          </div>
+        <Grid>
           <div className='optionsView'>
             <GuidedHeader />
             <GuidedFrontend />
           </div>
-        </div>
+        </Grid>
       )
     }
     if(this.props.display.page.name === 'backend'){
       return (
-        <div>
-          <div className='cartView'>
-            <GuidedCartContainer />
-          </div>
+        <Grid>
           <div className='optionsView'>
             <GuidedHeader />
             <GuidedBackend />
           </div>
-        </div>
+        </Grid>
       )
     }
     // if(this.props.display.page.name === 'taskRunner'){
