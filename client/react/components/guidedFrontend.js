@@ -12,73 +12,73 @@ class GuidedFrontend extends React.Component {
   render() {
     return (
       <div>
-      <Row >
-        <div className='guidedButtons'>
-          <Col xs={4}>
-            <div className='guidedButton' onClick={()=> {
-                this.props.selectFramework('React');
-                this.props.changeCheckoutFormat(backend);
+        <Row>
+          <div className='guidedButtons'>
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
+                  this.props.selectFramework('React');
+                  this.props.changeCheckoutFormat(backend);
+                  }
                 }
-              }
-              >
-              <div className='logo'>
-                <img src='images/react-logo.png' />
+                >
+                <div className='logo'>
+                  <img src='images/react-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>React</p>
+                </div>
               </div>
-              <div className='title'>
-                <p>React</p>
-              </div>
-            </div>
-          </Col>
-          <Col xs={4}>
-            <div className='guidedButton' onClick={()=> {
-                this.props.selectFramework('Angular');
-                this.props.changeCheckoutFormat(backend);
+            </Col>
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
+                  this.props.selectFramework('Angular');
+                  this.props.changeCheckoutFormat(backend);
+                  }
                 }
-              }
-              >
-              <div className='logo'>
-                <img src='images/angular-logo.png' />
+                >
+                <div className='logo'>
+                  <img src='images/angular-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>Angular</p>
+                </div>
               </div>
-              <div className='title'>
-                <p>Angular</p>
-              </div>
-            </div>
-          </Col>
-          <Col xs={4}>
-            <div className='guidedButton' onClick={()=> {
-                this.props.selectFramework('Vue');
-                this.props.changeCheckoutFormat(backend);
+            </Col>
+            <Col xs={4}>
+              <div className='guidedButton' onClick={()=> {
+                  this.props.selectFramework('Vue');
+                  this.props.changeCheckoutFormat(backend);
+                  }
                 }
-              }
-              >
-              <div className='logo'>
-                <img src='images/vue-logo.png' />
+                >
+                <div className='logo'>
+                  <img src='images/vue-logo@2x.png' />
+                </div>
+                <div className='title'>
+                  <p>Vue</p>
+                </div>
               </div>
-              <div className='title'>
-                <p>Vue</p>
-              </div>
-            </div>
+            </Col>
+          </div>
+        </Row>
+        <Row className='navButtons'>
+          <Col className='navButton-wrap' xs={3}>
+            <Link to='/' className='navButton prev'>
+            <Button className='prevButton' bsSize='large'>
+            Home
+            </Button>
+          </Link>
           </Col>
-        </div>
-      </Row>
-      <Row className='navButtons'>
-        <Col className='navButton-wrap' xs={3}>
-          <Link to='/' className='navButton prev'>
-          <Button className='prevButton' bsSize='large'>
-          Home
-          </Button>
-        </Link>
-        </Col>
-        <Col className='navButton-wrap' xs={3} xsOffset={6}>
-          <Button
-            bsSize='large'
-            className='navButton next'
-            onClick={()=>this.props.changeCheckoutFormat(backend)}
-            >
-            Next
-          </Button>
-        </Col>
-      </Row>
+          <Col className='navButton-wrap' xs={3} xsOffset={6}>
+            <Button
+              bsSize='large'
+              className='navButton next'
+              onClick={()=>this.props.changeCheckoutFormat(backend)}
+              >
+              Next
+            </Button>
+          </Col>
+        </Row>
       </div>
     )
   }

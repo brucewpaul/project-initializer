@@ -148,6 +148,7 @@ body {
 .guidedButton .logo img {
   display: block;
   margin: auto;
+  max-height: 120px;
 }
 
 .guidedButton .title p {
