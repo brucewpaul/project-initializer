@@ -13,24 +13,24 @@ import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-boot
 class SummaryContainer extends React.Component {
   render() {
     return(
-      <div>
+      <Grid>
+        <div className='guidedHeader'>
+          <h4>Review your stack</h4>
+        </div>
         <div>
-          <h2>Review Your Stack</h2>
           <div>
-            <h4>{this.props.options.frontEnd.framework}</h4>
             <FrontendSummary/>
           </div>
           <div>
-            <h4>{this.props.options.backEnd.database}</h4>
             <BackendSummary/>
           </div>
         </div>
-        <Link to ='/download'>
-          <Button>
-            download page
+        <Link to='/download'>
+          <Button className='summary-download-btn'>
+            Build
           </Button>
         </Link>
-      </div>
+      </Grid>
     )
   }
 }
