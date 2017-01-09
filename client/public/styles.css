@@ -112,6 +112,10 @@ body {
   bottom: -3px;
 }
 
+.homeButtons .button-shadow.final-page {
+  width: 360px;
+}
+
 .homeButtons .button-shadow-guided {
   background-color: #248117;
 }
@@ -264,11 +268,13 @@ body {
   padding: 10px;
 }
 
-.summary-download-btn, .summary-download-btn:hover {
+.summary-download-btn, 
+.summary-download-btn:hover, 
+.final-nav-btn,
+.final-nav-btn:hover {
   margin-top: 40px;
   font-family: 'Roboto Mono';
   font-size: 14px;
-  font-weight: bold;
   color: #ffffff;
   border-radius: 5px;
   background-color: #4990e2;

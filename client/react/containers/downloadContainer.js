@@ -14,49 +14,59 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 class DownloadContainer extends React.Component {
   render() {
     return(
-      <div>
-        this is the download page
-        <Grid>
-          <Row>
-            <Col xs={3}>
-              <div>
-                <h4>Push to Github</h4>
-                {githubDesc.description}<br/>
-                <Button
-                  bsSize='large'
-                  disabled
-                >Push</Button>
-              </div>
-            </Col>
-            <Col xs={3}>
-              <div>
-                <h4>Download Zip</h4>
-                {downloadDesc.description}<br/>
-                <Button
-                  bsSize='large'
-                  onClick={()=> sendOptionsToServer(this.props.options)}
-                >Download</Button>
-              </div>
-            </Col>
-            <Col xs={3}>
-              <div>
-                <h4>Save the Stack</h4>
-                {saveDesc.description}<br/>
-                <Button
-                  bsSize='large'
-                  disabled
-                >Save</Button>
-              </div>
-            </Col>
-          </Row>
-        </Grid>
+      <Grid>
+        <div className='guidedHeader'>
+          <h4>Your stack has been created</h4>
+        </div>
+
+        <Row className='homeButtons'>
+          <Col xs={4}>
+            <div className='button-description'>
+              <h4>Push to Github</h4>
+              <ul>
+                <li>Coming soon!</li>
+                <li>Push your application to Github.</li>
+              </ul>
+            </div>
+            <Button className='selector advanced' bsSize='large' disabled>
+              Push
+            </Button>
+            <div className='button-shadow final-page button-shadow-advanced'></div>
+          </Col>
+          <Col xs={4}>
+            <div className='button-description'>
+              <h4>Download ZIP</h4>
+              <ul>
+                <li>Download your project.</li>
+              </ul>
+            </div>
+            <Button onClick={()=> sendOptionsToServer(this.props.options)} className='selector guided' bsSize='large'>
+              Download
+            </Button>
+            <div className='button-shadow final-page button-shadow-guided'></div>
+          </Col>
+          <Col xs={4}>
+            <div className='button-description'>
+              <h4>Save the Stack</h4>
+              <ul>
+                <li>Coming soon!</li>
+                <li>Save the stack to your account.</li>
+              </ul>
+            </div>
+              <Button onClick={()=> this.props.changeCheckoutFormat(frontend)} className='selector advanced' bsSize='large' disabled>
+                Save
+              </Button>
+              <div className='button-shadow final-page button-shadow-advanced'></div>
+          </Col>
+        </Row>
         <Link to ='/'>
           <Button
+            className='final-nav-btn'
             onClick={()=> this.props.changeCheckoutFormat(frontend)}>
             Home
           </Button>
         </Link>
-      </div>
+      </Grid>
     )
   }
 }
