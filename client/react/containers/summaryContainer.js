@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, changeDisplayType, changeGuidedPage } from '../actions/index';
 
 import FrontendSummary from '../components/frontendSummary';
 import BackendSummary from '../components/backendSummary';
@@ -46,7 +46,6 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 

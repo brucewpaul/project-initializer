@@ -3,16 +3,16 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { frontend, backend } from '../actions/actionhelper';
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, changeDisplayType } from '../actions/index';
 
 import { Nav, Navbar, Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
-import FrontendCartView from '../components/frontendCartView';
-import BackendCartView from '../components/backendCartView';
-import TaskRunnerCartView from '../components/taskRunnerCartView';
-import PluginsCartView from '../components/pluginsCartView';
-import TasksCartView from '../components/tasksCartView';
-import TestingCartView from '../components/testingCartView';
+import FrontendCartView from '../components/cartViews/frontendCartView';
+import BackendCartView from '../components/cartViews/backendCartView';
+import TaskRunnerCartView from '../components/cartViews/taskRunnerCartView';
+import PluginsCartView from '../components/cartViews/pluginsCartView';
+import TasksCartView from '../components/cartViews/tasksCartView';
+import TestingCartView from '../components/cartViews/testingCartView';
 
 class GuidedCart extends React.Component {
 
@@ -43,7 +43,6 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 

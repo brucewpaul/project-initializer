@@ -3,16 +3,16 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import GuidedFrontend from '../components/guidedFrontend';
-import GuidedHeader from '../components/guidedHeader';
+import GuidedFrontend from '../components/guided/guidedFrontend';
+import GuidedHeader from '../components/guided/guidedHeader';
 import GuidedCartContainer from './guidedCartContainer';
-import GuidedBackend from '../components/guidedBackend';
-import GuidedTaskRunner from '../components/guidedTaskRunner';
-import GuidedPlugins from '../components/guidedPlugins';
-import GuidedTaskCreation from '../components/guidedTaskCreation';
-import GuidedTesting from '../components/guidedTesting';
+import GuidedBackend from '../components/guided/guidedBackend';
+import GuidedTaskRunner from '../components/guided/guidedTaskRunner';
+import GuidedPlugins from '../components/guided/guidedPlugins';
+import GuidedTaskCreation from '../components/guided/guidedTaskCreation';
+import GuidedTesting from '../components/guided/guidedTesting';
 
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, changeDisplayType } from '../actions/index';
 
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
@@ -106,7 +106,6 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 

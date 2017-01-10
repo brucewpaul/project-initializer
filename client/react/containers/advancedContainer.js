@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import GuidedCartContainer from './guidedCartContainer';
 import AdvancedSelection from '../components/advancedSelection';
 
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, changeDisplayType } from '../actions/index';
 
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
@@ -37,7 +37,6 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
   }, dispatch);
 }
 

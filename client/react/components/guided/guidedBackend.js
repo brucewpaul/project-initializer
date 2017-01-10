@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { frontend, taskRunner } from '../actions/actionhelper';
-import { selectDatabase, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { frontend, taskRunner } from '../../actions/actionhelper';
+import { selectDatabase, changeDisplayType, changeGuidedPage } from '../../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
@@ -60,9 +60,9 @@ class GuidedBackend extends React.Component {
         </Row>
         <Row className='navButtons'>
           <Col className='navButton-wrap' xs={3}>
-            <Button 
+            <Button
               className='prevButton'
-              onClick={()=> this.props.changeCheckoutFormat(frontend)} 
+              onClick={()=> this.props.changeGuidedPage(frontend)}
               bsSize='large'>
               Back
             </Button>
@@ -94,7 +94,7 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectDatabase: selectDatabase,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 

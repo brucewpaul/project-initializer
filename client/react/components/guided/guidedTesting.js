@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { taskCreation } from '../actions/actionhelper';
-import { addTesting, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { taskCreation } from '../../actions/actionhelper';
+import { addTesting, changeDisplayType, changeGuidedPage } from '../../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
@@ -20,7 +20,7 @@ class GuidedTesting extends React.Component {
                onClick={
                 ()=> {
                   this.props.addTesting('Mocha');
-                  // this.props.changeCheckoutFormat(testing);
+                  // this.props.changeGuidedPage(testing);
                   }
                 }
                block> Mocha </Button>
@@ -31,7 +31,7 @@ class GuidedTesting extends React.Component {
                 onClick={
                 ()=> {
                   this.props.addTesting('Mocha');
-                  // this.props.changeCheckoutFormat(testing);
+                  // this.props.changeGuidedPage(testing);
                   }
                 }
                 block> Mocha </Button>
@@ -42,7 +42,7 @@ class GuidedTesting extends React.Component {
                 onClick={
                 ()=> {
                   this.props.addTesting('Mocha');
-                  // this.props.changeCheckoutFormat(testing);
+                  // this.props.changeGuidedPage(testing);
                   }
                 }
                 block> Mocha </Button>
@@ -53,7 +53,7 @@ class GuidedTesting extends React.Component {
               <Button
               	bsSize='large'
               	className='navButtons'
-              	onClick={()=> this.props.changeCheckoutFormat(taskCreation)}
+              	onClick={()=> this.props.changeGuidedPage(taskCreation)}
               	block>
               Back
               </Button>
@@ -85,7 +85,7 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
   	addTesting: addTesting,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 

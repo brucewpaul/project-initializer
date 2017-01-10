@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, changeDisplayType, changeGuidedPage } from '../actions/index';
 
 import { frontend } from '../actions/actionhelper';
 import { githubDesc, downloadDesc, saveDesc } from '../utils/descriptions'
@@ -53,7 +53,7 @@ class DownloadContainer extends React.Component {
                 <li>Save the stack to your account.</li>
               </ul>
             </div>
-              <Button onClick={()=> this.props.changeCheckoutFormat(frontend)} className='selector advanced' bsSize='large' disabled>
+              <Button onClick={()=> this.props.changeGuidedPage(frontend)} className='selector advanced' bsSize='large' disabled>
                 Save
               </Button>
               <div className='button-shadow final-page button-shadow-advanced'></div>
@@ -62,7 +62,7 @@ class DownloadContainer extends React.Component {
         <Link to ='/'>
           <Button
             className='final-nav-btn'
-            onClick={()=> this.props.changeCheckoutFormat(frontend)}>
+            onClick={()=> this.props.changeGuidedPage(frontend)}>
             Home
           </Button>
         </Link>
@@ -82,7 +82,7 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 

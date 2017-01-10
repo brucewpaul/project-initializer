@@ -7,9 +7,7 @@ import SummaryContainer from '../containers/summaryContainer';
 import DownloadContainer from '../containers/downloadContainer';
 import AdvancedContainer from '../containers/advancedContainer';
 import RootComponent from './rootComponent';
-import DatabasePage from './databasepage';
-import Checkout from './checkout';
-import AdvancedPage from './advancedPage';
+
 
 import { createStore } from 'redux';
 import allReducers from '../reducers';

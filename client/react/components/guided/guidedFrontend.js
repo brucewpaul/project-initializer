@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { backend } from '../actions/actionhelper';
-import { selectFramework, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { backend } from '../../actions/actionhelper';
+import { selectFramework, changeDisplayType, changeGuidedPage } from '../../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
@@ -70,7 +70,7 @@ class GuidedFrontend extends React.Component {
             <Button
               bsSize='large'
               className='navButton next'
-              onClick={()=>this.props.changeCheckoutFormat(backend)}
+              onClick={()=>this.props.changeGuidedPage(backend)}
               >
               Next
             </Button>
@@ -92,7 +92,7 @@ function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 
