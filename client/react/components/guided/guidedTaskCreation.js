@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { taskRunner, taskCreation } from '../actions/actionhelper';
-import { addTask, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { plugins, testing } from '../../actions/actionhelper';
+import { addTask, changeDisplayType, changeGuidedPage } from '../../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
-class GuidedPlugins extends React.Component {
+class GuidedTaskCreation extends React.Component {
 
   render() {
     return (
@@ -20,10 +20,10 @@ class GuidedPlugins extends React.Component {
                onClick={
                 ()=> {
                   // this.props.taskRunner('Gulp');
-                  this.props.changeCheckoutFormat(taskCreation);
+                  this.props.changeGuidedPage(testing);
                   }
                 }
-               block> Gulp </Button>
+               block> Task1 </Button>
             </Col>
             <Col xs={3}>
               <Button
@@ -31,10 +31,10 @@ class GuidedPlugins extends React.Component {
                 onClick={
                 ()=> {
                   // this.props.taskRunner('Grunt');
-                  this.props.changeCheckoutFormat(taskCreation);
+                  this.props.changeGuidedPage(testing);
                   }
                 }
-                block> Grunt </Button>
+                block> Task2 </Button>
             </Col>
             <Col xs={3}>
               <Button
@@ -42,10 +42,10 @@ class GuidedPlugins extends React.Component {
                 onClick={
                 ()=> {
                   // this.props.taskRunner('Gulp');
-                  this.props.changeCheckoutFormat(taskCreation);
+                  this.props.changeGuidedPage(testing);
                   }
                 }
-                block> Gulp </Button>
+                block> Task3 </Button>
             </Col>
           </div>
           <div className='navButtons'>
@@ -53,7 +53,7 @@ class GuidedPlugins extends React.Component {
               <Button
               	bsSize='large'
               	className='navButtons'
-              	onClick={()=> this.props.changeCheckoutFormat(taskRunner)}
+              	onClick={()=> this.props.changeGuidedPage(plugins)}
               	block>
               Back
               </Button>
@@ -61,7 +61,7 @@ class GuidedPlugins extends React.Component {
             <Col xs={3} xsOffset={1}>
               <Button
               	bsSize='large'
-              	onClick={()=> this.props.changeCheckoutFormat(taskCreation)}
+              	onClick={()=> this.props.changeGuidedPage(testing)}
               	block>
                 Next
               </Button>
@@ -82,10 +82,10 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    addTask: addTask,
+  	addTask: addTask,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(GuidedPlugins);
+export default connect(mapStateToProps, matchDispatchToProps)(GuidedTaskCreation);

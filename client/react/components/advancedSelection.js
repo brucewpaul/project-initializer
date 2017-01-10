@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { backend } from '../actions/actionhelper';
-import { selectFramework, selectDatabase, taskRunner, addTask, addTesting, changeDisplayType, changeCheckoutFormat } from '../actions/index';
+import { selectFramework, selectDatabase, taskRunner, addTask, addTesting, changeDisplayType, changeGuidedPage } from '../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
@@ -28,7 +28,7 @@ function matchDispatchToProps(dispatch) {
     addTask: addTask,
     addTesting: addTesting,
     changeDisplayType: changeDisplayType,
-    changeCheckoutFormat: changeCheckoutFormat
+    changeGuidedPage: changeGuidedPage
   }, dispatch);
 }
 

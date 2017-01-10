@@ -40,7 +40,7 @@ export const changeDisplayType = (display) => {
   }
 }
 
-export const changeCheckoutFormat = (page) => {
+export const changeGuidedPage = (page) => {
   return {
     type: 'CHANGE_PAGE',
     payload: page
