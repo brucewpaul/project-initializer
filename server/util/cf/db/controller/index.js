@@ -6,98 +6,113 @@ var PackageStat = require('../models/package_stat.js');
 // Package
 //
 module.exports.retreiveAllPackages = function() {
-  Package.find(function(err, packages) {
-    if (err) {
-      return console.error(err);
-    }
-    return packages;
+  return new Promise (function(resolve, reject) {
+    Package.find(function(err, packages) {
+      if (err) {
+        reject(console.error(err));
+      }
+      resolve(packages);
+    });
   });
 }
 
 module.exports.retreivePackage = function(pkg) {
-  Package.findOne({ 'name': pkg.name }, function(err, package) {
-    if (err) {
-      return console.error(err);
-    }
-    return package;
+  return new Promise (function(resolve, reject) {
+    Package.findOne({ 'name': pkg.name }, function(err, package) {
+      if (err) {
+        reject(console.error(err));
+      }
+      resolve(package);
+    });
   });
 }
 
 module.exports.createPackage = function(pkg) {
-  var packageToAdd = new Package({
-    name: pkg.title,
-    name: pkg.description,
-  });
+  return new Promise (function(resolve, reject) {
+    var packageToAdd = new Package({
+      name: pkg.title,
+      name: pkg.description,
+    });
 
-  packageToAdd.save(function(err, packageToAdd) {
-    if (err) {
-      return console.error(err);
-    }
-    return packageToAdd;
+    packageToAdd.save(function(err, packageToAdd) {
+      if (err) {
+        reject(console.error(err));
+      }
+      resolve(packageToAdd);
+    });
   });
 }
 
 // Package Stat
 
-module.exports.incrementPackageStat = function(pkg, cb) {
-  Model.findAndModify(
-    {
-      $or: [
-        { 'package': pkg.package, 'otherPackage': pkg.otherPackage, 'framework': pkg.framework },
-        { 'otherPackage': pkg.package, 'package': pkg.otherPackage, 'framework': pkg.framework }
-      ]
-    },
-    { $inc: { fieldToIncrement: 1 } },
-    function(err, relationship) {
-      if (err) {
-        cb(new Error(err));
+module.exports.incrementPackageStat = function(pkg) {
+  console.log('pk', pkg)
+  return new Promise (function(resolve, reject) {
+    var action = {};
+    action[pkg.framework] = 1;
+
+    PackageStat.findOneAndUpdate(
+      { 'package': pkg.package, 'otherPackage': pkg.otherPackage },
+      { $inc: action },
+      { upsert: true, 'new': true },
+      function(err, relationship) {
+        if (err) {
+          reject(new Error(err));
+        }
+        resolve(relationship);
       }
-      cb(relationship);
-    }
-  );
+    );
+  });
 }
 
 // Package Relationship
 
-module.exports.retreiveAllRelationships = function(cb) {
+module.exports.retreiveAllRelationships = function() {
   // get all relationships
-  Relationship.find(function(err, relationship) {
-    if (err) {
-      cb(new Error(err));
-    }
-    cb(relationship);
+  return new Promise (function(resolve, reject) {
+    Relationship.find(function(err, relationship) {
+      if (err) {
+        reject(new Error(err));
+      }
+      resolve(relationship);
+    });
   });
 }
 
-module.exports.retreiveRelationship = function(pkg, cb) {
+module.exports.retreiveRelationship = function(pkg) {
   // get all relationships with a package and a framework
-  Relationship.find({
-    $or: [
-      { 'package': pkg.package, 'framework': pkg.framework},
-      { 'otherPackage': pkg.otherPackage, 'framework': pkg.framework}
-    ] }, function(err, relationship) {
-      if (err) {
-        cb(new Error(err));
-      }
-      cb(relationship);
-  });
+  // console.log(pkg)
+  return new Promise (function(resolve, reject) {
+    Relationship.find({
+      $or: [
+        { 'package': pkg.package, 'framework': pkg.framework},
+        { 'otherPackage': pkg.otherPackage, 'framework': pkg.framework}
+      ] }, function(err, relationship) {
+        if (err) {
+          Reject(new Error(err));
+        }
+        resolve(relationship);
+    });
+  })
 }
 
 module.exports.createRelationship = function(pkg, cb) {
   // add new relationship
-  var framework = pkg.framework || null
-  var packageToAdd = new Relationship({
-    package: pkg.package,
-    otherPackage: pkg.otherPackage,
-    framework: framework
-  });
+  return new Promise (function(resolve, reject) {
+    var framework = pkg.framework || null
+    var packageToAdd = new Relationship({
+      package: pkg.package,
+      otherPackage: pkg.otherPackage,
+      framework: framework
+    });
 
-  console.log(packageToAdd)
+    console.log(packageToAdd)
 
-  packageToAdd.save(function(err, packageToAdd) {
-    if (err) {
-      cb(new Error(err));
-    }
-    cb(packageToAdd);
+    packageToAdd.save(function(err, packageToAdd) {
+      if (err) {
+        reject(new Error(err));
+      }
+      resolve(packageToAdd);
+    });
   });
 }
