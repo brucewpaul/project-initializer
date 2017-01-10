@@ -24,8 +24,6 @@ var gulpTasks = {
 
 function createGulpFile (options) {
   var gulpWatch = '\ngulp.task(\'watch\', function() {\n  gulp.watch(\'client/public/assets\', [\'' + "build-" + options.devTools.styling + '\']);\n});';
-
-
   var gulpFile = '';
   gulpModules.push(gulpOptions[options.devTools.
   styling]); //set up the dependancies with less/sass
@@ -36,7 +34,6 @@ function createGulpFile (options) {
   gulpFile += gulpWatch;
   gulpFile += gulpTasks[options.devTools.
   styling];
-
   return gulpFile;
 };
 
