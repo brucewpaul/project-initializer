@@ -3,9 +3,7 @@ var mongoose = require('mongoose');
 var packageRelationSchema = mongoose.Schema({
   package: String,
   otherPackage: String,
-  react: String,
-  angular: String,
-  all: String
+  framework: String
 });
 
 PackageRelation = mongoose.model('PackageRelation', packageRelationSchema);
