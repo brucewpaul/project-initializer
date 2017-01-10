@@ -12,6 +12,7 @@ module.exports = function(options, cb) {
   var id = new Date().valueOf().toString();
   var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
+  // TODO: try to flatten out promise @bruce
   fs.existsAsync(uniquePath)
     .then((exists) => {
       if ( !exists ) {
