@@ -42,6 +42,7 @@ module.exports = function(options) {
     });
     package.devDependencies = Object.assign(taskRunnerDependencies);
   }
+  // TODO: add gulp options as else if @chan
 
   if ( options && options.devTools.testing === 'Mocha' ) {
     tesing = mocha;
@@ -53,7 +54,7 @@ module.exports = function(options) {
     }
   }
 
-  // combine the different dependencies and scripts from front end and backend modules
+  // combine the different dependencies and scripts from front end and backend modules into the package.json
   package.scripts = Object.assign(
     package.scripts,
     frontEndFramework.scripts,

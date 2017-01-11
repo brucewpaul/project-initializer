@@ -10,10 +10,15 @@ var bundlePackage = require('./bundle-package.js');
 var bundleGruntfile = require('./grunt-helpers.js');
 var bundleReadme = require('./readme-generator.js');
 
+// files for Angular
 var bowerFile = require('../../../ingredients/bower/bower.js');
 var bowerrcFile = require('../../../ingredients/bower/bowerrc.js');
 
+// TODO: clean up file
+
 module.exports = function(options, outputPath, id, cb) {
+  // output = root directory for client folder
+  // TODO: comment all arguments @bruce
   var frontEndFramework = options.frontEnd.framework;
   var backEndDatabase = options.backEnd.database;
   var ingredientsPath = path.join(__dirname, '../../../ingredients');
@@ -23,7 +28,7 @@ module.exports = function(options, outputPath, id, cb) {
   fs.mkdir(path.join(outputPath, 'Test'));
 
   // create package.json
-  packageJSON = bundlePackage(options);
+  var packageJSON = bundlePackage(options);
 
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2))
     .then((err) => {
@@ -51,6 +56,8 @@ module.exports = function(options, outputPath, id, cb) {
         // console.log('Gruntfile.js done!');
       }));
   }
+
+  // TODO: add gulp @chan
 
   // add bower if is angular
   if (frontEndFramework === 'Angular') {
@@ -81,9 +88,11 @@ module.exports = function(options, outputPath, id, cb) {
   }
 
   // add server functionality
+  // Server folder is being created on first async tasks
+  // TODO: first create server folder, then add basic server and db into server @bruce
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
     .then(function() {
-      // console.log('server done!');
+      // Now we are able to add to other folders to /server now that it is created
       // add db functionality
       asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'server'))
         .then(function() {
@@ -98,6 +107,7 @@ module.exports = function(options, outputPath, id, cb) {
   );
 
   // add front end
+  // TODO: check folder structure for react. is public needed? @vinh
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath))
     .then(function() {
       // console.log('Front End Framework done!');
@@ -129,6 +139,7 @@ module.exports = function(options, outputPath, id, cb) {
   Promise.all(asyncTasks)
     .then( function() {
       // console.log("all the files were created");
+      // TODO: check if windows? change type of zip? @bruce
       exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
           return cb(new Error(error));

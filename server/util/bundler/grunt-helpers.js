@@ -12,6 +12,9 @@ var gruntInitConfig = [
   '  });\n'
 ]
 
+// TODO: check if react/angular needs to have different options
+// if so, change public to client @vinh
+
 var pluginConfigs = {
   cssmin: [
     '    cssmin: {\n',
