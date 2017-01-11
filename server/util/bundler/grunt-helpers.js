@@ -12,95 +12,65 @@ var gruntInitConfig = [
   '  });\n'
 ]
 
-var pluginConfigs = {
-  cssmin: [
-    '    cssmin: {\n',
-    '      target: {\n',
-    '        files: [{\n',
-    '          expand: true,\n',
-    {React: '          cwd: \'public/assets\',\n',
-    Angular: '          cwd: \'assets\',\n'},
-    '          src: [\'*.css\', \'!*.min.css\'],\n',
-    {React: '          dest: \'public/assets\',\n',
-    Angular: '          dest: \'assets\',\n'},
-    '          ext: \'.min.css\'\n',
-    '        }]\n',
-    '      }\n',
-    '    },\n'
-  ],
-  uglify: [
-    '    uglify: {\n',
-    '      target: {\n',
-    '        files: [{\n',
-    '          expand: true,\n',
-    {React: '          cwd: \'public/assets\',\n',
-    Angular: '          cwd: \'assets\',\n'},
-    '          src: [\'*.js\', \'!*.min.js\'],\n',
-    {React: '          dest: \'public/assets\',\n',
-    Angular: '          dest: \'assets\',\n'},
-    '          ext: \'.min.js\'\n',
-    '        }]\n',
-    '      }\n',
-    '    },\n'
-  ],
-  sass: [
-    '    sass: {\n',
-    '      target: {\n',
-    '        files: [{\n',
-    '          expand: true,\n',
-    {React: '          cwd: \'public/assets\',\n',
-    Angular: '          cwd: \'assets\',\n'},
-    '          src: [\'*.scss\'],\n',
-    {React: '          dest: \'public/assets\',\n',
-    Angular: '          dest: \'assets\',\n'},
-    '          ext: \'.css\'\n',
-    '        }]\n',
-    '      }\n',
-    '    },\n'
-  ],
-  less: [
-    '    less: {\n',
-    '      target: {\n',
-    '        files: [{\n',
-    '          expand: true,\n',
-    {React: '          cwd: \'public/assets\',\n',
-    Angular: '          cwd: \'assets\',\n'},
-    '          src: [\'*.less\'],\n',
-    {React: '          dest: \'public/assets\',\n',
-    Angular: '          dest: \'assets\',\n'},
-    '          ext: \'.css\'\n',
-    '        }]\n',
-    '      }\n',
-    '    },\n'
-  ]
+var pluginConfigsSpecifc = {
+  cssmin: {
+    name: '    cssmin: {\n',
+    src: '          src: [\'*.css\', \'!*.min.css\'],\n',
+    ext: '          ext: \'.min.css\'\n'
+  },
+  uglify: {
+    name: '    uglify: {\n',
+    src: '          src: [\'*.js\', \'!*.min.js\'],\n',
+    ext: '          ext: \'.min.js\'\n'
+  },
+  sass: {
+    name: '    sass: {\n',
+    src: '          src: [\'*.scss\'],\n',
+    ext: '          ext: \'.css\'\n',
+  },
+  less: {
+    name: '    less: {\n',
+    src: '          cwd: \'client/assets\',\n',
+    ext: '          ext: \'.css\'\n',
+  }
 }
+
+var pluginConfig = [
+  'name',
+  '      target: {\n',
+  '        files: [{\n',
+  '          expand: true,\n',
+  '          cwd: \'client/assets\',\n',
+  'src',
+  '          dest: \'client/assets\',\n',
+  'ext',
+  '        }]\n',
+  '      }\n',
+  '    },\n'
+]
 
 var watchOptions = {
   uglify: [
     '      uglify: {\n',
-    {React: '        files: \'public/assets/*.js\',\n',
-    Angular: '        files: \'assets/*.js\',\n'},
+    '        files: \'client/assets/*.js\',\n',
     '        tasks: [\'uglify\']\n',
     '      },\n'
   ],
   sass: [
     '      sass: {\n',
-    {React: '        files: \'public/assets/*.scss\',\n',
-    Angular: '        files: \'assets/*.scss\',\n'},
+    '        files: \'client/assets/*.scss\',\n',
     '        tasks: [\'sass\']\n',
     '      },\n'
   ],
   less: [
     '      less: {\n',
-    {React: '        files: \'public/assets/*.less\',\n',
-    Angular: '        files: \'assets/*.less\',\n'},
+    '        files: \'client/assets/*.less\',\n',
     '        tasks: [\'less\']\n',
     '      },\n'
   ],
   cssmin: [
     '      cssmin: {\n',
-    {React: '        files: \'public/assets/*.css\',\n',
-    Angular: '        files: \'assets/*.css\',\n'},
+    '        files: \'client/assets/*.css\',\n',
     '        tasks: [\'cssmin\']\n',
     '      },\n'
   ]
@@ -154,12 +124,16 @@ var createGruntfileContents = function(options) {
   // for each plugin, insert it into the config init
   _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
     if (plugin !== 'watch') {
-      _.forEach(pluginConfigs[plugin], function(line) {
-        if (typeof line === 'object') {
-          gruntFile += line[options.frontEnd.framework];
-        } else {
-          gruntFile += line;
-        }
+      _.forEach(pluginConfig, function(line) {
+          if (line === 'name') {
+            gruntFile += pluginConfigsSpecifc[plugin].name;
+          } else if (line === 'src') {
+            gruntFile += pluginConfigsSpecifc[plugin].src;
+          } else if (line === 'ext') {
+            gruntFile += pluginConfigsSpecifc[plugin].ext;
+          } else {
+            gruntFile += line;
+          }
       });
     } else {
       gruntFile += buildWatchConfig(options);
