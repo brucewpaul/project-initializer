@@ -14,11 +14,13 @@ var bundleReadme = require('./readme-generator.js');
 var bowerFile = require('../../../ingredients/bower/bower.js');
 var bowerrcFile = require('../../../ingredients/bower/bowerrc.js');
 
-// TODO: clean up file
-
+/**
+ * @param {object} options - selected options from client
+ * @param {string} outputPath - root directory for client folder
+ * @param {string} id - unique folder id
+ * @param {function} cb - callback function to send response back to client
+**/
 module.exports = function(options, outputPath, id, cb) {
-  // output = root directory for client folder
-  // TODO: comment all arguments @bruce
   var frontEndFramework = options.frontEnd.framework;
   var backEndDatabase = options.backEnd.database;
   var ingredientsPath = path.join(__dirname, '../../../ingredients');
@@ -30,122 +32,53 @@ module.exports = function(options, outputPath, id, cb) {
   // create package.json
   var packageJSON = bundlePackage(options);
 
-  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2))
-    .then((err) => {
-      if (err) {
-        // return cb(new Error(err));
-      }
-      // console.log('package.json done!');
-    }));
+  // create package.json file and write stringified packageJSON to file
+  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'package.json'), JSON.stringify(packageJSON, null, 2)));
 
-  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'README.md'), bundleReadme(options))
-    .then((err) => {
-      if (err) {
-        // return cb(new Error(err));
-      }
-      // console.log('package.json done!');
-    }));
+  // create readme file and add content
+  asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'README.md'), bundleReadme(options)));
 
   // create Gruntfile.js
   if (options.devTools.taskRunner.name === 'grunt') {
-    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options))
-      .then((err) => {
-        if (err) {
-          // return cb(new Error(err));
-        }
-        // console.log('Gruntfile.js done!');
-      }));
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options)));
   }
 
   // TODO: add gulp @chan
 
   // add bower if is angular
   if (frontEndFramework === 'Angular') {
-    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'bower.json'), JSON.stringify(bowerFile, null, 2))
-      .then((err) => {
-        if (err) {
-          // return cb(new Error(err));
-        }
-        // console.log('Gruntfile.js done!');
-      }));
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'bower.json'), JSON.stringify(bowerFile, null, 2)));
 
-    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, '.bowerrc'), JSON.stringify(bowerrcFile, null, 2))
-      .then((err) => {
-        if (err) {
-          // return cb(new Error(err));
-        }
-        // console.log('Gruntfile.js done!');
-      }));
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, '.bowerrc'), JSON.stringify(bowerrcFile, null, 2)));
 
-    // add testing for db
-    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', frontEndFramework), path.join(outputPath, 'test', frontEndFramework))
-      .then(function() {
-        // console.log('test done!');
-      }).catch(function (err) {
-        // return cb(new Error(err));
-     })
-    );
+    // add testing for angular specifically
+    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', frontEndFramework), path.join(outputPath, 'test', frontEndFramework)));
   }
 
-  // add server functionality
-  // Server folder is being created on first async tasks
-  // TODO: first create server folder, then add basic server and db into server @bruce
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server'))
-    .then(function() {
-      // Now we are able to add to other folders to /server now that it is created
-      // add db functionality
-      asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'server'))
-        .then(function() {
-          // console.log('db done!');
-        }).catch(function (err) {
-          // return cb(new Error(err));
-       })
-      );
-    }).catch(function (err) {
-      // return cb(new Error(err));
-   })
-  );
+  // add server
+  asyncTasks.push( fs.mkdirAsync(path.join(outputPath, 'server')).then(function() {
+    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server')));
+    asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, backEndDatabase), path.join(outputPath, 'server')));
+  }))
 
   // add front end
   // TODO: check folder structure for react. is public needed? @vinh
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath))
-    .then(function() {
-      // console.log('Front End Framework done!');
-    }).catch(function (err) {
-      // return cb(new Error(err));
-   })
-  );
-
-  // add tasks
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath)));
 
   // add testing for server
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test/Server'), path.join(outputPath, 'test/Server'))
-    .then(function() {
-      // console.log('test done!');
-    }).catch(function (err) {
-      // return cb(new Error(err));
-   })
-  );
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test/Server'), path.join(outputPath, 'test/Server')));
 
   // add testing for db
-  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', backEndDatabase), path.join(outputPath, 'test', backEndDatabase))
-    .then(function() {
-      // console.log('test done!');
-    }).catch(function (err) {
-      // return cb(new Error(err));
-   })
-  );
+  asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', backEndDatabase), path.join(outputPath, 'test', backEndDatabase)));
+
+  // TODO: add testing for react @vinh
 
   Promise.all(asyncTasks)
     .then( function() {
-      // console.log("all the files were created");
-      // TODO: check if windows? change type of zip? @bruce
       exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
           return cb(new Error(error));
         }
-        // console.log(`stdout: ${stdout}`);
-        // console.log(`stderr: ${stderr}`);
         // TODO: return url/id of file to send back
         return cb(null, `${id}`);
       });
