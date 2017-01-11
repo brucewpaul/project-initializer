@@ -9,11 +9,7 @@ class SelectorDiv extends React.Component {
   render(){
     return (
       <div className='guidedButton'
-       onClick={()=> {
-          this.props.choice(this.props.selector.payloadName);
-          }
-        }
-        >
+       onClick={()=> { this.props.choice(this.props.selector.payloadName);}}>
         <div className='logo'>
           <img src={this.props.selector.image2X} />
         </div>

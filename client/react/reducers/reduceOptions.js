@@ -32,13 +32,6 @@ export default function(state = initialState, action) {
           styling: state.frontEnd.styling
         }
       })
-    case 'STYLING_CHOSEN':
-      return Object.assign({} , state, {
-        frontEnd: {
-          framework: state.frontEnd.framework,
-          styling: action.payload
-        }
-      })
     case 'DATABASE_CHOSEN':
       return Object.assign({} , state, {
         backEnd: {
@@ -80,20 +73,7 @@ export default function(state = initialState, action) {
         return Object.assign({} , state, {
           bundleId : action.payload
       })
-      // case 'TESTING_CHOSEN':
-      //   return Object.assign({} , state, {
-      //   devTools: {
-      //     taskRunner: {
-      //       name: state.devTools.taskRunner.name,
-      //       plugins:[],
-      //       tasks:[]
-      //     },
-      //     bundler: state.devTools.bundler,
-      //     testing: action.payload
-      //   }
-      // })
     default:
       return state
   }
-
 }

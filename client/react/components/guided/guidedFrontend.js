@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { backend } from '../../actions/actionhelper';
-import { selectFramework, changeDisplayType, changeGuidedPage } from '../../actions/index';
 
-import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
+import { selectFramework } from '../../actions/index';
+
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import { frontEnd } from '../../utils/selectorDesc';
 
@@ -14,7 +13,6 @@ import NavButton from '../parts/navButton';
 
 
 class GuidedFrontend extends React.Component {
-
 
   render() {
     return (
@@ -54,9 +52,7 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectFramework: selectFramework,
-    changeDisplayType: changeDisplayType,
-    changeGuidedPage: changeGuidedPage
+    selectFramework: selectFramework
   }, dispatch);
 }
 

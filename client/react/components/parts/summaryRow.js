@@ -48,7 +48,6 @@ class SummaryRow extends React.Component {
       </div>
     )
   }
-
 }
 
 function mapStateToProps(state) {

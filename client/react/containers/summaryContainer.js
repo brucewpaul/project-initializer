@@ -3,14 +3,10 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
 import { bundleID } from '../actions/index';
-
 import SummaryRow from '../components/parts/summaryRow';
 import NavButton from '../components/parts/navButton';
-
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
-
 import { selectionStatus, summaryNav } from '../utils/summaryDesc';
 
 

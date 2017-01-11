@@ -12,13 +12,6 @@ export const selectDatabase = (database) => {
   }
 }
 
-export const selectStyling = (styling) => {
-  return {
-    type: 'STYLING_CHOSEN',
-    payload: styling
-  }
-}
-
 export const taskRunner = (taskrunner) => {
   return {
     type: 'TASKRUNNER_CHOSEN',
@@ -37,20 +30,6 @@ export const changeDisplayType = (display) => {
   return {
     type: 'CHANGE_DISPLAY',
     payload: display
-  }
-}
-
-export const changeGuidedPage = (page) => {
-  return {
-    type: 'CHANGE_PAGE',
-    payload: page
-  }
-}
-
-export const addTesting = (testing)=> {
-  return {
-    type: 'TESTING_CHOSEN',
-    payload: testing
   }
 }
 

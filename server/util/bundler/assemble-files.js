@@ -39,7 +39,7 @@ module.exports = function(options, outputPath, id, cb) {
   asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'README.md'), bundleReadme(options)));
 
   // create Gruntfile.js
-  if (options.devTools.taskRunner.name === 'grunt') {
+  if (options.devTools.taskRunner.name === 'Grunt') {
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options)));
   }
 

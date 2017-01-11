@@ -1,18 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import { Grid, Row, Col } from 'react-bootstrap';
-
 import Card from '../components/parts/card';
 import { home } from '../utils/cardsDesc';
 
 class HomePage extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return(
@@ -22,15 +13,13 @@ class HomePage extends React.Component {
         </Grid>
         <Grid>
           <Row className='homeButtons'>
-            <Row className='homeButtons'>
-              {home.cards.map((card, index)=>{
-                return (
-                  <Col xs={card.xs} xsOffset={card.xsOffset} key={index}>
-                    <Card card={card} key={index}/>
-                  </Col>
-                )
-              })}
-            </Row>
+            {home.cards.map((card, index)=>{
+              return (
+                <Col xs={card.xs} xsOffset={card.xsOffset} key={index}>
+                  <Card card={card} key={index}/>
+                </Col>
+              )
+            })}
           </Row>
         </Grid>
       </div>

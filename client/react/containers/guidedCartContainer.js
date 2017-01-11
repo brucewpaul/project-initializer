@@ -2,11 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { frontend, backend } from '../actions/actionhelper';
 import { selectFramework, changeDisplayType } from '../actions/index';
-
 import { Nav, Navbar, Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
-
 import FrontendCartView from '../components/cartViews/frontendCartView';
 import BackendCartView from '../components/cartViews/backendCartView';
 import TaskRunnerCartView from '../components/cartViews/taskRunnerCartView';

@@ -23,11 +23,8 @@ export const selectionStatus = function(options) {
         desc:'Work in progress',
         choiceRoute:'/taskrunner',
         type:'taskRunner'
-
       }
-
     ]
-
   }
 }
 
