@@ -7,12 +7,15 @@ var path = require('path');
 
 var assembleFiles = require('./assemble-files.js');
 
+/**
+ * @param {object} options - selected options from client
+ * @param {function} cb - callback function to send response back to client
+**/
 module.exports = function(options, cb) {
-  // TODO: Change this to be unique id of user
+  // TODO: Change this to be unique id of user @chan @bruce
   var id = new Date().valueOf().toString();
   var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
-  // TODO: try to flatten out promise @bruce
   fs.existsAsync(uniquePath)
     .then((exists) => {
       if ( !exists ) {
@@ -20,12 +23,10 @@ module.exports = function(options, cb) {
         fs.mkdirAsync(uniquePath)
           .then((err) => {
             if ( err ) {
-              console.log(err);
               return cb(new Error(err));
             } else {
               // assemble the files
               assembleFiles(options, uniquePath, id, cb)
-              // TODO: will eventually receive the url/id of folder to send back to client
             }
           })
           .catch((err) => {
