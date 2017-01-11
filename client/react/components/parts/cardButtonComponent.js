@@ -4,9 +4,10 @@ import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 
 class ButtonComponent extends React.Component {
-	// constructor(props){
-	// 	super(props)
-	// }
+
+	constructor(props) {
+    super(props);
+  }
 
 	render() {
 		return(

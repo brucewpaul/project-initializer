@@ -30,26 +30,32 @@ import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-boot
 class GuidedContainer extends React.Component {
 
   render() {
-    if(this.props.display.page.name === 'frontend'){
-      return (
-        <Grid>
-          <div className='optionsView'>
-            <GuidedHeader />
-            <GuidedFrontend />
-          </div>
-        </Grid>
-      )
-    }
-    if(this.props.display.page.name === 'backend'){
-      return (
-        <Grid>
-          <div className='optionsView'>
-            <GuidedHeader />
-            <GuidedBackend />
-          </div>
-        </Grid>
-      )
-    }
+    return (
+        <div>
+            {this.props.children}
+        </div>
+    )
+    // if(this.props.display.page.name === 'frontend'){
+    //   return (
+    //     <Grid>
+    //       <div className='optionsView'>
+    //         <GuidedHeader />
+    //         <GuidedFrontend />
+    //         {this.props.children}
+    //       </div>
+    //     </Grid>
+    //   )
+    // }
+    // if(this.props.display.page.name === 'backend'){
+    //   return (
+    //     <Grid>
+    //       <div className='optionsView'>
+    //         <GuidedHeader />
+    //         <GuidedBackend />
+    //       </div>
+    //     </Grid>
+    //   )
+    // }
     // if(this.props.display.page.name === 'taskRunner'){
     //   return (
     //     <div>

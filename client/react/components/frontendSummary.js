@@ -19,7 +19,7 @@ class FrontendSummary extends React.Component {
         <Row className='summary-row'>
           <Col xs={2}>
             <div className='summary-image-wrap'>
-              <Image src='images/react-logo.png'></Image> 
+              <Image src='images/react-logo.png'></Image>
             </div>
           </Col>
           <Col xs={8}>
@@ -52,7 +52,7 @@ class FrontendSummary extends React.Component {
         <Row className='summary-row'>
           <Col xs={2}>
             <div className='summary-image-wrap'>
-              <Image src='images/angular-logo.png'></Image> 
+              <Image src='images/angular-logo.png'></Image>
             </div>
           </Col>
           <Col xs={8}>

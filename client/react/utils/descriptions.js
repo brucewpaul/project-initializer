@@ -1,10 +1,17 @@
+export const advanced ={
+  descList:[
+    'Thing 1',
+    'Thing 2',
+    'Thing 3'
+  ]
+}
 export const reactDesc = {
   desc: 'React is cool',
   image1X:'',
   image2X:'',
   image3X:'',
-	name:'',
-	descList:['','','']
+  name:'',
+  descList:['','','']
 }
 
 export const angularDesc = {

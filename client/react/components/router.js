@@ -8,6 +8,10 @@ import DownloadContainer from '../containers/downloadContainer';
 import AdvancedContainer from '../containers/advancedContainer';
 import RootComponent from './rootComponent';
 
+import GuidedFrontend from '../components/guided/guidedFrontend';
+
+import GuidedBackend from '../components/guided/guidedBackend';
+
 
 import { createStore } from 'redux';
 import allReducers from '../reducers';
@@ -21,7 +25,12 @@ const routes = (
     <Router history ={browserHistory} >
       <Route path='/' component={RootComponent}>
         <IndexRoute component={HomePage}/>
-        <Route path ='/guided' component={GuidedContainer}/>
+        <Route path ='/guided' component={GuidedContainer}>
+          <IndexRoute component={GuidedFrontend}/>
+          <Route path='/frontend' component={HomePage}/>
+          <Route path='/backend' component={GuidedBackend}/>
+          <Route path='/taskrunner' component={SummaryContainer}/>
+        </Route>
         <Route path ='/advanced' component={AdvancedContainer}/>
         <Route path ='/checkout' component={SummaryContainer}/>
         <Route path ='/download' component={DownloadContainer}/>

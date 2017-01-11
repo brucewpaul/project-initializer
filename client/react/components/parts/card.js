@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ButtonComponent from './buttonComponent';
+import CardButtonComponent from './cardButtonComponent';
 
 class Card extends React.Component {
-	// constructor(props){
-	// 	super(props)
-	// }
+	constructor(props) {
+    super(props);
+  }
 
 	render() {
 		return(
@@ -16,7 +16,7 @@ class Card extends React.Component {
 					return <li key={index}>{desc}</li>
 				})}
 				</ul>
-				<ButtonComponent data = {this.props.card.button}/>
+				<CardButtonComponent data = {this.props.card.button}/>
 			</div>
 		)
 	}
