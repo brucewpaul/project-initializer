@@ -95,3 +95,43 @@ export const backEnd = {
     }
   ]
 }
+
+export const task = {
+  header: 'Select a Task Runner',
+  selectors: [
+    {
+      image1X:'',
+      image2X:'images/mongo-logo@2x.png',
+      image3X:'',
+      name: 'Gulp',
+      payloadName: 'Gulp',
+      xs: 4,
+      xsOffset: 0
+    },
+    {
+      image1X:'',
+      image2X:'images/sqlite-logo@2x.png',
+      image3X:'',
+      name: 'Grunt',
+      payloadName: 'Grunt',
+      xs: 4,
+      xsOffset: 0
+    }
+  ],
+  buttons: [
+    {
+      name: 'Back',
+      link: '/backend',
+      color: 'grey',
+      xs:3,
+      xsOffset:0
+    },
+    {
+      name: 'Next',
+      link: '/checkout',
+      color: 'blue',
+      xs:3,
+      xsOffset:6
+    }
+  ]
+}

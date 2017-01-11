@@ -11,6 +11,7 @@ import RootComponent from './rootComponent';
 import GuidedFrontend from '../components/guided/guidedFrontend';
 
 import GuidedBackend from '../components/guided/guidedBackend';
+import GuidedTaskRunner from '../components/guided/guidedTaskRunner';
 
 
 import { createStore } from 'redux';
@@ -29,7 +30,7 @@ const routes = (
           <IndexRoute component={GuidedFrontend}/>
           <Route path='/frontend' component={HomePage}/>
           <Route path='/backend' component={GuidedBackend}/>
-          <Route path='/taskrunner' component={SummaryContainer}/>
+          <Route path='/taskrunner' component={GuidedTaskRunner}/>
         </Route>
         <Route path ='/advanced' component={AdvancedContainer}/>
         <Route path ='/checkout' component={SummaryContainer}/>

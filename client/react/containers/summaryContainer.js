@@ -3,40 +3,35 @@ import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectFramework, changeDisplayType, changeGuidedPage } from '../actions/index';
+import { selectFramework, selectDatabase, taskRunner } from '../actions/index';
 
 import FrontendSummary from '../components/frontendSummary';
 import BackendSummary from '../components/backendSummary';
 
+import SummaryRow from '../components/parts/summaryRow';
+
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
-// {
-//   buttons:[{
-//       name: '',
-//       link:'',
-//       color: ''
-//     },{
-//       name: '',
-//       link:'',
-//       color: ''
-//     }]
-// }
+import { selectionStatus } from '../utils/summaryDesc';
+
 
 class SummaryContainer extends React.Component {
+
   render() {
+    var summaries = selectionStatus(this.props.options).summaries;
+
     return(
       <Grid>
         <div className='guidedHeader'>
           <h4>Review your stack</h4>
         </div>
-        <div>
-          <div>
-            <FrontendSummary/>
-          </div>
-          <div>
-            <BackendSummary/>
-          </div>
-        </div>
+        {summaries.filter((summary, index)=>{
+          return summary.name !== null;
+        }).map((summary, index)=>{
+          return(
+            <SummaryRow summary={summary} key={index} type={summary.type}/>
+          )
+        })}
         <Link to='/download'>
           <Button className='summary-download-btn'>
             Build
@@ -57,7 +52,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     selectFramework: selectFramework,
-    changeDisplayType: changeDisplayType,
+    selectDatabase: selectDatabase,
+    taskRunner: taskRunner,
   }, dispatch);
 }
 
