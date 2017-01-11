@@ -17,6 +17,16 @@ import { selectFramework, changeDisplayType } from '../actions/index';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
+    var cart = {
+      header: 'Cart',
+      button: {
+        name:'build',
+        color: '',
+        link: ''
+      }
+
+    }
+
 class GuidedContainer extends React.Component {
 
   render() {

@@ -1,6 +1,10 @@
 export const reactDesc = {
-  description: 'React is cool'
-
+  desc: 'React is cool',
+  image1X:'',
+  image2X:'',
+  image3X:'',
+	name:'',
+	descList:['','','']
 }
 
 export const angularDesc = {
@@ -16,7 +20,7 @@ export const mongoDesc = {
 }
 
 export const sqliteDesc = {
-  description:'Sqlite is cool'
+  description: 'Sqlite is cool'
 }
 
 export const mysqlDesc = {

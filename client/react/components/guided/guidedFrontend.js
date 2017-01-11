@@ -7,6 +7,36 @@ import { selectFramework, changeDisplayType, changeGuidedPage } from '../../acti
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
+var data = {
+    header: 'string',
+    arrayOfCards:[
+        {
+          image:'string',
+          name: 'string',
+          payloadName: 'string'
+        },
+        {
+          image:'string',
+          name: 'string',
+          payloadName: 'string'
+        },{
+          image:'string',
+          name: 'string',
+          payloadName: 'string'
+        }
+    ],
+    buttons:[{
+      name: '',
+      link:'',
+      color: ''
+    },{
+      name: '',
+      link:'',
+      color: ''
+    }],
+
+}
+
 class GuidedFrontend extends React.Component {
 
   render() {

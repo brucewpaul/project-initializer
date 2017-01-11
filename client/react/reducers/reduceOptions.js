@@ -18,7 +18,8 @@ const initialState = {
       ],
     },
     testing: 'Mocha'
-  }
+  },
+  bundleId: null
 }
 
 export default function(state = initialState, action) {

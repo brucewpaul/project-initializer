@@ -5,6 +5,36 @@ import { connect } from 'react-redux';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
+import Card from '../components/parts/card';
+
+var homepageData = {
+  cards: [
+    {
+      name:'Guided',
+      descriptions:['Thing 1', 'Thing 2', 'Thing 3'],
+      button: {
+        name: 'Get Started',
+        link: '/guided',
+        shadowType: 'guided'
+      },
+      xs:3,
+      xsOffset: 3,
+    },
+    {
+      name:'Advanced',
+      descriptions:['Thing 1', 'Thing 2', 'Thing 3'],
+      button: {
+        name: 'Advanced',
+        link: '/advanced',
+        shadowType: 'advanced'
+      },
+      xs:3,
+      xsOffset: 0,
+    }
+
+  ]
+}
+
 class HomePage extends React.Component {
   render() {
     return(
@@ -14,36 +44,15 @@ class HomePage extends React.Component {
       </Grid>
       <Grid>
         <Row className='homeButtons'>
-          <Col xs={3} xsOffset={3}>
-            <div className='button-description'>
-              <h4>Guided</h4>
-              <ul>
-                <li>Explore our stack creator, step by step</li>
-                <li>Web developer nubs start here!</li>
-              </ul>
-            </div>
-            <Link to='/guided'>
-              <Button className='selector guided' bsSize='large' >
-                Get started
-              </Button>
-              <div className='button-shadow button-shadow-guided'></div>
-            </Link>
-          </Col>
-          <Col xs={3}>
-            <div className='button-description'>
-              <h4>Advanced</h4>
-              <ul>
-                <li>Coming soon!</li>
-                <li>Quickly create the application you want</li>
-              </ul>
-            </div>
-            <Link to='/advanced'>
-              <Button className='selector advanced' bsSize='large' disabled>
-                Customize
-              </Button>
-              <div className='button-shadow button-shadow-advanced'></div>
-            </Link>
-          </Col>
+          <Row className='homeButtons'>
+            {homepageData.cards.map((card, index)=>{
+              return (
+                <Col xs={card.xs} xsOffset={card.xsOffset} key={index}>
+                  <Card card={card} key={index}/>
+                </Col>
+              )
+            })}
+        </Row>
         </Row>
       </Grid>
       </div>

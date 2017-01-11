@@ -10,6 +10,18 @@ import BackendSummary from '../components/backendSummary';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
+// {
+//   buttons:[{
+//       name: '',
+//       link:'',
+//       color: ''
+//     },{
+//       name: '',
+//       link:'',
+//       color: ''
+//     }]
+// }
+
 class SummaryContainer extends React.Component {
   render() {
     return(
