@@ -76,18 +76,22 @@ export default function(state = initialState, action) {
           testing: state.devTools.testing
         }
       })
-      case 'TESTING_CHOSEN':
-      return Object.assign({} , state, {
-        devTools: {
-          taskRunner: {
-            name: state.devTools.taskRunner.name,
-            plugins:[],
-            tasks:[]
-          },
-          bundler: state.devTools.bundler,
-          testing: action.payload
-        }
+      case 'BUNDLE_ID':
+        return Object.assign({} , state, {
+          bundleId : action.payload
       })
+      // case 'TESTING_CHOSEN':
+      //   return Object.assign({} , state, {
+      //   devTools: {
+      //     taskRunner: {
+      //       name: state.devTools.taskRunner.name,
+      //       plugins:[],
+      //       tasks:[]
+      //     },
+      //     bundler: state.devTools.bundler,
+      //     testing: action.payload
+      //   }
+      // })
     default:
       return state
   }

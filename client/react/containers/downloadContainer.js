@@ -40,7 +40,7 @@ class DownloadContainer extends React.Component {
                 <li>Download your project.</li>
               </ul>
             </div>
-            <Button onClick={()=> sendOptionsToServer(this.props.options)} className='selector guided' bsSize='large'>
+            <Button onClick={()=> downloadBundle(this.props.options.bundleId)} className='selector guided' bsSize='large'>
               Download
             </Button>
             <div className='button-shadow final-page button-shadow-guided'></div>
@@ -86,13 +86,8 @@ function matchDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-function sendOptionsToServer(options) {
-  axios.post('/build',options)
-  .then((response)=>{
-    window.location.assign('/bundle/' + response.data);
-  }).catch((err)=>{
-    console.log(err);
-  })
+function downloadBundle(id) {
+    window.location.assign('/bundle/' + id);
 }
 
 

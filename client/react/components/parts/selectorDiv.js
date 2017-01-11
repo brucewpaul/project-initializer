@@ -11,7 +11,6 @@ class SelectorDiv extends React.Component {
       <div className='guidedButton'
        onClick={()=> {
           this.props.choice(this.props.selector.payloadName);
-          console.log(this.props);
           }
         }
         >

@@ -53,3 +53,10 @@ export const addTesting = (testing)=> {
     payload: testing
   }
 }
+
+export const bundleID = (id)=> {
+  return {
+    type: 'BUNDLE_ID',
+    payload: id
+  }
+}

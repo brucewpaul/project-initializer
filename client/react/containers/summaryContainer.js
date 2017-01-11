@@ -2,17 +2,16 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
-import { selectFramework, selectDatabase, taskRunner } from '../actions/index';
-
-import FrontendSummary from '../components/frontendSummary';
-import BackendSummary from '../components/backendSummary';
+import { bundleID } from '../actions/index';
 
 import SummaryRow from '../components/parts/summaryRow';
+import NavButton from '../components/parts/navButton';
 
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 
-import { selectionStatus } from '../utils/summaryDesc';
+import { selectionStatus, summaryNav } from '../utils/summaryDesc';
 
 
 class SummaryContainer extends React.Component {
@@ -32,11 +31,10 @@ class SummaryContainer extends React.Component {
             <SummaryRow summary={summary} key={index} type={summary.type}/>
           )
         })}
-        <Link to='/download'>
-          <Button className='summary-download-btn'>
-            Build
-          </Button>
-        </Link>
+        <div className='navButtons'
+          onClick={()=> setBundleId(this.props.options, this.props.bundleID)}>
+         <NavButton button={summaryNav} />
+        </div>
       </Grid>
     )
   }
@@ -49,11 +47,18 @@ function mapStateToProps(state) {
   };
 }
 
+function setBundleId(options, cb) {
+  axios.post('/build',options)
+  .then((response)=>{
+    cb(response.data);;
+  }).catch((err)=>{
+    console.log(err);
+  })
+}
+
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectFramework: selectFramework,
-    selectDatabase: selectDatabase,
-    taskRunner: taskRunner,
+    bundleID: bundleID
   }, dispatch);
 }
 

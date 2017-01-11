@@ -15,7 +15,6 @@ import NavButton from '../parts/navButton';
 
 class GuidedTaskRunner extends React.Component {
 
-
   render() {
     return (
       <div>

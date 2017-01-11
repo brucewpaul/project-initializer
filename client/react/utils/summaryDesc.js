@@ -30,3 +30,11 @@ export const selectionStatus = function(options) {
 
   }
 }
+
+export const summaryNav = {
+  name: 'Build',
+  link: '/download',
+  color: 'grey',
+  xs:0,
+  xsOffset:0
+}
