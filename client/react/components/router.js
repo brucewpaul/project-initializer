@@ -9,6 +9,7 @@ import RootComponent from './rootComponent';
 import GuidedFrontend from '../components/guided/guidedFrontend';
 import GuidedBackend from '../components/guided/guidedBackend';
 import GuidedTaskRunner from '../components/guided/guidedTaskRunner';
+import AdvancedSelection from '../components/advanced/advancedSelections';
 import { createStore } from 'redux';
 import allReducers from '../reducers';
 import { Provider } from 'react-redux';
@@ -25,6 +26,9 @@ const routes = (
           <Route path='/frontend' component={HomePage}/>
           <Route path='/backend' component={GuidedBackend}/>
           <Route path='/taskrunner' component={GuidedTaskRunner}/>
+        </Route>
+        <Route path='/advanced' component={AdvancedContainer}>
+          <IndexRoute component={AdvancedSelection}/>
         </Route>
         <Route path ='/checkout' component={SummaryContainer}/>
         <Route path ='/download' component={DownloadContainer}/>

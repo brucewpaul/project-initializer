@@ -135,3 +135,23 @@ export const task = {
     }
   ]
 }
+
+export const advanced ={
+  header: 'Advanced Stack Builder',
+  buttons: [
+    {
+      name: 'Home',
+      link: '/',
+      color: 'grey',
+      xs:3,
+      xsOffset:0
+    },
+    {
+      name: 'Next',
+      link: '/checkout',
+      color: 'blue',
+      xs:3,
+      xsOffset:6
+    }
+  ]
+}
