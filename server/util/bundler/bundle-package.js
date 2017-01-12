@@ -7,6 +7,7 @@ var package = require(path.join(__dirname, '../../../ingredients/package/package
 var react = require(path.join(__dirname, '../../../ingredients/package/react-dependencies.js'));
 var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-dependencies.js'));
 var grunt = require(path.join(__dirname, '../../../ingredients/package/grunt-dependencies.js'));
+var mochaEnzyme = require(path.join(__dirname, '../../../ingredients/package/mocha-enzyme-dependencies.js'));
 
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase, taskRunnerDependencies;
@@ -45,7 +46,11 @@ module.exports = function(options) {
   // TODO: add gulp options as else if @chan
 
   if ( options && options.devTools.testing === 'Mocha' ) {
-    tesing = mocha;
+    if ( options.frontEnd.framework === 'React') {
+      tesing = mochaEnzyme;
+    } else {
+      tesing = mocha;
+    }
   } else {
     tesing = {
       scripts: {},
