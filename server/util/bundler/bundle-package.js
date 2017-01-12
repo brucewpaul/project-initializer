@@ -35,7 +35,7 @@ module.exports = function(options) {
     }
   }
 
-  if ( options && options.devTools.taskRunner.name === 'grunt' ) {
+  if ( options && options.devTools.taskRunner.name === 'Grunt' ) {
     taskRunnerDependencies = Object.assign({}, grunt.mainDependencies);
     _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
       taskRunnerDependencies = Object.assign(taskRunnerDependencies, grunt[plugin]);

@@ -2,24 +2,41 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { taskRunner } from '../../actions/index';
+import { selectFramework, selectDatabase, taskRunner } from '../../actions/index';
 
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import { task } from '../../utils/selectorDesc';
+import { frontEnd, backEnd, task, advanced } from '../../utils/selectorDesc';
 
 import SelectorDiv from '../parts/selectorDiv';
 import NavButton from '../parts/navButton';
 
-
-class GuidedTaskRunner extends React.Component {
+class AdvancedSelection extends React.Component {
 
   render() {
-    return (
+    return(
       <div>
         <div className='guidedHeader'>
-          <h4>{task.header}</h4>
+          <h4>{advanced.header}</h4>
         </div>
+        <Row>
+          {frontEnd.selectors.map((selector, index)=>{
+            return (
+              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+                <SelectorDiv selector={selector} choice={this.props.selectFramework.bind(this)} key={index}/>
+              </Col>
+            )
+          })}
+        </Row>
+        <Row>
+          {backEnd.selectors.map((selector, index)=>{
+            return (
+              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+                <SelectorDiv selector={selector} choice={this.props.selectDatabase.bind(this)} key={index}/>
+              </Col>
+            )
+          })}
+        </Row>
         <Row>
           {task.selectors.map((selector, index)=>{
             return (
@@ -30,7 +47,7 @@ class GuidedTaskRunner extends React.Component {
           })}
         </Row>
         <Row className='navButtons'>
-          {task.buttons.map((button, index)=>{
+          {advanced.buttons.map((button, index)=>{
             return (
               <Col xs={button.xs} xsOffset={button.xsOffset} key={index}>
                 <NavButton button={button} key={index} />
@@ -52,8 +69,10 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
+    selectFramework: selectFramework,
+    selectDatabase: selectDatabase,
     taskRunner: taskRunner
   }, dispatch);
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(GuidedTaskRunner);
+export default connect(mapStateToProps, matchDispatchToProps)(AdvancedSelection);

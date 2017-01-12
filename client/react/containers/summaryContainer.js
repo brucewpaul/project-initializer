@@ -2,34 +2,35 @@ import React from 'react';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
-import { selectFramework, changeDisplayType, changeGuidedPage } from '../actions/index';
-
-import FrontendSummary from '../components/frontendSummary';
-import BackendSummary from '../components/backendSummary';
-
+import axios from 'axios';
+import { bundleID } from '../actions/index';
+import SummaryRow from '../components/parts/summaryRow';
+import NavButton from '../components/parts/navButton';
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
+import { selectionStatus, summaryNav } from '../utils/summaryDesc';
+
 
 class SummaryContainer extends React.Component {
+
   render() {
+    var summaries = selectionStatus(this.props.options).summaries;
+
     return(
       <Grid>
         <div className='guidedHeader'>
           <h4>Review your stack</h4>
         </div>
-        <div>
-          <div>
-            <FrontendSummary/>
-          </div>
-          <div>
-            <BackendSummary/>
-          </div>
+        {summaries.filter((summary, index)=>{
+          return summary.name !== null;
+        }).map((summary, index)=>{
+          return(
+            <SummaryRow summary={summary} key={index} type={summary.type}/>
+          )
+        })}
+        <div className='navButtons'
+          onClick={()=> setBundleId(this.props.options, this.props.bundleID || '' )}>
+         <NavButton button={summaryNav} />
         </div>
-        <Link to='/download'>
-          <Button className='summary-download-btn'>
-            Build
-          </Button>
-        </Link>
       </Grid>
     )
   }
@@ -42,10 +43,18 @@ function mapStateToProps(state) {
   };
 }
 
+function setBundleId(options, cb) {
+  axios.post('/build',options)
+  .then((response)=>{
+    cb(response.data);;
+  }).catch((err)=>{
+    console.log(err);
+  })
+}
+
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    selectFramework: selectFramework,
-    changeDisplayType: changeDisplayType,
+    bundleID: bundleID
   }, dispatch);
 }
 

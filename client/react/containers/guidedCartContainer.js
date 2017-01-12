@@ -1,29 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { frontend, backend } from '../actions/actionhelper';
-import { selectFramework, changeDisplayType } from '../actions/index';
-
-import { Nav, Navbar, Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
-
-import FrontendCartView from '../components/cartViews/frontendCartView';
-import BackendCartView from '../components/cartViews/backendCartView';
-import TaskRunnerCartView from '../components/cartViews/taskRunnerCartView';
-import PluginsCartView from '../components/cartViews/pluginsCartView';
-import TasksCartView from '../components/cartViews/tasksCartView';
-import TestingCartView from '../components/cartViews/testingCartView';
+import { Button } from 'react-bootstrap';
 
 class GuidedCart extends React.Component {
 
   render() {
     return(
       <div className='cart'>
-        <Navbar className='cartHeader'>
+        <div className='cartHeader'>
           <h4>Cart</h4>
-        </Navbar>
-        <FrontendCartView/>
-        <BackendCartView/>
+        </div>
+        <span> Front-end  {this.props.options.frontEnd.framework || ''}</span><br/>
+          <span> Database {this.props.options.backEnd.database || ''}</span><br/>
+          <span> Task Runner  {this.props.options.devTools.taskRunner.name || ''}</span><br/>
         <Link to='/checkout'>
           <Button>Build</Button>
         </Link>
@@ -39,11 +29,4 @@ function mapStateToProps(state) {
   };
 }
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({
-    selectFramework: selectFramework,
-    changeDisplayType: changeDisplayType,
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(GuidedCart);
+export default connect(mapStateToProps)(GuidedCart);
