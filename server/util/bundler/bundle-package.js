@@ -8,6 +8,7 @@ var react = require(path.join(__dirname, '../../../ingredients/package/react-dep
 var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-dependencies.js'));
 var grunt = require(path.join(__dirname, '../../../ingredients/package/grunt-dependencies.js'));
 var mochaEnzyme = require(path.join(__dirname, '../../../ingredients/package/mocha-enzyme-dependencies.js'));
+var vue = require(path.join(__dirname, '../../../ingredients/package/vue-dependencies.js'));
 
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase, taskRunnerDependencies;
@@ -16,7 +17,9 @@ module.exports = function(options) {
     frontEndFramework = angular;
   } else if ( options && options.frontEnd.framework === 'React' ) {
     frontEndFramework = react;
-  } else {
+  } else if( options && options.frontEnd.framework === 'Vue' ) {
+    frontEndFramework = vue;
+  }else {
     frontEndFramework = {
       scripts: {},
       dependencies: {},

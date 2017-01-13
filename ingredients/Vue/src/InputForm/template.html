@@ -1,0 +1,13 @@
+<!-- This is the HTML template for the InputForm component. You can export this component's index.vue file  to other components. This allows you to create larger components from smaller ones.
+<div> -->
+<div>
+  <form v-on:submit.prevent='onSubmit'>
+    <input type="text" v-model='todo'/>
+    <button type='submit'></button>
+  </form>
+  <ul>
+    <li v-for='(todo, index) in todos' v-on:click='todos.splice(index, 1)'>
+      {{ todo }}
+    </li>
+  </ul>
+</div>
