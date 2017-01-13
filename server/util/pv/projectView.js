@@ -8,13 +8,12 @@ module.exports.getProjectJSON = function(bundleId) {
   var bundle = dirTree(bundlePath);
   // filter .DS_Store objects out of tree
   var traverseTree = function(node) {
-    var nodesToDelete = [];
+    if (node.extension) {
+      // read the path and add the path to the object
+      node.contents = fs.readFileSync(node.path, 'utf8');
+    }
     if (node.children && node.children.length > 0) {
       for (var i = 0; i < node.children.length; i++) {
-        if (node.children[i].name === '.DS_Store') {
-          node.children.splice(i, 1);
-          continue;
-        }
         traverseTree(node.children[i]);
       }
     }
