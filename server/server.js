@@ -11,8 +11,6 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 var session = require('express-session');
-var accessTokenTemp;
-
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
   clientSecret: GITHUB_CLIENT_SECRET,
@@ -30,7 +28,6 @@ passport.serializeUser(function(profile, done) {
 });
 
 
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
@@ -46,9 +43,9 @@ app.get('/auth/github',
 app.get('/auth/callback',
   passport.authenticate('github', { failureRedirect: '/rekt' }),
   function(req, res) {
-    console.log('access', accessTokenTemp);
     res.redirect('/');
   });
+
 app.get('/push', function(req, res) {
     axios.post('https://api.github.com/user/repos', {
       name: "tes12234t1"
