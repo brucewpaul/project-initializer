@@ -35,6 +35,18 @@ app.get('/bundle/:id', (req, res) => {
   res.download(path.resolve(__dirname, 'bundles', fileName ));
 });
 
+app.post('/recommendations/', (req, res) => {
+  var framework = req.body.framework || null
+  var packages = req.body.packages || null
+  if ( packages && framework ) {
+    filter.getRecommendations({framework, packages}, function(err, recommendations) {
+      res.status(200).send(recommendations);
+    });
+  } else {
+    res.status(500);
+  }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
 });
