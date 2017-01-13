@@ -55,6 +55,13 @@ module.exports = function(options, outputPath, id, cb) {
     asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', frontEndFramework), path.join(outputPath, 'test', frontEndFramework)));
   }
 
+  if (frontEndFramework === 'React') {
+    // add testing for react specifically
+    if (options.devTools.testing === 'Mocha') {
+      asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', frontEndFramework), path.join(outputPath, 'test', frontEndFramework)));
+    }
+  }
+
   // add server
   asyncTasks.push( fs.mkdirAsync(path.join(outputPath, 'server')).then(function() {
     asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'basic-server'), path.join(outputPath, 'server')));
@@ -62,7 +69,6 @@ module.exports = function(options, outputPath, id, cb) {
   }))
 
   // add front end
-  // TODO: check folder structure for react. is public needed? @vinh
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, frontEndFramework), path.join(outputPath)));
 
   // add testing for server
@@ -70,8 +76,6 @@ module.exports = function(options, outputPath, id, cb) {
 
   // add testing for db
   asyncTasks.push(ncp.ncpAsync(path.join(ingredientsPath, 'Test', backEndDatabase), path.join(outputPath, 'test', backEndDatabase)));
-
-  // TODO: add testing for react @vinh
 
   Promise.all(asyncTasks)
     .then( function() {
