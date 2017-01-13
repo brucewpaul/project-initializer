@@ -4,6 +4,7 @@ const path = require('path');
 var bodyParser = require('body-parser');
 
 var bundler = require('./util/bundler/index.js');
+var filter = require('./util/cf/index.js');
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -20,6 +21,10 @@ app.post('/build/', function (req, res) {
     if ( err ) {
       res.status(500);
     } else {
+      var framework = req.body.frontEnd.framework;
+      var packages = req.body.devTools.taskRunner.plugins;
+      filter.queueConfig(framework, packages);
+
       res.status(201).send(folderName);
     }
   });
