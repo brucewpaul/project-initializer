@@ -1,0 +1,4 @@
+/*This is where the styling files for the App component are located. The styling is scoped so that you can customize each component seperately.*/
+p {
+  font-family: fantasy;
+}
