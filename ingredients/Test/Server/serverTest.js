@@ -54,8 +54,8 @@ describe('API Routes', function() {
     var requestParams = {method: 'POST',
       uri: 'http://127.0.0.1:3000/api/items',
       json: {
-        title: 'Test Title',
-        text: 'Test Text'
+        title: 'test1',
+        text: 'test1 text'
       }
     };
 
@@ -77,8 +77,8 @@ describe('API Routes', function() {
       // Now if we request the log, that message we posted should be there:
       request('http://127.0.0.1:3000/api/items', function(error, response, body) {
         var items = JSON.parse(body).results;
-        expect(items[0].text).to.equal('test2 text');
-        expect(items[0].title).to.equal('test2');
+        expect(items[1].text).to.equal('test2 text');
+        expect(items[1].title).to.equal('test2');
 
         done();
       });
