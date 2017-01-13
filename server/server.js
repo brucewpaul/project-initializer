@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 const path = require('path');
 var bodyParser = require('body-parser');
-
 var bundler = require('./util/bundler/index.js');
 var filter = require('./util/cf/index.js');
+var projectView = require('./util/pv/projectView.js');
 
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -45,6 +45,11 @@ app.post('/recommendations/', (req, res) => {
   } else {
     res.status(500);
   }
+});
+
+app.get('/bundle/contents/:id', (req, res) => {
+  var bundle = projectView.getProjectJSON(req.params.id);
+  res.json(bundle);
 });
 
 app.get('*', (req, res) => {
