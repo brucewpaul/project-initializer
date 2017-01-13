@@ -45,6 +45,7 @@ app.post('/recommendations/', (req, res) => {
   } else {
     res.status(500);
   }
+});
 
 app.get('/bundle/contents/:id', (req, res) => {
   var bundle = projectView.getProjectJSON(req.params.id);
