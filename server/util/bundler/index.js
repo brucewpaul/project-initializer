@@ -16,6 +16,7 @@ module.exports = function(options, cb) {
   var id = new Date().valueOf().toString();
   var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
+  // TODO: create random generator, if it exists, call this function again @bruce
   fs.existsAsync(uniquePath)
     .then((exists) => {
       if ( !exists ) {
