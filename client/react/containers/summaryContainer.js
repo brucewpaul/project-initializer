@@ -29,7 +29,7 @@ class SummaryContainer extends React.Component {
         })}
         <div className='navButtons'
           onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
-         <NavButton button={summaryNav} />
+         <NavButton button={summaryNav.build} />
         </div>
       </Grid>
     )

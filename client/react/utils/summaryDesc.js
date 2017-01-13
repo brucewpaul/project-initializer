@@ -29,9 +29,19 @@ export const selectionStatus = function(options) {
 }
 
 export const summaryNav = {
-  name: 'Build',
-  link: '/download',
-  color: 'grey',
-  xs:0,
-  xsOffset:0
+  build: {
+    name: 'Build',
+    link: '/download',
+    color: 'grey',
+    xs:0,
+    xsOffset:0
+  },
+  view: {
+    name: 'View Project',
+    link: '/view',
+    color: 'grey',
+    xs: 0,
+    xsOffset: 0
+  }
+
 }
