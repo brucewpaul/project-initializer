@@ -5,12 +5,63 @@ var bodyParser = require('body-parser');
 var bundler = require('./util/bundler/index.js');
 var filter = require('./util/cf/index.js');
 var projectView = require('./util/pv/projectView.js');
+var axios = require('axios');
+var passport = require('passport');
+var GitHubStrategy = require('passport-github2').Strategy;
+var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
+var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 
-app.use(express.static(path.join(__dirname, '../client/public')));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+var accessTokenTemp;
+passport.use(new GitHubStrategy({
+  clientID: GITHUB_CLIENT_ID,
+  clientSecret: GITHUB_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/auth/callback"
+}, function(accessToken, refreshToken, profile, done) {
+  accessTokenTemp = accessToken;
+  return done(null, profile);
+}));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'repo' ] }),
+  function(req, res){//this func doesn't get called. github redirects to other url
+  });
+
+app.get('/auth/callback',
+  passport.authenticate('github', { failureRedirect: '/rekt' }),
+  function(req, res) {
+    console.log('access', accessTokenTemp);
+    res.redirect('/');
+  });
+
+app.get('/push', function(req, res) {
+    axios.post('https://api.github.com/user/repos', {
+      name: "tes1t"
+    }, {
+      headers: {
+        Authorization: 'token ' + accessTokenTemp
+      }
+    })
+    .then(function (response) {
+      console.log('successful repo create');
+      res.status(201).send('successful');
+    })
+    .catch(function(err) {
+      console.log('fuck yourself', err);
+    });
+  })
 
 // TODO: refactor out controllers for the routes into a separate file @chan
 // app.post('/build', controller.build)
