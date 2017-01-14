@@ -27,7 +27,7 @@ module.exports = function(options, outputPath, id, cb) {
 
   var asyncTasks = [];
 
-  fs.mkdir(path.join(outputPath, 'Test'));
+  fs.mkdir(path.join(outputPath, 'test'));
 
   // create package.json
   var packageJSON = bundlePackage(options);
