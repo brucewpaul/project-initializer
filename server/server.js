@@ -8,48 +8,50 @@ var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
-
+var session = require('express-session');
 var accessTokenTemp;
+
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
   clientSecret: GITHUB_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/callback"
 }, function(accessToken, refreshToken, profile, done) {
-  accessTokenTemp = accessToken;
+  profile.token = accessToken;
   return done(null, profile);
 }));
-passport.serializeUser(function(user, done) { //don't know what the fuck this does
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) { //fuck this stupid shit
-  done(null, obj);
+
+passport.serializeUser(function(profile, done) {
+  done(null, profile);
+  });
+  passport.deserializeUser(function(profile, done) {
+  done(null, profile);
 });
 
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/auth/github',
-  passport.authenticate('github', { scope: [ 'repo' ] }),
-  function(req, res){//this func doesn't get called. github redirects to other url
-  });
-
+  passport.authenticate('github', { scope: [ 'repo user:email' ] }),
+  function(req, res){
+  });//takes to github and returns to callback url
 app.get('/auth/callback',
   passport.authenticate('github', { failureRedirect: '/rekt' }),
   function(req, res) {
     console.log('access', accessTokenTemp);
     res.redirect('/');
   });
-
 app.get('/push', function(req, res) {
     axios.post('https://api.github.com/user/repos', {
-      name: "tes1t"
+      name: "tes12234t1"
     }, {
       headers: {
-        Authorization: 'token ' + accessTokenTemp
+        Authorization: 'token ' + req.user.token
       }
     })
     .then(function (response) {
@@ -57,22 +59,26 @@ app.get('/push', function(req, res) {
       res.status(201).send('successful');
     })
     .catch(function(err) {
-      console.log('fuck yourself', err);
+      console.log('error pushing to github', err);
     });
-  })
+  });
 
 // TODO: refactor out controllers for the routes into a separate file @chan
 // app.post('/build', controller.build)
 
 // send object from front end to bundler to build client folder
 app.post('/build/', function (req, res) {
-  bundler(req.body, function(err, folderName) {
+  bundler(req, function(err, folderName) {
     if ( err ) {
       res.status(500);
     } else {
       res.status(201).send(folderName);
     }
   });
+});
+
+app.get('/test', function(req, res) {
+  res.send(req.user);
 });
 
 app.get('/bundle/:id', (req, res) => {
