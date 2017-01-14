@@ -14,7 +14,7 @@ var assembleFiles = require('./assemble-files.js');
 module.exports = function(req, cb) {
   // TODO: Change this to be unique id of user @chan @bruce
   console.log('from bunder :', req.user.username);
-  var id = req.user.username + req.body.projectName;
+  var id = req.user.username + req.body.user.projectName;
   var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
   // TODO: create random generator, if it exists, call this function again @bruce
