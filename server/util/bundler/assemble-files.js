@@ -6,9 +6,9 @@ var ncp = Promise.promisifyAll(require('ncp'));
 
 ncp.limit = 16;
 
-var bundlePackage = require('./bundle-package.js');
-var bundleGruntfile = require('./grunt-helpers.js');
-var bundleReadme = require('./readme-generator.js');
+var bundlePackage = require('./generators/package-generator.js');
+var bundleGruntfile = require('./generators/grunt-generator.js');
+var bundleReadme = require('./generators/readme-generator.js');
 
 // files for Angular
 var bowerFile = require('../../../ingredients/bower/bower.js');

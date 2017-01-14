@@ -1,14 +1,15 @@
 var path = require('path');
 var _ = require('lodash');
-var angular = require(path.join(__dirname, '../../../ingredients/package/ang-dependencies.js'));
-var mocha = require(path.join(__dirname, '../../../ingredients/package/mocha-dependencies.js'));
-var mongo = require(path.join(__dirname, '../../../ingredients/package/mongo-dependencies.js'));
-var package = require(path.join(__dirname, '../../../ingredients/package/package.js'));
-var react = require(path.join(__dirname, '../../../ingredients/package/react-dependencies.js'));
-var sqlite = require(path.join(__dirname, '../../../ingredients/package/sqlite-dependencies.js'));
-var grunt = require(path.join(__dirname, '../../../ingredients/package/grunt-dependencies.js'));
-var mochaEnzyme = require(path.join(__dirname, '../../../ingredients/package/mocha-enzyme-dependencies.js'));
-var vue = require(path.join(__dirname, '../../../ingredients/package/vue-dependencies.js'));
+
+var angular = require(path.join(__dirname, '../../../../ingredients/package/ang-dependencies.js'));
+var mocha = require(path.join(__dirname, '../../../../ingredients/package/mocha-dependencies.js'));
+var mongo = require(path.join(__dirname, '../../../../ingredients/package/mongo-dependencies.js'));
+var package = require(path.join(__dirname, '../../../../ingredients/package/package.js'));
+var react = require(path.join(__dirname, '../../../../ingredients/package/react-dependencies.js'));
+var sqlite = require(path.join(__dirname, '../../../../ingredients/package/sqlite-dependencies.js'));
+var grunt = require(path.join(__dirname, '../../../../ingredients/package/grunt-dependencies.js'));
+var mochaEnzyme = require(path.join(__dirname, '../../../../ingredients/package/mocha-enzyme-dependencies.js'));
+var vue = require(path.join(__dirname, '../../../../ingredients/package/vue-dependencies.js'));
 
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase, taskRunnerDependencies;
@@ -19,7 +20,7 @@ module.exports = function(options) {
     frontEndFramework = react;
   } else if( options && options.frontEnd.framework === 'Vue' ) {
     frontEndFramework = vue;
-  }else {
+  } else {
     frontEndFramework = {
       scripts: {},
       dependencies: {},
