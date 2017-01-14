@@ -11,6 +11,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 var session = require('express-session');
+
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
   clientSecret: GITHUB_CLIENT_SECRET,
@@ -45,7 +46,6 @@ app.get('/auth/callback',
   function(req, res) {
     res.redirect('/');
   });
-
 app.get('/push', function(req, res) {
     axios.post('https://api.github.com/user/repos', {
       name: "tes12234t1"
