@@ -11,6 +11,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 var session = require('express-session');
+var git = require('simple-git')();
 
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
@@ -53,10 +54,11 @@ app.get('/auth/callback',
     }
     res.redirect('/');
   });
+
 app.get('/push', function(req, res) {
-  console.log('req.body.projectName :', req.body.projectName, '\n req.user.token :', req.user.token);
+  // console.log('req.body.projectName :', req.body.user.projectName, '\n req.user.token :', req.user.token);
     axios.post('https://api.github.com/user/repos', {
-      name: req.body.projectName,
+      name: 'req.body.user.projectName3',
       description: 'Project started on Stack Bear :]',
     }, {
       headers: {
@@ -64,7 +66,19 @@ app.get('/push', function(req, res) {
       }
     })
     .then(function (response) {
-      console.log('successful repo create');
+      console.log('successful repo create\npushing files into repo');
+      var rootDirectory = path.resolve(__dirname, 'bundles', '1483400435976');
+      var gitHubUrl = req.user.profileUrl + '/' + 'req.body.user.projectName3';
+      var accessToken = req.user.token;
+
+        //line 104 shows how to grab the file from the server disk
+          //set CWD => that ^
+          git.cwd(rootDirectory).addRemote('asdf', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')
+          .push('asdf', 'master')
+          //git remote add origin <project url>
+          //git add .
+          //git commit -m "initial commit to load all files"
+          //git push -f origin master
       res.status(201).send('successful');
     })
     .catch(function(err) {
