@@ -2,8 +2,8 @@ import React from 'react';
 import { Grid, Row, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import FileDirectory from '../components/parts/fileDirectory.js';
-import FileContentDisplay from '../components/parts/fileContentDisplay.js';
+import FileDirectory from '../components/projectview/fileDirectory.js';
+import FileContentDisplay from '../components/projectview/fileContentDisplay.js';
 
 class BundleViewContainer extends React.Component {
   constructor(props) {
