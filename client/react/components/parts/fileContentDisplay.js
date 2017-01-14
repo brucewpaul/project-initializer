@@ -8,7 +8,6 @@ class FileContentDisplay extends React.Component {
     this.onChange = (editorState) => this.setState({editorState});
   }
   componentWillReceiveProps() {
-    console.log(this.props.fileContents);
     this.setState({
       editorState: EditorState.createWithContent(ContentState.createFromText(this.props.fileContents))
     });
