@@ -5,6 +5,7 @@ import GuidedContainer from '../containers/guidedContainer';
 import SummaryContainer from '../containers/summaryContainer';
 import DownloadContainer from '../containers/downloadContainer';
 import AdvancedContainer from '../containers/advancedContainer';
+import BundleViewContainer from '../containers/bundleViewContainer';
 import RootComponent from './rootComponent';
 import GuidedFrontend from '../components/guided/guidedFrontend';
 import GuidedBackend from '../components/guided/guidedBackend';
@@ -31,6 +32,7 @@ const routes = (
           <IndexRoute component={AdvancedSelection}/>
         </Route>
         <Route path ='/checkout' component={SummaryContainer}/>
+        <Route path ='/view' component={BundleViewContainer}/>
         <Route path ='/download' component={DownloadContainer}/>
       </Route>
     </Router>
