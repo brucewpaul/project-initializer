@@ -19,7 +19,12 @@ const initialState = {
     },
     testing: 'Mocha'
   },
-  bundleId: null
+  bundleId: null,
+  user: {
+    userId: null,
+    userName: null,
+    projectName: null
+  }
 }
 
 export default function(state = initialState, action) {
@@ -69,9 +74,33 @@ export default function(state = initialState, action) {
           testing: state.devTools.testing
         }
       })
-      case 'BUNDLE_ID':
-        return Object.assign({} , state, {
-          bundleId : action.payload
+    case 'BUNDLE_ID':
+      return Object.assign({} , state, {
+        bundleId : action.payload
+      })
+    case 'USER_ID':
+      return Object.assign({} , state, {
+        user:{
+          userId: action.payload,
+          userName: state.user.userName,
+          projectName: state.user.projectName
+        }
+      })
+    case 'USER_NAME':
+      return Object.assign({} , state, {
+        user:{
+          userId: state.user.userId,
+          userName: action.payload,
+          projectName: state.user.projectName
+        }
+      })
+    case 'PROJECT_NAME':
+      return Object.assign({} , state, {
+        user:{
+          userId: state.user.userId,
+          userName: state.user.userName,
+          projectName: action.payload
+        }
       })
     default:
       return state
