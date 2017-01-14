@@ -10,12 +10,12 @@ class FileDirectoryItem extends React.Component {
       return (
         <li>
           {this.props.content.name}
-          <FileDirectory directoryItems={this.props.content.children}/>
+          <FileDirectory directoryItems={this.props.content.children} setCurrentFile={this.props.setCurrentFile}/>
         </li>
       )
     }
     return (
-      <li>{this.props.content.name}</li>
+      <li onClick={()=>{ this.props.setCurrentFile(this.props.content.contents) }}>{this.props.content.name}</li>
     )
   }
 }

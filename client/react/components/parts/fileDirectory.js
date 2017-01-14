@@ -10,8 +10,8 @@ class FileDirectory extends React.Component {
       return (
         <ul>
           {this.props.directoryItems.map(function(item, index) {
-            return <FileDirectoryItem content={item} key={index}/>
-          })}
+            return <FileDirectoryItem setCurrentFile={this.props.setCurrentFile} content={item} key={index}/>
+          }.bind(this))}
         </ul>
       )
     } else {
