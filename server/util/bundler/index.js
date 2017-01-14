@@ -11,9 +11,10 @@ var assembleFiles = require('./assemble-files.js');
  * @param {object} options - selected options from client
  * @param {function} cb - callback function to send response back to client
 **/
-module.exports = function(options, cb) {
+module.exports = function(req, cb) {
   // TODO: Change this to be unique id of user @chan @bruce
-  var id = new Date().valueOf().toString();
+  console.log('from bunder :', req.user.username);
+  var id = req.user.username + req.body.projectName;
   var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
   // TODO: create random generator, if it exists, call this function again @bruce
@@ -27,7 +28,7 @@ module.exports = function(options, cb) {
               return cb(new Error(err));
             } else {
               // assemble the files
-              assembleFiles(options, uniquePath, id, cb)
+              assembleFiles(req.body, uniquePath, id, cb)
             }
           })
           .catch((err) => {
