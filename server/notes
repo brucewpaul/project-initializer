@@ -1,0 +1,66 @@
+Github auth is happening. Authentication happened.
+
+Need to store the accesstoken and be able to retrieve it on requests.
+  -Inital request to our server, before redirect to github, give browser cookie and create session with userID null
+  -on final response from github, assign userID to session table, and assign token to users table
+  -on subsequent requests that go to github, authenticate user with passport, look up their userID in our userTable and stick the accesstoken
+    -pass that request to github with that information
+
+
+GOAL: Push repo to users github
+  -log in with github
+  -scope: the permissions we get from the user regarding github
+    -public_repo: read/write access to code
+
+1) Register application
+  -need name and URL, and redirect URL
+
+
+HOW IT WORKS
+1) User clicks sign in with github, client sends get request as follows
+
+  GET https://github.com/login/oauth/authorize
+  params:
+  {
+    client_id: required, given by github for registered app, same for every user,
+    redirect_uri: URL in stackBear app to redirect after login
+    scope: public_repo, repo
+    state: 'an unguessable random string used to protect against cross-site request forgery, (optional)
+    allow_signup: not required, defaults to true. Allows brand new user to sign up for github
+  }
+
+2)   Redirected to our post-sign-in landing page
+  {
+    code: same temporary code from step 1
+    state: 'unguessable string', if it doesn't match, its a third party attempt
+  }
+  -make sure state is correct
+
+3) exchange the code for access token
+  POST https://github.com/login/oauth/access_token
+
+  {
+    client_id:
+    client_secret: required, given by github when registered
+    code: response from step 1
+    redirect_uri: same redirect URL from step 1
+    state: unguessable string from step 1
+  }
+  default response: access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&scope=user%2Cgist&token_type=bearer
+  can be modified depending on access header
+
+4) check response step 3 for the proper scopes and handle errors
+
+5) Use the access token to access API
+  GET https://api.github.com/user?access_token=...
+
+A) where do I store the access token?
+  The client  => server {accToken:} => github
+B) User clicks "push to github"
+  POST /api/push {accToken:} => server =>github
+
+1. Passport githubStrategy for oAuth
+  a) passport
+  b) github strategy
+  c) sessions, store the access token and use the right one
+2. Create request to github api
