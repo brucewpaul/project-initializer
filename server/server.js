@@ -18,6 +18,7 @@ passport.use(new GitHubStrategy({
   callbackURL: "http://localhost:3000/auth/callback"
 }, function(accessToken, refreshToken, profile, done) {
   profile.token = accessToken;
+  //
   return done(null, profile);
 }));
 
@@ -44,11 +45,19 @@ app.get('/auth/github',
 app.get('/auth/callback',
   passport.authenticate('github', { failureRedirect: '/rekt' }),
   function(req, res) {
+    console.log('access', req.user.token);
+    var user = {
+      userid: req.user.id,
+      username: req.user.username,
+      projectName: undefined
+    }
     res.redirect('/');
   });
 app.get('/push', function(req, res) {
+  console.log('req.body.projectName :', req.body.projectName, '\n req.user.token :', req.user.token);
     axios.post('https://api.github.com/user/repos', {
-      name: "tes12234t1"
+      name: req.body.projectName,
+      description: 'Project started on Stack Bear :]',
     }, {
       headers: {
         Authorization: 'token ' + req.user.token
@@ -60,6 +69,7 @@ app.get('/push', function(req, res) {
     })
     .catch(function(err) {
       console.log('error pushing to github', err);
+      res.status(422).send('unsuccessful github push');
     });
   });
 
