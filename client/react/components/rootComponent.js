@@ -11,7 +11,7 @@ class Root extends React.Component {
       <div>
         <Navbar>
           <Nav pullRight>
-            <NavItem eventKey={1} disabled>Login</NavItem>
+            <NavItem eventKey={1}>Login</NavItem>
           </Nav>
         </Navbar>
         {this.props.children}

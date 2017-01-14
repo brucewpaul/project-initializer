@@ -11,6 +11,7 @@ import GuidedFrontend from '../components/guided/guidedFrontend';
 import GuidedBackend from '../components/guided/guidedBackend';
 import GuidedTaskRunner from '../components/guided/guidedTaskRunner';
 import AdvancedSelection from '../components/advanced/advancedSelections';
+import TaskBuildContainer from  '../containers/taskBuildContainer';
 import { createStore } from 'redux';
 import allReducers from '../reducers';
 import { Provider } from 'react-redux';
@@ -31,6 +32,7 @@ const routes = (
         <Route path='/advanced' component={AdvancedContainer}>
           <IndexRoute component={AdvancedSelection}/>
         </Route>
+        <Route path='/task' component={TaskBuildContainer} />
         <Route path ='/checkout' component={SummaryContainer}/>
         <Route path ='/view' component={BundleViewContainer}/>
         <Route path ='/download' component={DownloadContainer}/>

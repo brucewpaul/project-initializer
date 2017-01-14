@@ -19,17 +19,17 @@ export const taskRunner = (taskrunner) => {
   }
 }
 
-export const addTask = (task) => {
+export const changeTask = (tasks) => {
   return {
-    type: 'TASK_ADDED',
-    payload: task
+    type: 'CHANGE_TASK',
+    payload: tasks
   }
 }
 
-export const changeDisplayType = (display) => {
+export const changePlugins = (plugins) => {
   return {
-    type: 'CHANGE_DISPLAY',
-    payload: display
+    type: 'CHANGE_PLUGINS',
+    payload: plugins
   }
 }
 
@@ -37,5 +37,40 @@ export const bundleID = (id)=> {
   return {
     type: 'BUNDLE_ID',
     payload: id
+  }
+}
+
+export const userID = (userId)=> {
+  return {
+    type: 'USER_ID',
+    payload: userId
+  }
+}
+
+export const userName = (userName)=> {
+  return {
+    type: 'USER_NAME',
+    payload: userName
+  }
+}
+
+export const projectName = (projectName)=> {
+  return {
+    type: 'PROJECT_NAME',
+    payload: projectName
+  }
+}
+
+export const currentTask = (task)=> {
+  return {
+    type: 'CHANGE_CURRENT_TASKS',
+    payload: task
+  }
+}
+
+export const loadCf = (suggestions)=> {
+  return {
+    type: 'LOAD_CF',
+    payload: suggestions
   }
 }

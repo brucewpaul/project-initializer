@@ -6,6 +6,8 @@ import axios from 'axios';
 import { bundleID } from '../actions/index';
 import SummaryRow from '../components/parts/summaryRow';
 import NavButton from '../components/parts/navButton';
+import NameRepo from '../components/parts/nameRepo';
+
 import { Grid, Row, Col, Button, Jumbotron, PageHeader, Image } from 'react-bootstrap';
 import { selectionStatus, summaryNav } from '../utils/summaryDesc';
 
@@ -31,6 +33,7 @@ class SummaryContainer extends React.Component {
           onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
          <NavButton button={summaryNav.build} />
         </div>
+        <NameRepo/>
       </Grid>
     )
   }
