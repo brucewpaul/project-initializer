@@ -10,11 +10,12 @@ class BundleViewContainer extends React.Component {
     super(props);
     this.state = {
       bundleContents: [],
-      currentFile: ''
+      currentFile: {},
+      contents: ''
     }
   }
   componentDidMount() {
-    axios.get(`/bundle/contents/${this.props.options.bundleId}`)
+    axios.get(`/bundle/contents/stack-bull-3f382c7f`)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
@@ -24,9 +25,12 @@ class BundleViewContainer extends React.Component {
         console.log('err', error);
       });
   }
-  setCurrentFile(fileContents) {
+  setCurrentFile(currentFile) {
     this.setState({
-      currentFile: fileContents
+      currentFile: currentFile,
+      contents: currentFile.contents
+    }, function() {
+      console.log(this.state.contents);
     });
   }
   render() {
@@ -37,7 +41,7 @@ class BundleViewContainer extends React.Component {
             <FileDirectory setCurrentFile={this.setCurrentFile.bind(this)} directoryItems={this.state.bundleContents.children}/>
           </Col>
           <Col xs={9}>
-            <FileContentDisplay fileContents={this.state.currentFile}/>
+            <FileContentDisplay currentFile={this.state.currentFile} contents={this.state.contents}/>
           </Col>
         </Row>
       </Grid>
