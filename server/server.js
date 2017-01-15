@@ -20,5 +20,3 @@ app.get('*', (req, res) => {
 var server = app.listen(3000, function () {
   console.log('Project-Init Listening on 3000 yo');
 });
-
-module.exports = server;
