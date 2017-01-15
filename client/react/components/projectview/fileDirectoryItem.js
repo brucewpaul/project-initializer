@@ -15,7 +15,7 @@ class FileDirectoryItem extends React.Component {
       )
     }
     return (
-      <li onClick={()=>{ this.props.setCurrentFile(this.props.content.contents) }}>{this.props.content.name}</li>
+      <li onClick={()=>{ this.props.setCurrentFile(this.props.content) }}>{this.props.content.name}</li>
     )
   }
 }
