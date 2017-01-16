@@ -32,17 +32,6 @@ app.use(express.static(path.join(__dirname, '../client/dist'))); //uni
 app.use('/auth', authRouter);
 app.use('/bundle', bundleRouter);
 
-app.post('/bundle/contents/:id', (req, res) => {
-  fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
-    if (!err) {
-      console.log('SUCCESS');
-      res.sendStatus(200);
-    } else {
-      res.sendStatus(500);
-    }
-  });
-})
-
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
 });
