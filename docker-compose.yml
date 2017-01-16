@@ -1,17 +1,18 @@
 version: '2'
 services:
-  web:
-    image: gunbladesniper/project-initializer:latest
-    build: .
-    ports:
-      - "3000:3000"
-    links:
-      - neo4j
-  neo4j:
+  db:
+    container_name: my-neo4j-db
     image: neo4j:3.1.0
+    volumes:
+      - ./neo4j-data:/data
     ports:
       - "7474:7474"
-      - "1337:1337"
       - "7687:7687"
-    volumes:
-      - /opt/data
+
+  web:
+    image: project-initializer
+    build: .
+    environment:
+      NEO4J_URL: http://my-neo4j-db:7474
+    ports:
+      - 80:3000
