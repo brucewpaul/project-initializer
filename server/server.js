@@ -6,6 +6,14 @@ var bodyParser = require('body-parser'); //just has to be applied here before be
 var authRouter = require('./authRouter');
 var bundleRouter = require('./bundleRouter');
 
+filter.init(['React','Angular','Vue'], ['cssmin','watch','uglify','sass'], function(err) {
+  if ( err ) {
+    console.log( err )
+  } else {
+    console.log('neo4j ready to go')
+  }
+});
+
 app.use(bodyParser.urlencoded({extended: false})); //uni
 app.use(bodyParser.json()); //uni
 app.use(express.static(path.join(__dirname, '../client/public'))); //uni
@@ -20,5 +28,3 @@ app.get('*', (req, res) => {
 var server = app.listen(3000, function () {
   console.log('Project-Init Listening on 3000 yo');
 });
-
-module.exports = server;
