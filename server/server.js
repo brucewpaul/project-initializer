@@ -11,6 +11,7 @@ var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 var session = require('express-session');
+var fs = require('fs');
 
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
@@ -116,6 +117,17 @@ app.get('/bundle/contents/:id', (req, res) => {
   var bundle = projectView.getProjectJSON(req.params.id);
   res.json(bundle);
 });
+
+app.post('/bundle/contents/:id', (req, res) => {
+  fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
+    if (!err) {
+      console.log('SUCCESS');
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+    }
+  });
+})
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
