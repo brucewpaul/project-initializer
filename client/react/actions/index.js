@@ -19,6 +19,13 @@ export const taskRunner = (taskrunner) => {
   }
 }
 
+export const tasksSet = (taskArr)=> {
+  return {
+    type: 'TASKS_SET',
+    payload: taskArr
+  }
+}
+
 export const changeTask = (tasks) => {
   return {
     type: 'CHANGE_TASK',
@@ -63,7 +70,7 @@ export const projectName = (projectName)=> {
 
 export const currentTask = (task)=> {
   return {
-    type: 'CHANGE_CURRENT_TASKS',
+    type: 'CHANGE_CURRENT_TASK',
     payload: task
   }
 }

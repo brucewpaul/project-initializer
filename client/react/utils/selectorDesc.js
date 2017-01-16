@@ -148,7 +148,7 @@ export const advanced ={
     },
     {
       name: 'Next',
-      link: '/checkout',
+      link: '/task',
       color: 'blue',
       xs:3,
       xsOffset:6

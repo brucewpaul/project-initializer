@@ -55,22 +55,15 @@ export default function(state = initialState, action) {
           testing: state.devTools.testing
         }
       })
-    case 'TASK_ADDED':
+    case 'TASKS_SET':
       return Object.assign({} , state, {
-        devtools: {
-          taskrunner: {
+        devTools: {
+          taskRunner: {
             name: state.devTools.taskRunner.name,
-            tasks:[
-            ...state.devtools.taskrunner.tasks,
-
-            {
-              name: action.payload.name,
-              plugins: action.payload.plugins
-            }
-
-            ]
+            plugins: state.devTools.taskRunner.plugins,
+            tasks: action.payload
           },
-          bundler: state.devTools.bundeler,
+          bundler: state.devTools.bundler,
           testing: state.devTools.testing
         }
       })

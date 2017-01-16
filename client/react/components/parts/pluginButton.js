@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
-import { changePlugins } from '../../actions/index';
+import { currentTask} from '../../actions/index';
 
 
 class PluginButton extends React.Component {
@@ -12,7 +12,7 @@ class PluginButton extends React.Component {
     return (
       <Button
         onClick={()=>{
-          this.props.changePlugins(addPlugin(this.props.tasks.plugins, this.props.pluginName))
+          this.props.currentTask(addPlugin(this.props.tasks.currentTask, this.props.pluginName))
         }}
       >
       {this.props.pluginName}
@@ -30,17 +30,18 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    changePlugins: changePlugins
+    currentTask:currentTask
   }, dispatch);
 }
 
 function addPlugin(obj, pluginName){
-  if(obj[pluginName]){
-    obj[pluginName] = obj[pluginName] === '' ? pluginName : '';
-  }
-  else{
-    obj[pluginName] = pluginName;
-  }
+  // if(obj[pluginName]){
+  //   obj[pluginName] = obj[pluginName] === '' ? pluginName : '';
+  // }
+  // else{
+  //   obj[pluginName] = pluginName;
+  // }
+  obj.plugins.push(pluginName)
     return obj;
 }
 

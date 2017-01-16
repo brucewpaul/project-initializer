@@ -1,19 +1,31 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import { Grid, Row, Col, Button} from 'react-bootstrap';
 
 import TaskButton from '../parts/TaskButton';
+import NavButton from '../parts/navButton';
 
-import { changeTask } from '../../actions/index';
+import { changeTask, tasksSet } from '../../actions/index';
+import { buildButton } from '../../utils/taskBuilderDesc';
 
 
 class TaskDisplay extends React.Component {
   render () {
     return(
-      <Col xs={3} xsOffset={9} className='taskHolder'>
-      {this.props.tasks.currentTask.name}
+      <div>
+        <div className='taskDisplayHeader'>
+          <Button
+            onClick={()=>{
+              this.props.changeTask(addNewTask(this.props.tasks.tasks));
+            }}
+          >
+            Add Task
+          </Button>
+        </div>
+        <div className='taskContainer'>
         {this.props.tasks.tasks.map((task, index)=>{
           return (
             <Row key={index}>
@@ -21,14 +33,17 @@ class TaskDisplay extends React.Component {
             </Row>
           )
         })}
-        <Button
-          onClick={()=>{
-            this.props.changeTask(addNewTask(this.props.tasks.tasks));
-          }}
-        >
-          Add Task
-        </Button>
-      </Col>
+        </div>
+        <div className='taskContainerFooter'>
+          <Link to='/checkout'>
+            <Button onClick={()=> {
+              this.props.tasksSet(this.props.tasks.tasks);
+            }}>
+              Build
+            </Button>
+          </Link>
+        </div>
+      </div>
     )
   }
 }
@@ -42,7 +57,8 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    changeTask: changeTask
+    changeTask: changeTask,
+    tasksSet: tasksSet
   }, dispatch);
 }
 function addNewTask(tasks) {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { currentTask } from '../../actions/index';
 
+import { Button } from 'react-bootstrap';
+
 class TaskButton extends React.Component {
 
   render() {
@@ -14,6 +16,11 @@ class TaskButton extends React.Component {
         }}
       >
       {this.props.task.name}
+      <Button
+        onClick={()=>this.props.tasks.tasks.splice(this.props.id, 1)}
+      >
+        {this.props.id}
+      </Button>
       </div>
     )
   }
