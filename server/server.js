@@ -1,17 +1,7 @@
 var express = require('express');
 var app = express();
 const path = require('path');
-var bodyParser = require('body-parser');
-var bundler = require('./util/bundler/index.js');
 var filter = require('./util/cf/index.js');
-var projectView = require('./util/pv/projectView.js');
-var axios = require('axios');
-var passport = require('passport');
-var GitHubStrategy = require('passport-github2').Strategy;
-var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
-var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
-var session = require('express-session');
-var fs = require('fs');
 
 var bodyParser = require('body-parser'); //just has to be applied here before being sent to routers
 var authRouter = require('./authRouter');
