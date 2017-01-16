@@ -31,10 +31,16 @@ bundleRouter.post('/recommendations/', (req, res) => {
   var packages = req.body.packages || null
   if ( packages && framework ) {
     filter.getRecommendations({framework, packages}, function(err, recommendations) {
-      res.status(200).send(recommendations);
+      if ( err ) {
+        res.status(500).send({ error: 'Error in getting recommendations' })
+      } else if ( !recommendations ) {
+        res.status(500).send({ error: 'There are no recommendations' })
+      } else {
+        res.status(200).send(recommendations);
+      }
     });
   } else {
-    res.status(500);
+    res.status(500).send({ error: 'Error in getting recommendations: a framework and an array pf packages need to be sent' })
   }
 });
 
