@@ -18,14 +18,28 @@ bundleRouter.post('/build/', function (req, res) {
     }
   });
 });
+
 bundleRouter.get('/:id', (req, res) => {
   var fileName = req.params.id + '.tar.gz';
   res.download(path.resolve(__dirname, 'bundles', fileName ));
 });
+
 bundleRouter.get('/contents/:id', (req, res) => {
   var bundle = projectView.getProjectJSON(req.params.id);
   res.json(bundle);
 });
+
+bundleRouter.post('/contents/:id', (req, res) => {
+  fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
+    if (!err) {
+      console.log('SUCCESS');
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+    }
+  });
+});
+
 bundleRouter.post('/recommendations/', (req, res) => {
   var framework = req.body.framework || null
   var packages = req.body.packages || null

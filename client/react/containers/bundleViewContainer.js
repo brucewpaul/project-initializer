@@ -2,19 +2,21 @@ import React from 'react';
 import { Grid, Row, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import FileDirectory from '../components/parts/fileDirectory.js';
-import FileContentDisplay from '../components/parts/fileContentDisplay.js';
+import FileDirectory from '../components/projectview/fileDirectory.js';
+import FileContentDisplay from '../components/projectview/fileContentDisplay.js';
 
 class BundleViewContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       bundleContents: [],
-      currentFile: ''
+      currentFile: {},
+      contents: ''
     }
   }
   componentDidMount() {
-    axios.get(`/bundle/contents/${this.props.options.bundleId}`)
+    // axios.get(`/bundle/contents/${this.props.options.bundleId}`)
+    axios.get(`/bundle/contents/stack-skunk-5999f325`)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
@@ -24,10 +26,14 @@ class BundleViewContainer extends React.Component {
         console.log('err', error);
       });
   }
-  setCurrentFile(fileContents) {
+  setCurrentFile(currentFile) {
     this.setState({
-      currentFile: fileContents
+      currentFile: currentFile,
+      contents: currentFile.contents
     });
+  }
+  onSaveHandler() {
+
   }
   render() {
     return(
@@ -37,7 +43,7 @@ class BundleViewContainer extends React.Component {
             <FileDirectory setCurrentFile={this.setCurrentFile.bind(this)} directoryItems={this.state.bundleContents.children}/>
           </Col>
           <Col xs={9}>
-            <FileContentDisplay fileContents={this.state.currentFile}/>
+            <FileContentDisplay bundleId={this.props.options.bundleId} currentFile={this.state.currentFile} contents={this.state.contents}/>
           </Col>
         </Row>
       </Grid>

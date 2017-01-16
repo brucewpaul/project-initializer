@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
-const path = require('path'); //go in the routers too
+const path = require('path');
+var filter = require('./util/cf/index.js');
 
 var bodyParser = require('body-parser'); //just has to be applied here before being sent to routers
 var authRouter = require('./authRouter');
