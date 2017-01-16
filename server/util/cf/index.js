@@ -1,19 +1,20 @@
 // this needs to be here so that node doesn't throw a warning about a possible memory leak where there actually is none.
 require('events').EventEmitter.defaultMaxListeners = 100;
 
+var CronJob = require('cron').CronJob;
 var Promise = require('bluebird');
 var neo4j = require('neo4j-driver').v1;
+var config = require('./config.js');
 
-var driver = neo4j.driver("bolt://localhost:7687", neo4j.auth.basic("neo4j", "112187"));
-var session = driver.session();
+var driver = neo4j.driver("bolt://" + config.neo4j.server, neo4j.auth.basic(config.neo4j.user, config.neo4j.password));
+
+// var session = driver.session();
 
 var queueInstance = require('./queue.js');
 var util = require('./util.js');
 
-var queue = queueInstance();
-
-var initNeo4j = function(frameworks, packages) {
-
+var initNeo4j = function(frameworks, packages, cb) {
+  var session = driver.session();
   var promises = [];
 
   // let's go ahead and add all of the frameworks to neo4j
@@ -21,14 +22,16 @@ var initNeo4j = function(frameworks, packages) {
     promises.push(
       new Promise(function(resolve,reject) {
         session
-          .run( `MERGE (f:Framework { name: '${frameworks[i]}' })`)
+          .run( `MERGE (f:Framework { name: {framework} })`, {framework: frameworks[i]})
           .then( function() {
-            resolve()
             session.close();
             driver.close();
+            resolve();
           })
           .catch(function(err) {
-            reject(err)
+            session.close();
+            driver.close();
+            reject(err);
           });
       })
     )
@@ -39,14 +42,16 @@ var initNeo4j = function(frameworks, packages) {
     promises.push(
       new Promise(function(resolve,reject) {
         session
-          .run( `MERGE (p:Package { name: '${packages[i]}' })`)
+          .run( `MERGE (p:Package { name: {package} })`, {package: packages[i]})
           .then( function() {
-            resolve()
             session.close();
             driver.close();
+            resolve();
           })
           .catch(function(err) {
-            reject(err)
+            session.close();
+            driver.close();
+            reject(err);
           });
       })
     )
@@ -62,15 +67,16 @@ var initNeo4j = function(frameworks, packages) {
       promises.push(
         new Promise(function(resolve,reject) {
           session
-            .run(`MATCH (f:Framework { name: '${frameworks[i]}' }), (p:Package { name: '${packages[j]}' }) MERGE (f)-[:HAS_PACKAGE]->(p)`)
+            .run(`MATCH (f:Framework { name: {framework} }), (p:Package { name: {package} }) MERGE (f)-[:HAS_PACKAGE]->(p)`, {framework: frameworks[i], package: packages[j]})
             .then( function() {
               session.close();
               driver.close();
               resolve();
             })
             .catch(function(err) {
-              // console.log(err)
-              reject(err)
+              session.close();
+              driver.close();
+              reject(err);
             });
         })
       )
@@ -85,41 +91,36 @@ var initNeo4j = function(frameworks, packages) {
     promises.push(
       new Promise(function(resolve,reject) {
         session
-          .run(`MATCH (n:Package {name: "${packages[k]}"}),(p:Package) WHERE NOT n.name = p.name MERGE (n)-[r:RECOMMENDS]->(p) ON CREATE SET ${frameworkQueryString} RETURN n,p`)
+          .run(`MATCH (n:Package {name: {package}}),(p:Package) WHERE NOT n.name = p.name MERGE (n)-[r:RECOMMENDS]->(p) ON CREATE SET ${frameworkQueryString} RETURN n,p`, {package: packages[k] })
           .then( function() {
             session.close();
             driver.close();
             resolve();
           })
           .catch(function(err) {
-            // console.log(err)
-            reject(err)
+            session.close();
+            driver.close();
+            reject(err);
           });
       })
     )
   }
-
   Promise.all(promises)
-  .then()
+  .then(function() {
+    cb(null);
+  })
   .catch(function(e) {
-    console.log(e);
+    cb(e);
   });
 }
 
-// initNeo4j(['React','Angular','Vue'], ['cssmin','watch','uglify','sass'])
+var queue = queueInstance();
 
-var queueConfig = function(framework, packages) {
-  queue.enqueue({framework: framework, packages: packages});
-  console.log('queue', queue.size());
-  // this needs to be changed so that a worker will periodically come and empty the queue
-  if ( queue.size() === 2 ) {
-    while ( queue.size() > 0) {
-      saveConfig(queue.dequeue());
-    }
-  }
+var queueConfig = function(config) {
+  queue.enqueue(config);
 }
 
-var saveConfig = function(config) { // config = {packages: ['cssmin', 'watch']}
+var saveConfig = function(config) { // config = {framework: 'React', packages: ['cssmin', 'watch']}
   if (!config) {
     return;
   };
@@ -131,6 +132,7 @@ var saveConfig = function(config) { // config = {packages: ['cssmin', 'watch']}
 }
 
 var getRecommendations = function(config, cb) {
+  var session = driver.session();
   if (!config) {
     return;
   }
@@ -143,7 +145,7 @@ var getRecommendations = function(config, cb) {
     promises.push(
       new Promise(function(resolve,reject) {
         session
-          .run( `MATCH (a:Package {name: "${package}"})-[r:RECOMMENDS]->(b:Package) WHERE NOT b.name IN ${JSON.stringify(config.packages)} RETURN properties(a),properties(r),properties(b)`)
+          .run( `MATCH (a:Package {name: {packageName}})-[r:RECOMMENDS]->(b:Package) WHERE NOT b.name IN {otherPackages} RETURN properties(a),properties(r),properties(b)`, { packageName: package, otherPackages: config.packages } )
           .then( function( result ) {
             if ( result.records.length > 0 ) {
               result.records.forEach(function(record) {
@@ -156,12 +158,16 @@ var getRecommendations = function(config, cb) {
                 }
               });
             }
-            resolve()
+          })
+          .then(() => {
             session.close();
             driver.close();
+            resolve();
           })
           .catch(function(err) {
-            reject(err)
+            session.close();
+            driver.close();
+            reject(err);
           });
       })
     )
@@ -169,11 +175,7 @@ var getRecommendations = function(config, cb) {
 
   Promise.all(promises).then(() => {
     for ( var k in storage ) {
-      var tempObject = {
-        name: k,
-        value: storage[k]
-      }
-      result.push(tempObject)
+      result.push({name: k, value: storage[k]})
     }
     cb(null, result.sort(function(a, b) {
       return b.value - a.value
@@ -185,14 +187,14 @@ var getRecommendations = function(config, cb) {
 }
 
 var addPackage = function(config) {
+  var session = driver.session();
   if (config.packages.length < 2) {
     return;
   }
-  var uniqueCombinations = util.combination(config.packages, 2)
+  var uniqueCombinations = util.combination(config.packages, 2);
   for ( var i = 0; i < uniqueCombinations.length; i++) {
-    uniqueCombinations[i]
     session
-      .run( `MATCH (a:Package {name:'${uniqueCombinations[i][0]}'})-[r:RECOMMENDS]-(b:Package {name:'${uniqueCombinations[i][1]}'}) SET r.${config.framework.toLowerCase()}Value = r.${config.framework.toLowerCase()}Value + 1`)
+      .run( `MATCH (a:Package {name: {package1} })-[r:RECOMMENDS]-(b:Package {name: {package2} }) SET r.${config.framework.toLowerCase()}Value = r.${config.framework.toLowerCase()}Value + 1`, {package1: uniqueCombinations[i][0], package2: uniqueCombinations[i][1]})
       .then( function( result ) {
         result.records.forEach(function(record) {
           var name = record._fields[2].name;
@@ -207,7 +209,8 @@ var addPackage = function(config) {
         driver.close();
       })
       .catch(function(err) {
-        console.log(err)
+        session.close();
+        driver.close();
       });
   }
 }
@@ -217,3 +220,28 @@ module.exports = {
   queueConfig: queueConfig,
   init: initNeo4j
 }
+
+// queueConfig({framework: 'React', packages: ['cssmin', 'sass', 'uglify']})
+// queueConfig({framework: 'React', packages: ['cssmin', 'watch', 'uglify']})
+
+// saveConfig({framework: 'React', packages: ['cssmin', 'watch', 'uglify']});
+// saveConfig({framework: 'React', packages: ['cssmin', 'uglify']});
+
+// addPackage({framework: 'angular', packages: ['watch', 'sass', 'uglify']});
+
+// getRecommendations({framework: 'angular', packages: ['watch', 'uglify']}, function(err, recommendations) {
+//   if ( err ) {
+//     console.log(err);
+//   }
+//   console.log(recommendations);
+// })
+
+
+new CronJob('0 0 * * * *', function() { // cron job happens every hour
+  // will this cause problems? having a while loop in here? should it be in a seperate file?
+  console.log('fire cron')
+  while ( queue.size() > 0) {
+    saveConfig(queue.dequeue());
+  }
+
+}, null, true, 'America/Los_Angeles');
