@@ -18,9 +18,6 @@ class TaskBuildContainer extends React.Component {
           <CfSelection />
         </Row>
         <Row>
-
-        </Row>
-        <Row>
           <Col xs={3}>
             <CurrentTaskDisply />
           </Col>
