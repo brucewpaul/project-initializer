@@ -101,7 +101,7 @@ export const task = {
   selectors: [
     {
       image1X:'',
-      image2X:'images/mongo-logo@2x.png',
+      image2X:'images/gulp-logo@2x.png',
       image3X:'',
       name: 'Gulp',
       payloadName: 'Gulp',
@@ -110,7 +110,7 @@ export const task = {
     },
     {
       image1X:'',
-      image2X:'images/sqlite-logo@2x.png',
+      image2X:'images/grunt-logo@2x.png',
       image3X:'',
       name: 'Grunt',
       payloadName: 'Grunt',
