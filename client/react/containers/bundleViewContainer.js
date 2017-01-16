@@ -15,8 +15,17 @@ class BundleViewContainer extends React.Component {
     }
   }
   componentDidMount() {
+    this.getDirectory();
+  }
+  setCurrentFile(currentFile) {
+    this.setState({
+      currentFile: currentFile,
+      contents: currentFile.contents
+    });
+  }
+  getDirectory() {
     // axios.get(`/bundle/contents/${this.props.options.bundleId}`)
-    axios.get(`/bundle/contents/stack-skunk-5999f325`)
+    axios.get(`/bundle/contents/stack-stork-59b888dd`)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
@@ -26,15 +35,6 @@ class BundleViewContainer extends React.Component {
         console.log('err', error);
       });
   }
-  setCurrentFile(currentFile) {
-    this.setState({
-      currentFile: currentFile,
-      contents: currentFile.contents
-    });
-  }
-  onSaveHandler() {
-
-  }
   render() {
     return(
       <Grid fluid>
@@ -43,7 +43,7 @@ class BundleViewContainer extends React.Component {
             <FileDirectory setCurrentFile={this.setCurrentFile.bind(this)} directoryItems={this.state.bundleContents.children}/>
           </Col>
           <Col xs={9}>
-            <FileContentDisplay bundleId={this.props.options.bundleId} currentFile={this.state.currentFile} contents={this.state.contents}/>
+            <FileContentDisplay getDirectory={this.getDirectory.bind(this)} bundleId={this.props.options.bundleId} currentFile={this.state.currentFile} contents={this.state.contents}/>
           </Col>
         </Row>
       </Grid>
