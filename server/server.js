@@ -9,9 +9,9 @@ var bundleRouter = require('./bundleRouter');
 
 filter.init(['React','Angular','Vue'], ['cssmin','watch','uglify','sass'], function(err) {
   if ( err ) {
-    res.status(500).send(err)
+    console.log(err)
   } else {
-    res.status(200).send('neo4j ready to go')
+    console.log('neo4j ready to go')
   }
 });
 
