@@ -12,6 +12,7 @@ var git = require('simple-git')();
 authRouter.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 authRouter.use(passport.initialize());
 authRouter.use(passport.session());
+
 passport.use(new GitHubStrategy({
   clientID: GITHUB_CLIENT_ID,
   clientSecret: GITHUB_CLIENT_SECRET,
@@ -26,14 +27,10 @@ passport.serializeUser(function(profile, done) {
   passport.deserializeUser(function(profile, done) {
   done(null, profile);
 });
-authRouter.use(authenticateOrGTFO);
+
+authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
 // authRouter.use(express.static(path.join(__dirname, '../client/public'))); //necessary?
 // authRouter.use(express.static(path.join(__dirname, '../client/dist')));
-
-function authenticateOrGTFO (req, res, next) {
-  passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'});
-  next();
-};
 
 authRouter.get('/github', function(req, res){
   });
