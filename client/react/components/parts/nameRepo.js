@@ -15,7 +15,6 @@ class NameRepo extends React.Component {
           <FormGroup>
             <ControlLabel>
               Enter your project name
-              {this.props.options.user.projectName}
             </ControlLabel>
             <FormControl
               type='text'

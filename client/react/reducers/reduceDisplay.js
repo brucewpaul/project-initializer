@@ -1,15 +1,10 @@
 const initialTasks = {
-  tasks: [
-    {
-      name:'test task',
-      plugins: []
-    }
-  ],
+  tasks: [],
   plugins: {},
-  cf: ['fake cf data 1', 'fake cf data 2'],
+  cf: ['fake cf data 1', 'fake cf data 2', 'something', 'user is lame', 'upity do dah'],
   currentTask: {
-    name: 'test',
-    plugins:[]
+    name: 'initial task place holder',
+    plugins:['cssmin']
   }
 }
 

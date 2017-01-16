@@ -29,7 +29,7 @@ class SummaryContainer extends React.Component {
             <SummaryRow summary={summary} key={index} type={summary.type}/>
           )
         })}
-        <div className='navButtons'
+        <div className='summaryButton'
           onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
          <NavButton button={summaryNav.build} />
         </div>
@@ -47,7 +47,7 @@ function mapStateToProps(state) {
 }
 
 function setBundleId(options, cb) {
-  axios.post('/build',options)
+  axios.post('/bundle/build',options)
   .then((response)=>{
     cb(response.data);;
   }).catch((err)=>{

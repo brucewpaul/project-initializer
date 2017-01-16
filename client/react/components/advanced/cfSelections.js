@@ -14,15 +14,14 @@ class CFselections extends React.Component {
 
   render() {
     return(
-      <Row >
+      <div >
       Suggested Plugins <br/>
         {this.props.tasks.cf.map((suggestion, index)=>{
           return(
             <PluginButton pluginName={suggestion} key={index}/>
           )
         })}
-        {JSON.stringify(this.props.tasks.plugins)}
-      </Row>
+      </div>
     )
   }
 }

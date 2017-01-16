@@ -4,6 +4,28 @@ body {
   background-color: #f5f5f5;
 }
 
+.taskContainer {
+  height: 400px;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.taskDisplayHeader {
+  text-align: center;
+  border: 1px solid;
+  margin-top: 50px;
+}
+
+.taskContainerFooter {
+  text-align: center;
+  border: 1px solid black;
+}
+
+.currentTaskDisplay {
+  border: 1px solid;
+  margin-top: 50px;
+}
+
 .navbar {
     margin-bottom: 0px;
     border-radius: 0px;
@@ -268,8 +290,8 @@ body {
   padding: 10px;
 }
 
-.summary-download-btn, 
-.summary-download-btn:hover, 
+.summary-download-btn,
+.summary-download-btn:hover,
 .final-nav-btn,
 .final-nav-btn:hover {
   margin-top: 40px;

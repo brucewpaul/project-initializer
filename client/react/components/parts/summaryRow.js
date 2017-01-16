@@ -10,7 +10,7 @@ import { Row, Col, Button, Image } from 'react-bootstrap';
 class SummaryRow extends React.Component {
   render() {
     return (
-      <div>
+      <Row>
         <Col xs={2}>
           <div className='summary-image-wrap'>
             <Image src={this.props.summary.logo}></Image>
@@ -45,7 +45,7 @@ class SummaryRow extends React.Component {
             </Row>
           </div>
         </Col>
-      </div>
+      </Row>
     )
   }
 }
