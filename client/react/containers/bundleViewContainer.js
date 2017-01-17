@@ -23,10 +23,17 @@ class BundleViewContainer extends React.Component {
   }
 
   setCurrentFile(currentFile) {
-    this.setState({
-      currentFile: currentFile,
-      currentContents: currentFile.contents
-    });
+    if (this.state.currentFile) {
+      this.setState({
+        currentFile: currentFile,
+        currentContents: currentFile.contents
+      });
+    } else {
+      this.setState({ //change to first tab
+        currentFile: tabs[0],
+        currentContents: tabs[0].contents
+      });
+    }
   }
 
   addNewTab(file, callback) {
@@ -72,6 +79,16 @@ class BundleViewContainer extends React.Component {
     }.bind(this));
   }
 
+  deleteTab(tabIdx) {
+    var newTabs = this.state.tabs.slice();
+    newTabs.splice(tabIdx, 1);
+    this.setState({
+      tabs: newTabs
+    }, function() {
+      console.log('state', this.state.tabs)
+    });
+  }
+
   getDirectory() {
     // axios.get(`/bundle/contents/${this.props.options.bundleId}`)
     axios.get(`/bundle/contents/stack-stork-59b888dd`)
@@ -101,7 +118,8 @@ class BundleViewContainer extends React.Component {
               activeTabKey={this.state.activeTabKey}
               setActiveTabFromTab={this.setActiveTabFromTab.bind(this)}
               setCurrentFile={this.setCurrentFile.bind(this)}
-              tabs={this.state.tabs}/>
+              tabs={this.state.tabs}
+              deleteTab={this.deleteTab.bind(this)}/>
             <FileContentDisplay
               getDirectory={this.getDirectory.bind(this)}
               bundleId={this.props.options.bundleId}
