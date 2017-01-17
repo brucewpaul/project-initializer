@@ -302,3 +302,8 @@ body {
   background-color: #4990e2;
   float: right;
 }
+
+.fa-times {
+  font-size: 14px;
+  padding: 3px 0 0 10px;
+}
