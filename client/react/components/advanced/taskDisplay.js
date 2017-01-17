@@ -8,7 +8,7 @@ import { Grid, Row, Col, Button} from 'react-bootstrap';
 import TaskButton from '../parts/TaskButton';
 import NavButton from '../parts/navButton';
 
-import { changeTask, tasksSet } from '../../actions/index';
+import { changeTask, tasksSet, setPlugin } from '../../actions/index';
 import { buildButton } from '../../utils/taskBuilderDesc';
 
 
@@ -36,8 +36,9 @@ class TaskDisplay extends React.Component {
         </div>
         <div className='taskContainerFooter'>
           <Link to='/checkout'>
-            <Button onClick={()=> {
+             <Button onClick={()=> {
               this.props.tasksSet(this.props.tasks.tasks);
+              this.props.setPlugin(this.props.tasks.plugins);
             }}>
               Build
             </Button>
@@ -58,7 +59,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     changeTask: changeTask,
-    tasksSet: tasksSet
+    tasksSet: tasksSet,
+    setPlugin: setPlugin
   }, dispatch);
 }
 function addNewTask(tasks) {

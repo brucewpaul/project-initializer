@@ -1,15 +1,37 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
-import { currentTask } from '../../actions/index';
+import { currentTask, loadCf } from '../../actions/index';
 
 import { backButton } from '../../utils/taskBuilderDesc';
 
 import NavButton from '../parts/navButton';
 
 class CurrentTaskDisplay extends React.Component {
+
+  componentDidMount() {
+    this.props.currentTask(this.props.tasks.tasks[0]);
+  }
+
+  componentDidUpdate() {
+    // console.log('componentDidUpdate');
+    // axios.post('/bundle/recommendations', {
+    //   framework: this.props.options.frontEnd.framework,
+    //   packages: this.props.tasks.currentTask.plugins
+    // })
+    // .then((response)=>{
+    //   this.props.loadCf(response.data.map((suggestion)=>{
+    //     return suggestion.name;
+    //   }));
+    // })
+    // .catch((err)=>{
+    //   console.log(err);
+    // })
+  }
+
   render() {
 
     return (
@@ -51,7 +73,8 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    currentTask: currentTask
+    currentTask: currentTask,
+    loadCf: loadCf
   }, dispatch);
 }
 

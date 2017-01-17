@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { loadCf } from '../../actions/index';
 
 
 import { Grid, Row, Col } from 'react-bootstrap';
@@ -11,7 +12,18 @@ import PluginButton from '../parts/pluginButton';
 class CFselections extends React.Component {
 
   componentDidMount(){
-    console.log('hi');
+    axios.post('/bundle/recommendations', {
+      framework: this.props.options.frontEnd.framework,
+      packages: []
+    })
+    .then((response)=>{
+      this.props.loadCf(response.data.map((suggestion)=>{
+        return suggestion.name;
+      }));
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
   }
 
   render() {
@@ -35,4 +47,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CFselections);
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({
+    loadCf: loadCf
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(CFselections);
