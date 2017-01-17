@@ -3,6 +3,7 @@ archives/*.txt
 test/testdata/sites/*
 test/testdata/sites.txt
 server/bundles/!*.txt
+server/config.js
 ingredients/db-sqlite/data/*
 
 ###OSX###
