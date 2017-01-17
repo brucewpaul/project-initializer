@@ -1,8 +1,6 @@
 var express = require('express');
 var app = express();
 const path = require('path');
-
-// var filter = require('./util/cf/index.js');
 var filter = require('ger-neo4j');
 
 var config = require('./config.js');
@@ -22,10 +20,12 @@ filter.init(Frameworks, Packages, config.neo4j, function(err, msg) {
   }
 });
 
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
+
 app.use('/auth', authRouter);
 app.use('/bundle', bundleRouter);
 

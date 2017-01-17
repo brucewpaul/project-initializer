@@ -9,7 +9,6 @@ import {  FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class NameRepo extends React.Component {
   render() {
-    if(this.props.options.user.userId){
       return (
         <form>
           <FormGroup>
@@ -24,12 +23,8 @@ class NameRepo extends React.Component {
           </FormGroup>
         </form>
       )
-    } else {
-      return <div></div>
     }
   }
-
-}
 
 function mapStateToProps(state) {
   return {

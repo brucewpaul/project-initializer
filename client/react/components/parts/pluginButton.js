@@ -35,12 +35,6 @@ function matchDispatchToProps(dispatch) {
 }
 
 function addPlugin(obj, pluginName){
-  // if(obj[pluginName]){
-  //   obj[pluginName] = obj[pluginName] === '' ? pluginName : '';
-  // }
-  // else{
-  //   obj[pluginName] = pluginName;
-  // }
   obj.plugins.push(pluginName)
     return obj;
 }
