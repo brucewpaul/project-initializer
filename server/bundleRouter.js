@@ -61,6 +61,3 @@ bundleRouter.post('/recommendations/', (req, res) => {
 });
 
 module.exports = bundleRouter;
-
-//in main app call this on /auth/
-//just define everything past /auth/ from here

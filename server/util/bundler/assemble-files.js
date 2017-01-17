@@ -8,6 +8,7 @@ ncp.limit = 16;
 
 var bundlePackage = require('./generators/package-generator.js');
 var bundleGruntfile = require('./generators/grunt-generator.js');
+var bundleGulpfile = require('./generators/gulp-generator.js');
 var bundleReadme = require('./generators/readme-generator.js');
 
 // files for Angular
@@ -41,6 +42,11 @@ module.exports = function(options, outputPath, id, cb) {
   // create Gruntfile.js
   if (options.devTools.taskRunner.name === 'Grunt') {
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options)));
+  }
+
+  if (options.devTools.taskRunner.name === 'Gulp') {
+    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gulpfile.js'),
+      bundleGulpfile(options)));
   }
 
   // TODO: add gulp @chan
