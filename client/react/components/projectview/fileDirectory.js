@@ -10,7 +10,12 @@ class FileDirectory extends React.Component {
       return (
         <ul>
           {this.props.directoryItems.map(function(item, index) {
-            return <FileDirectoryItem setCurrentFile={this.props.setCurrentFile} content={item} key={index}/>
+            return <FileDirectoryItem
+              addNewTab={this.props.addNewTab}
+              setActiveTabFromFile={this.props.setActiveTabFromFile}
+              setCurrentFile={this.props.setCurrentFile}
+              content={item}
+              key={index}/>
           }.bind(this))}
         </ul>
       )

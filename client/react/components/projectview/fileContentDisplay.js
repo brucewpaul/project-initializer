@@ -12,9 +12,9 @@ class FileContentDisplay extends React.Component {
     this.onChange = (editorState) => this.setState({editorState});
   }
   componentWillUpdate(nextProps) {
-    if (this.props.contents !== nextProps.contents) {
+    if (this.props.currentContents !== nextProps.currentContents) {
       this.setState({
-        editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.contents))
+        editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.currentContents))
       });
     }
   }
