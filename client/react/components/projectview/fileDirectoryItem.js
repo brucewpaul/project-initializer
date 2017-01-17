@@ -5,17 +5,27 @@ class FileDirectoryItem extends React.Component {
   constructor(props) {
     super(props);
   }
+  onClickHandler() {
+    this.props.setCurrentFile(this.props.content);
+    this.props.addNewTab(this.props.content, function() {
+      this.props.setActiveTabFromFile(this.props.content);
+    }.bind(this));
+  }
   render(){
     if (this.props.content.children) {
       return (
         <li>
           {this.props.content.name}
-          <FileDirectory directoryItems={this.props.content.children} setCurrentFile={this.props.setCurrentFile}/>
+          <FileDirectory
+            addNewTab={this.props.addNewTab}
+            directoryItems={this.props.content.children}
+            setCurrentFile={this.props.setCurrentFile}
+            setActiveTabFromFile={this.props.setActiveTabFromFile}/>
         </li>
       )
     }
     return (
-      <li onClick={()=>{ this.props.setCurrentFile(this.props.content) }}>{this.props.content.name}</li>
+      <li onClick={this.onClickHandler.bind(this)}>{this.props.content.name}</li>
     )
   }
 }

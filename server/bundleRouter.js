@@ -4,6 +4,7 @@ var path = require('path');
 var bundler = require('./util/bundler/index.js');
 var filter = require('./util/cf/index.js');
 var projectView = require('./util/pv/projectView.js');
+var fs = require('fs');
 
 bundleRouter.post('/build/', function (req, res) {
   bundler(req, function(err, folderName) {

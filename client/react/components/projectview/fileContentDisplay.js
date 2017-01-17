@@ -11,19 +11,22 @@ class FileContentDisplay extends React.Component {
     };
     this.onChange = (editorState) => this.setState({editorState});
   }
-  componentWillReceiveProps() {
-    this.setState({
-      editorState: EditorState.createWithContent(ContentState.createFromText(this.props.contents))
-    });
+  componentWillUpdate(nextProps) {
+    if (this.props.currentContents !== nextProps.currentContents) {
+      this.setState({
+        editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.currentContents))
+      });
+    }
   }
   onSaveHandler() {
-    axios.post('/bundle/contents/stack-skunk-5999f325', {
+    axios.post('/bundle/contents/stack-stork-59b888dd', {
       path: this.props.currentFile.path,
       content: this.state.editorState.getCurrentContent().getPlainText()
     })
     .then(function(response) {
       console.log(response);
-    })
+      this.props.getDirectory();
+    }.bind(this))
     .catch(function(error){
       console.log(error);
     });
