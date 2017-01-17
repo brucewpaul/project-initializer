@@ -29,8 +29,6 @@ passport.serializeUser(function(profile, done) {
 });
 
 authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
-// authRouter.use(express.static(path.join(__dirname, '../client/public'))); //necessary?
-// authRouter.use(express.static(path.join(__dirname, '../client/dist')));
 
 authRouter.get('/github', function(req, res){
   });
@@ -42,7 +40,7 @@ authRouter.get('/callback', function(req, res) {
       projectName: undefined
     }
     res.locals.user = user;
-    res.status(300).redirect('/'); //REDIRECT TO HOME??
+    res.status(300).redirect('/');
   });
 
 authRouter.get('/push', function(req, res) {

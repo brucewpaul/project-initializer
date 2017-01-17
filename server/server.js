@@ -7,7 +7,7 @@ var filter = require('ger-neo4j');
 
 var config = require('./config.js');
 
-var bodyParser = require('body-parser'); //just has to be applied here before being sent to routers
+var bodyParser = require('body-parser');
 var authRouter = require('./authRouter');
 var bundleRouter = require('./bundleRouter');
 
@@ -22,10 +22,10 @@ filter.init(Frameworks, Packages, config.neo4j, function(err, msg) {
   }
 });
 
-app.use(bodyParser.urlencoded({extended: false})); //uni
-app.use(bodyParser.json()); //uni
-app.use(express.static(path.join(__dirname, '../client/public'))); //uni
-app.use(express.static(path.join(__dirname, '../client/dist'))); //uni
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/auth', authRouter);
 app.use('/bundle', bundleRouter);
 
