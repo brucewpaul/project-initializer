@@ -2,7 +2,8 @@ var express = require('express');
 var bundleRouter = express.Router();
 var path = require('path');
 var bundler = require('./util/bundler/index.js');
-var filter = require('./util/cf/index.js');
+// var filter = require('./util/cf/index.js');
+var filter = require('ger-neo4j');
 var projectView = require('./util/pv/projectView.js');
 var fs = require('fs');
 
@@ -13,7 +14,7 @@ bundleRouter.post('/build/', function (req, res) {
     } else {
       var framework = req.body.frontEnd.framework;
       var packages = req.body.devTools.taskRunner.plugins;
-      filter.queueConfig(framework, packages);
+      filter.queueConfig({category: framework, items: packages});
 
       res.status(201).send(folderName);
     }
@@ -45,7 +46,7 @@ bundleRouter.post('/recommendations/', (req, res) => {
   var framework = req.body.framework || null
   var packages = req.body.packages || null
   if ( packages && framework ) {
-    filter.getRecommendations({framework, packages}, function(err, recommendations) {
+    filter.getRecommendations({category: framework, items: packages}, function(err, recommendations) {
       if ( err ) {
         res.status(500).send({ error: 'Error in getting recommendations' })
       } else if ( !recommendations ) {
