@@ -1,17 +1,24 @@
 var express = require('express');
 var app = express();
 const path = require('path');
-var filter = require('./util/cf/index.js');
+
+// var filter = require('./util/cf/index.js');
+var filter = require('ger-neo4j');
+
+var config = require('./config.js');
 
 var bodyParser = require('body-parser'); //just has to be applied here before being sent to routers
 var authRouter = require('./authRouter');
 var bundleRouter = require('./bundleRouter');
 
-filter.init(['React','Angular','Vue'], ['cssmin','watch','uglify','sass'], function(err) {
+var Frameworks = ['React','Angular','Vue'];
+var Packages = ['cssmin','watch','uglify','sass'];
+
+filter.init(Frameworks, Packages, config.neo4j, function(err, msg) {
   if ( err ) {
-    console.log(err)
+    console.log(err);
   } else {
-    console.log('neo4j ready to go')
+    console.log(msg);
   }
 });
 
