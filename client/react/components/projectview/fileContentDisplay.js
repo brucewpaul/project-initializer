@@ -21,8 +21,8 @@ class FileContentDisplay extends React.Component {
     }
   }
   onSaveHandler() {
-    axios.post(`/bundle/contents/${this.props.options.bundleId}`, {
-    // axios.post(`/bundle/contents/stack-stork-59b888dd`, {
+    // axios.post(`/bundle/contents/${this.props.options.bundleId}`, {
+    axios.post(`/bundle/contents/stack-stork-59b888dd`, {
       path: this.props.currentFile.path,
       content: this.state.editorState.getCurrentContent().getPlainText()
     })
@@ -37,11 +37,7 @@ class FileContentDisplay extends React.Component {
   render(){
     return (
       <div>
-        <pre>
-          <code>
-            <Editor editorState={this.state.editorState} onChange={this.onChange} />
-          </code>
-        </pre>
+        <Editor editorState={this.state.editorState} onChange={this.onChange} />
         <Button onClick={this.onSaveHandler.bind(this)}>Save</Button>
       </div>
     )

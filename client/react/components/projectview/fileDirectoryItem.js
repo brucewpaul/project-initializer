@@ -15,6 +15,7 @@ class FileDirectoryItem extends React.Component {
     if (this.props.content.children) {
       return (
         <li>
+          <i className="fa fa-folder" aria-hidden="true"></i>
           {this.props.content.name}
           <FileDirectory
             addNewTab={this.props.addNewTab}
@@ -25,7 +26,7 @@ class FileDirectoryItem extends React.Component {
       )
     }
     return (
-      <li onClick={this.onClickHandler.bind(this)}>{this.props.content.name}</li>
+      <li onClick={this.onClickHandler.bind(this)}><i className="fa fa-file-text" aria-hidden="true"></i>{this.props.content.name}</li>
     )
   }
 }
