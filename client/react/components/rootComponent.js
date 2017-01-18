@@ -14,22 +14,32 @@ class Root extends React.Component {
   }
 
   componentWillReceiveProps() {
-    if ( this.props.location.pathname === '/' ) {
-      if ( this.props.options.user.userName) {
-        this.setState({
-          isLoggedIn: true
-        });
-      }
+    if (this.props.options.user.userName) {
+      this.setState({
+        isLoggedIn: true
+      });
     }
   }
 
   render() {
 
+    var button;
+
+    if ( this.props.location.pathname === '/' ) {
+      if (this.state.isLoggedIn) {
+        button = <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem>
+      } else {
+        button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
+      }
+    } else {
+
+    }
+
     return (
       <div>
         <Navbar>
           <Nav pullRight>
-            {this.state.isLoggedIn ? <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem> : <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem> }
+            {button}
           </Nav>
         </Navbar>
         {this.props.children}
