@@ -35,7 +35,6 @@ class SummaryContainer extends React.Component {
              <NavButton button={summaryNav.build} />
             </div>
           </Row>
-        <NameRepo/>
       </Grid>
     )
   }
