@@ -16,21 +16,22 @@ class CurrentTaskDisplay extends React.Component {
     this.props.currentTask(this.props.tasks.tasks[0]);
   }
 
-  componentDidUpdate() {
-    // console.log('componentDidUpdate');
-    // axios.post('/bundle/recommendations', {
-    //   framework: this.props.options.frontEnd.framework,
-    //   packages: this.props.tasks.currentTask.plugins
-    // })
-    // .then((response)=>{
-    //   this.props.loadCf(response.data.map((suggestion)=>{
-    //     return suggestion.name;
-    //   }));
-    // })
-    // .catch((err)=>{
-    //   console.log(err);
-    // })
-  }
+  // componentWillReceiveProps() {
+
+  //   console.log('componentWillUpdate');
+  //   // axios.post('/bundle/recommendations', {
+  //   //   framework: this.props.options.frontEnd.framework,
+  //   //   packages: this.props.tasks.currentTask.plugins
+  //   // })
+  //   // .then((response)=>{
+  //   //   this.props.loadCf(response.data.map((suggestion)=>{
+  //   //     return suggestion.name;
+  //   //   }));
+  //   // })
+  //   // .catch((err)=>{
+  //   //   console.log(err);
+  //   // })
+  // }
 
   render() {
 
