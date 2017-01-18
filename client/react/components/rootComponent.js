@@ -37,6 +37,7 @@ class Root extends React.Component {
       <div>
         <Navbar>
           <Nav pullRight>
+            {this.props.options.user.userName ? <div>Welcome {this.props.options.user.userName}!</div> : null}
             {button}
           </Nav>
         </Navbar>
