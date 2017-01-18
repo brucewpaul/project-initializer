@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { download } from '../utils/cardsDesc';
 import Card from '../components/parts/card';
 import NavButton from '../components/parts/navButton';
+import { connect } from 'react-redux';
 import { summaryNav } from '../utils/summaryDesc';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -16,11 +17,19 @@ class DownloadContainer extends React.Component {
         </div>
         <Row className='homeButtons'>
           {download.cards.map((card, index)=>{
-            return (
-              <Col xs={card.xs} key={index}>
-                <Card card={card} key={index}/>
-              </Col>
-            )
+            if ( card.name !== 'Push to Github' ) {
+              return (
+                <Col xs={card.xs} key={index}>
+                  <Card card={card} key={index}/>
+                </Col>
+              )
+            } else if (this.props.options && this.props.options.user.userName && card.name === 'Push to Github' ) {
+              return (
+                <Col xs={card.xs} key={index}>
+                  <Card card={card} key={index}/>
+                </Col>
+              )
+            }
           })}
         </Row>
         <Link to ='/'>
