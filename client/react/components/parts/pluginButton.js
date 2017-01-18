@@ -1,9 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { Button } from 'react-bootstrap';
-import { currentTask, changePlugins} from '../../actions/index';
+import { currentTask, changePlugins, loadCf } from '../../actions/index';
 
 
 class PluginButton extends React.Component {
@@ -14,11 +15,23 @@ class PluginButton extends React.Component {
         onClick={()=>{
           if(!this.props.tasks.currentTask.plugins.includes(this.props.pluginName)){
             this.props.currentTask(addPlugin(this.props.tasks.currentTask, this.props.pluginName));
+            axios.post('/bundle/recommendations', {
+              framework: this.props.options.frontEnd.framework,
+              packages: this.props.tasks.currentTask.plugins
+              })
+              .then((response)=>{
+                this.props.loadCf(response.data.map((suggestion)=>{
+                  return suggestion.name;
+                }));
+              })
+              .catch((err)=>{
+                console.log(err);
+              })
           }
 
           if(!this.props.tasks.plugins.includes(this.props.pluginName)){
             this.props.changePlugins(addPlugin(this.props.tasks, this.props.pluginName).plugins);
-            console.log(this.props.tasks.plugins);
+
           }
         }}
       >
@@ -38,7 +51,8 @@ function mapStateToProps(state) {
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
     currentTask:currentTask,
-    changePlugins: changePlugins
+    changePlugins: changePlugins,
+    loadCf: loadCf
   }, dispatch);
 }
 

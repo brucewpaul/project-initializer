@@ -1,8 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
-import { currentTask } from '../../actions/index';
+
+import { currentTask, loadCf } from '../../actions/index';
 
 import { Button } from 'react-bootstrap';
 
@@ -13,6 +15,20 @@ class TaskButton extends React.Component {
       <div
         onClick={()=>{
           this.props.currentTask(this.props.task);
+          setTimeout(()=>{
+            axios.post('/bundle/recommendations', {
+            framework: this.props.options.frontEnd.framework,
+            packages: this.props.tasks.currentTask.plugins
+            })
+            .then((response)=>{
+              this.props.loadCf(response.data.map((suggestion)=>{
+                return suggestion.name;
+              }));
+            })
+            .catch((err)=>{
+              console.log(err);
+            })
+          },0)
         }}
       >
       {this.props.task.name}
@@ -35,7 +51,8 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    currentTask: currentTask
+    currentTask: currentTask,
+    loadCf: loadCf
   }, dispatch);
 }
 
