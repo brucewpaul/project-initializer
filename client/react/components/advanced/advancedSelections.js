@@ -15,11 +15,15 @@ class AdvancedSelection extends React.Component {
 
   render() {
     return(
-      <div>
+      <Col xs={6} xsOffset={1}>
         <div className='guidedHeader'>
           <h4>{advanced.header}</h4>
         </div>
         <Row>
+          <Col>
+          <div className='advancedHeader'>
+            <h4>{advanced.front}</h4>
+          </div>
           {frontEnd.selectors.map((selector, index)=>{
             return (
               <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
@@ -27,8 +31,13 @@ class AdvancedSelection extends React.Component {
               </Col>
             )
           })}
+          </Col>
         </Row>
         <Row>
+          <Col>
+          <div className='advancedHeader'>
+            <h4>{advanced.back}</h4>
+          </div>
           {backEnd.selectors.map((selector, index)=>{
             return (
               <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
@@ -36,8 +45,13 @@ class AdvancedSelection extends React.Component {
               </Col>
             )
           })}
+          </Col>
         </Row>
         <Row>
+          <Col>
+          <div className='advancedHeader'>
+            <h4>{advanced.task}</h4>
+          </div>
           {task.selectors.map((selector, index)=>{
             return (
               <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
@@ -45,6 +59,7 @@ class AdvancedSelection extends React.Component {
               </Col>
             )
           })}
+          </Col>
         </Row>
         <Row className='navButtons'>
           {advanced.buttons.map((button, index)=>{
@@ -55,7 +70,7 @@ class AdvancedSelection extends React.Component {
             )
           })}
         </Row>
-      </div>
+      </Col>
     )
   }
 }

@@ -61,19 +61,10 @@ export const backEnd = {
     },
     {
       image1X:'',
-      image2X:'images/sqlite-logo@2x.png',
+      image2X:'images/sqlite-logo.png',
       image3X:'',
       name: 'Sqlite',
       payloadName: 'Sqlite',
-      xs: 4,
-      xsOffset: 0
-    },
-    {
-      image1X:'',
-      image2X:'images/mysql-logo@2x.png',
-      image3X:'',
-      name: 'Mysql',
-      payloadName: 'Mysql',
       xs: 4,
       xsOffset: 0
     }
@@ -138,6 +129,9 @@ export const task = {
 
 export const advanced ={
   header: 'Advanced Stack Builder',
+  front: 'Select a Front End Framework',
+  back: 'Select a DataBase',
+  task: 'Select a Task Runner',
   buttons: [
     {
       name: 'Home',

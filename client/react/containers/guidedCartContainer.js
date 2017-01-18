@@ -16,7 +16,7 @@ class GuidedCart extends React.Component {
           <span> Database {this.props.options.backEnd.database || ''}</span><br/>
           <span> Task Runner  {this.props.options.devTools.taskRunner.name || ''}</span><br/>
         <Link to='/checkout'>
-          <Button>Build</Button>
+          <Button className='cartButton'>Build</Button>
         </Link>
       </Col>
     )
