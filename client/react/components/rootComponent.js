@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -11,6 +12,7 @@ class Root extends React.Component {
     this.state = {
       isLoggedIn: false
     }
+    console.log(this.props.location.pathname)
   }
 
   componentWillReceiveProps() {
@@ -36,8 +38,9 @@ class Root extends React.Component {
     return (
       <div>
         <Navbar>
+          {this.props.location.pathname !== '/' ? <Navbar.Header><Navbar.Brand><Link to='/'>Stackbear</Link></Navbar.Brand></Navbar.Header> : null}
           <Nav pullRight>
-            {this.props.options.user.userName ? <div>Welcome {this.props.options.user.userName}!</div> : null}
+            {this.props.options.user.userName ? <Navbar.Text>Welcome {this.props.options.user.userName}!</Navbar.Text> : null}
             {button}
           </Nav>
         </Navbar>

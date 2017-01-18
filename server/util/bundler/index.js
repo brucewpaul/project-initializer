@@ -30,7 +30,6 @@ module.exports = function(req, cb) {
     uniquePath = path.join(__dirname, '../../bundles', id);
   }
 
-  console.log(uniquePath);
   // check if folder for output already exists
   // TODO: create random generator, if it exists, call this function again @bruce
   fs.existsAsync(uniquePath)

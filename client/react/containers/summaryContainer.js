@@ -33,7 +33,7 @@ class SummaryContainer extends React.Component {
           onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
          <NavButton button={summaryNav.build} />
         </div>
-        <NameRepo/>
+        {this.props.options.user.userName ? <NameRepo/> : null}
       </Grid>
     )
   }
