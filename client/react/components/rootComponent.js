@@ -8,27 +8,36 @@ import { connect } from 'react-redux';
 class Root extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.options.user.userName) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
   }
 
   render() {
 
-    if ( this.props.location.pathname === '/') {
+    var button;
 
-      var isLoggedIn = this.props.options.username;
-
-      var button = null;
-      if ( isLoggedIn === undefined ) {
-        button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
-      } else {
+    if ( this.props.location.pathname === '/' ) {
+      if (this.state.isLoggedIn) {
         button = <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem>
+      } else {
+        button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
       }
-
     }
 
     return (
       <div>
         <Navbar>
           <Nav pullRight>
+            {this.props.options.user.userName ? <div>Welcome {this.props.options.user.userName}!</div> : null}
             {button}
           </Nav>
         </Navbar>
