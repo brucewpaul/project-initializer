@@ -16,7 +16,6 @@ class SummaryContainer extends React.Component {
 
   render() {
     var summaries = selectionStatus(this.props.options).summaries;
-
     return(
       <Grid>
         <div className='guidedHeader'>
@@ -29,11 +28,11 @@ class SummaryContainer extends React.Component {
             <SummaryRow summary={summary} key={index} type={summary.type}/>
           )
         })}
+        {this.props.options.user.userName && <NameRepo/>}
         <div className='summaryButton'
           onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
          <NavButton button={summaryNav.build} />
         </div>
-        {this.props.options.user.userName ? <NameRepo/> : null}
       </Grid>
     )
   }
