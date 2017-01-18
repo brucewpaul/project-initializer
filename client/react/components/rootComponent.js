@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 class Root extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
   }
 
   render() {
