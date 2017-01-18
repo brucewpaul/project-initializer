@@ -81,3 +81,9 @@ export const loadCf = (suggestions)=> {
     payload: suggestions
   }
 }
+export const setPlugin = (plugins)=> {
+  return {
+    type: 'SET_PLUGIN',
+    payload: plugins
+  }
+}

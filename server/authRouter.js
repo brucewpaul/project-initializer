@@ -1,7 +1,6 @@
 var express = require('express');
 var authRouter = express.Router();
 var path = require('path');
-var axios = require('axios');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
@@ -30,7 +29,8 @@ passport.serializeUser(function(profile, done) {
 
 authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
 
-authRouter.get('/github', function(req, res){
+
+authRouter.get('/github',  function(req, res){
   });
 
 authRouter.get('/callback', function(req, res) {
@@ -40,10 +40,10 @@ authRouter.get('/callback', function(req, res) {
       projectName: undefined
     }
     res.locals.user = user;
-    res.status(300).redirect('/');
+    res.status(300).redirect('/'); //REDIRECT TO HOME??
   });
 
-authRouter.get('/push', function(req, res) {
+authRouter.post('/push', function(req, res) {
     axios.post('https://api.github.com/user/repos', {
       name: req.body.user.projectName,
       description: 'Project started on Stack Bear :]',

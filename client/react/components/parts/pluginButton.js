@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { Button } from 'react-bootstrap';
-import { currentTask} from '../../actions/index';
+import { currentTask, changePlugins} from '../../actions/index';
 
 
 class PluginButton extends React.Component {
@@ -12,7 +12,14 @@ class PluginButton extends React.Component {
     return (
       <Button
         onClick={()=>{
-          this.props.currentTask(addPlugin(this.props.tasks.currentTask, this.props.pluginName))
+          if(!this.props.tasks.currentTask.plugins.includes(this.props.pluginName)){
+            this.props.currentTask(addPlugin(this.props.tasks.currentTask, this.props.pluginName));
+          }
+
+          if(!this.props.tasks.plugins.includes(this.props.pluginName)){
+            this.props.changePlugins(addPlugin(this.props.tasks, this.props.pluginName).plugins);
+            console.log(this.props.tasks.plugins);
+          }
         }}
       >
       {this.props.pluginName}
@@ -30,17 +37,12 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({
-    currentTask:currentTask
+    currentTask:currentTask,
+    changePlugins: changePlugins
   }, dispatch);
 }
 
 function addPlugin(obj, pluginName){
-  // if(obj[pluginName]){
-  //   obj[pluginName] = obj[pluginName] === '' ? pluginName : '';
-  // }
-  // else{
-  //   obj[pluginName] = pluginName;
-  // }
   obj.plugins.push(pluginName)
     return obj;
 }

@@ -56,7 +56,7 @@ bundleRouter.post('/recommendations/', (req, res) => {
       }
     });
   } else {
-    res.status(500).send({ error: 'Error in getting recommendations: a framework and an array pf packages need to be sent' })
+    res.status(500).send({ error: 'Error in getting recommendations: a framework and an array of packages need to be sent' })
   }
 });
 

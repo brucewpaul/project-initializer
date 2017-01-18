@@ -51,7 +51,6 @@ export default function(state = initialState, action) {
             plugins:[],
             tasks:[]
           },
-          bundler: state.devTools.bundler,
           testing: state.devTools.testing
         }
       })
@@ -63,7 +62,17 @@ export default function(state = initialState, action) {
             plugins: state.devTools.taskRunner.plugins,
             tasks: action.payload
           },
-          bundler: state.devTools.bundler,
+          testing: state.devTools.testing
+        }
+      })
+    case 'SET_PLUGIN':
+      return Object.assign({} , state, {
+        devTools: {
+          taskRunner: {
+            name: state.devTools.taskRunner.name,
+            plugins: action.payload,
+            tasks: state.devTools.taskRunner.tasks
+          },
           testing: state.devTools.testing
         }
       })
