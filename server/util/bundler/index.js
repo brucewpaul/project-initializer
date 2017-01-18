@@ -43,6 +43,16 @@ module.exports = function(req, cb) {
               return cb(new Error(err));
             } else {
               // assemble the files
+              if ( req.body.devTools.taskRunner.plugins.length === 0) {
+                req.body.devTools.taskRunner.plugins = ['cssmin', 'uglify'],
+                req.body.devTools.taskRunner.tasks = [
+                  {
+                    name: 'build',
+                    plugins: ['cssmin', 'uglify']
+                  }
+                ],
+                console.log(req.body)
+              }
               assembleFiles(req.body, uniquePath, id, cb)
             }
           })
