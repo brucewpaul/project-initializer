@@ -31,8 +31,6 @@ class Root extends React.Component {
       } else {
         button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
       }
-    } else {
-
     }
 
     return (
