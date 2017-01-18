@@ -19,7 +19,7 @@ class CurrentTaskDisplay extends React.Component {
   render() {
 
     return (
-      <div>
+      <Col xsOffset={2}>
         <div className='currentTaskDisplay'>
           <form>
             <FormGroup>
@@ -42,7 +42,7 @@ class CurrentTaskDisplay extends React.Component {
           </ul>
         </div>
         <NavButton button={backButton}/>
-      </div>
+      </Col>
     )
   }
 }

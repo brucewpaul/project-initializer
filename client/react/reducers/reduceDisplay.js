@@ -1,6 +1,6 @@
 const initialTasks = {
   tasks: [{
-    name: 'initial task place holder',
+    name: 'Task',
     plugins:[]
   }],
   plugins: [],

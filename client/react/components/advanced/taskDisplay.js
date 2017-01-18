@@ -15,7 +15,7 @@ import { buildButton } from '../../utils/taskBuilderDesc';
 class TaskDisplay extends React.Component {
   render () {
     return(
-      <div>
+      <div className='taskDisplay'>
         <div className='taskDisplayHeader'>
           <Button
             onClick={()=>{
@@ -24,6 +24,7 @@ class TaskDisplay extends React.Component {
           >
             Add Task
           </Button>
+          <div className='line'></div>
         </div>
         <div className='taskContainer'>
         {this.props.tasks.tasks.map((task, index)=>{
@@ -36,7 +37,7 @@ class TaskDisplay extends React.Component {
         </div>
         <div className='taskContainerFooter'>
           <Link to='/checkout'>
-             <Button onClick={()=> {
+             <Button className='cartButton' onClick={()=> {
               this.props.tasksSet(this.props.tasks.tasks);
               this.props.setPlugin(this.props.tasks.plugins);
             }}>

@@ -14,6 +14,9 @@ class TaskBuildContainer extends React.Component {
   render() {
     return (
       <Grid>
+        <div className='guidedHeader'>
+          <h4>Build Tasks</h4>
+        </div>
         <Row>
           <CfSelection />
         </Row>
@@ -21,7 +24,7 @@ class TaskBuildContainer extends React.Component {
           <Col xs={3}>
             <CurrentTaskDisply />
           </Col>
-          <Col xs={3} xsOffset={6}>
+          <Col xs={3} xsOffset={5}>
             <TaskDisply />
           </Col>
         </Row>

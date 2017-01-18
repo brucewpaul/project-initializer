@@ -11,5 +11,6 @@ export const backButton = {
   link: '/advanced',
   color: 'grey',
   xs:3,
-  xsOffset:0
+  xsOffset:0,
+  className: 'navButton1'
 }

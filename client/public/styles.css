@@ -59,26 +59,72 @@ body {
     margin-left: -7%;
 }
 
+.taskDisplay {
+  background-color: #ffffff;
+  border-radius: 10px;
+  font-family: 'Roboto Mono';
+}
+
+.taskDisplay button {
+  border: none;
+}
+
+.taskDisplay .line {
+  width: 100%;
+}
+
+.taskDisplay .cartButton {
+    width: 100%;
+    padding: 15px;
+    margin-top: -1%;
+    background-color: #2ca01c;
+    margin-left: 0%;
+}
+
+.taskDisplay .fa{
+  margin-right: 18px;
+  font-size: 23px;
+}
+
 .taskContainer {
   height: 400px;
   text-align: center;
-  border: 1px solid black;
 }
 
 .taskDisplayHeader {
   text-align: center;
-  border: 1px solid;
-  margin-top: 50px;
+  margin-top: -35px;
+}
+
+.taskDisplayHeader button {
+    font-size: 24px;
 }
 
 .taskContainerFooter {
   text-align: center;
-  border: 1px solid black;
 }
 
 .currentTaskDisplay {
-  border: 1px solid;
   margin-top: 50px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 500px;
+  height: 200px;
+  font-family: 'Roboto Mono';
+  padding: 10px
+}
+
+.currentTaskDisplay label {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+
+.currentTaskDisplay .form-group {
+      background: #4990e2;
+}
+
+.cfButtons {
+  font-family: 'Roboto Mono';
 }
 
 .navbar {
@@ -206,7 +252,7 @@ body {
 .guidedHeader {
   width: 100%;
   border-bottom: 2px solid #d8d8d8;
-  margin-bottom: 3%
+  margin-bottom: 1%
 }
 
 .guidedHeader h4 {
@@ -355,6 +401,16 @@ body {
   float: right;
 }
 
+.navButton3 {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: left;
+}
+
 .optionsView .row {
   margin-bottom: 20px;
 }
@@ -380,7 +436,7 @@ body {
 
 .summary-row {
   width: 100%;
-  padding: 40px 0px 40px 0px;
+  padding: 20px 0px 20px 0px;
   border-bottom: solid 2px #e7e7e7;
   margin: 0;
 }
