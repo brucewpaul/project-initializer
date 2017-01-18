@@ -30,11 +30,6 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/auth', authRouter);
 app.use('/bundle', bundleRouter);
 
-app.get('/me', function(req, res){
-  console.log('me', req.user);
-  res.status(200).send(req.user);
-});
-
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client','public','index.html'));
 });

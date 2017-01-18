@@ -39,6 +39,11 @@ authRouter.get('/me', function(req, res){
   res.status(200).send(req.user);
 });
 
+authRouter.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
   console.log('callback',req.user)
   var user = {
