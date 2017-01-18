@@ -1,6 +1,7 @@
 var express = require('express');
 var authRouter = express.Router();
 var path = require('path');
+var axios = require('axios');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2').Strategy;
 var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
@@ -27,44 +28,51 @@ passport.serializeUser(function(profile, done) {
   done(null, profile);
 });
 
-authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
+// authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
+// authRouter.use(express.static(path.join(__dirname, '../client/public'))); //necessary?
+// authRouter.use(express.static(path.join(__dirname, '../client/dist')));
 
+authRouter.get('/github', passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
 
-authRouter.get('/github',  function(req, res){
-  });
+authRouter.get('/me', function(req, res){
+  console.log('test', req.user);
+  res.status(200).send(req.user);
+});
 
-authRouter.get('/callback', function(req, res) {
-    var user = {
-      userid: req.user.id,
-      username: req.user.username,
-      projectName: undefined
+authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
+  console.log('callback',req.user)
+  var user = {
+    userid: req.user.id,
+    username: req.user.username,
+    projectName: undefined
+  }
+  res.locals.user = user;
+  res.status(300).redirect('/'); //REDIRECT TO HOME??
+});
+
+authRouter.get('/push', function(req, res) {
+  console.log('push', req.user)
+  axios.post('https://api.github.com/user/repos', {
+    name: req.body.user.projectName,
+    description: 'Project started on Stack Bear :]',
+  }, {
+    headers: {
+      Authorization: 'token ' + req.user.token
     }
-    res.locals.user = user;
-    res.status(300).redirect('/'); //REDIRECT TO HOME??
+  })
+  .then(function (response) {
+    console.log('successful repo create\npushing files into repo');
+    var rootDirectory = path.resolve(__dirname, 'bundles', '1483481489861');
+    var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName;
+    var accessToken = req.user.token;
+    git.cwd(rootDirectory).addRemote('stackBear', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')
+      .push('stackBear', 'master').removeRemote('stackBear');
+    res.status(201).send('successful');
+  })
+  .catch(function(err) {
+    console.log('error pushing to github');
+    res.status(422).send('unsuccessful github push');
   });
-
-authRouter.post('/push', function(req, res) {
-    axios.post('https://api.github.com/user/repos', {
-      name: req.body.user.projectName,
-      description: 'Project started on Stack Bear :]',
-    }, {
-      headers: {
-        Authorization: 'token ' + req.user.token
-      }
-    })
-    .then(function (response) {
-      console.log('successful repo create\npushing files into repo');
-      var rootDirectory = path.resolve(__dirname, 'bundles', '1483481489861');
-      var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName;
-      var accessToken = req.user.token;
-          git.cwd(rootDirectory).addRemote('stackBear', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')
-          .push('stackBear', 'master').removeRemote('stackBear');
-      res.status(201).send('successful');
-    })
-    .catch(function(err) {
-      console.log('error pushing to github');
-      res.status(422).send('unsuccessful github push');
-    });
-  });
+});
 
 module.exports = authRouter;
