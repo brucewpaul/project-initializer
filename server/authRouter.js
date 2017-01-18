@@ -30,11 +30,7 @@ passport.serializeUser(function(profile, done) {
   done(null, profile);
 });
 
-// authRouter.use(passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
-// authRouter.use(express.static(path.join(__dirname, '../client/public'))); //necessary?
-// authRouter.use(express.static(path.join(__dirname, '../client/dist')));
-
-authRouter.get('/github', passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
+authRouter.get('/github', passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/'}));
 
 authRouter.get('/me', function(req, res){
   res.status(200).send(req.user);
@@ -45,7 +41,7 @@ authRouter.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
+authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '/' }), function(req, res) {
   var uniquePath = path.join(__dirname, 'bundles', req.user.username);
   fs.existsAsync(uniquePath)
     .then((exists) => {
