@@ -41,7 +41,8 @@ export const summaryNav = {
     link: '/view',
     color: 'grey',
     xs: 0,
-    xsOffset: 0
+    xsOffset: 0,
+    className: 'final-nav-button'
   }
 
 }

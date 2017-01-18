@@ -10,10 +10,12 @@ export const home = {
       button: {
         name: 'Get Started',
         link: '/guided',
-        shadowType: 'guided'
+        shadowType: 'guided',
+        className: 'selector guided'
       },
       xs:3,
       xsOffset: 3,
+
     },
     {
       name:'Advanced',
@@ -25,10 +27,12 @@ export const home = {
       button: {
         name: 'Advanced',
         link: '/advanced',
-        shadowType: 'advanced'
+        shadowType: 'advanced',
+        className: 'selector advanced'
       },
       xs:3,
       xsOffset: 0,
+
     }
   ]
 }
@@ -44,7 +48,8 @@ export const download = {
       button: {
         name: 'Push',
         link: '/download',
-        shadowType: 'advanced'
+        shadowType: 'advanced',
+        className: 'selector advanced'
       },
       xs:4,
       xsOffset: 0,
@@ -57,7 +62,8 @@ export const download = {
       button: {
         name: 'Download',
         link: '/download',
-        shadowType: 'guided'
+        shadowType: 'guided',
+        className: 'selector advanced'
       },
       xs:4,
       xsOffset: 0,
@@ -71,7 +77,8 @@ export const download = {
       button: {
         name: 'Save',
         link: '/download',
-        shadowType: 'advanced'
+        shadowType: 'advanced',
+        className: 'selector advanced'
       },
       xs:4,
       xsOffset: 0,

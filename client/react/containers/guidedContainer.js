@@ -7,8 +7,8 @@ class GuidedContainer extends React.Component {
   render() {
     return (
       <div>
-        <GuidedCartContainer />
         {this.props.children}
+        <GuidedCartContainer />
       </div>
     )
   }
