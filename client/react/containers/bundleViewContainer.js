@@ -91,7 +91,6 @@ class BundleViewContainer extends React.Component {
 
   getDirectory() {
     axios.get(`/bundle/contents/${this.props.options.bundleId}`)
-    // axios.get(`/bundle/contents/stack-stork-59b888dd`)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
