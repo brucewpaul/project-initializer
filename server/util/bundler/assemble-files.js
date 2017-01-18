@@ -83,7 +83,7 @@ module.exports = function(options, outputPath, id, cb) {
 
   Promise.all(asyncTasks)
     .then( function() {
-      exec(`cd ${outputPath}/../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
+      exec(`cd ${outputPath}/../../ && tar -zcvf ${id}.tar.gz ${id}`, (error, stdout, stderr) => {
         if (error) {
           return cb(new Error(error));
         }
