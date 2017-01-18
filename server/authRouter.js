@@ -85,7 +85,7 @@ authRouter.get('/push', function(req, res) {
   })
   .then(function (response) {
     console.log('successful repo create\npushing files into repo');
-    var rootDirectory = path.resolve(__dirname, 'bundles', '1483481489861');
+    var rootDirectory = path.resolve(__dirname, 'bundles', req.user.username, req.body.user.projectName);
     var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName;
     var accessToken = req.user.token;
     git.cwd(rootDirectory).addRemote('stackBear', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')
