@@ -445,4 +445,26 @@ body {
   padding: 3px 0 0 10px;
 }
 
+.directory-viewer, .directory-viewer col{
+  height: 100%;
+}
+
+.directory-viewer .file-directory-wrap {
+  border-right: 1px solid grey;
+  padding: 30px 10px;
+}
+
+.directory-viewer ul {
+  list-style: none;
+}
+
+.directory-viewer ul li {
+  padding-top: 6px;
+}
+
+.fa-folder, .fa-file-text {
+  font-size: 16px;
+  float: left;
+  padding: 2px 6px 0px 0px;
+}
 

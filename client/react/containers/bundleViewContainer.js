@@ -90,8 +90,7 @@ class BundleViewContainer extends React.Component {
   }
 
   getDirectory() {
-    // axios.get(`/bundle/contents/${this.props.options.bundleId}`)
-    axios.get(`/bundle/contents/stack-stork-59b888dd`)
+    axios.get(`/bundle/contents/${this.props.options.bundleId}`)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
@@ -105,13 +104,15 @@ class BundleViewContainer extends React.Component {
   render() {
     return(
       <Grid fluid>
-        <Row>
+        <Row className='directory-viewer'>
           <Col xs={3}>
-            <FileDirectory
-              setActiveTabFromFile={this.setActiveTabFromFile.bind(this)}
-              addNewTab={this.addNewTab.bind(this)}
-              setCurrentFile={this.setCurrentFile.bind(this)}
-              directoryItems={this.state.bundleContents.children}/>
+            <div className='file-directory-wrap'>
+              <FileDirectory
+                setActiveTabFromFile={this.setActiveTabFromFile.bind(this)}
+                addNewTab={this.addNewTab.bind(this)}
+                setCurrentFile={this.setCurrentFile.bind(this)}
+                directoryItems={this.state.bundleContents.children}/>
+            </div>
           </Col>
           <Col xs={9}>
             <FileTabs

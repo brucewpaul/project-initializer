@@ -35,14 +35,5 @@ export const summaryNav = {
     color: 'grey',
     xs:0,
     xsOffset:0
-  },
-  view: {
-    name: 'View Project',
-    link: '/view',
-    color: 'grey',
-    xs: 0,
-    xsOffset: 0,
-    className: 'final-nav-btn2'
   }
-
 }
