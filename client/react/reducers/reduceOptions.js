@@ -8,14 +8,9 @@ const initialState = {
   },
   devTools: {
     taskRunner: {
-      name: 'Grunt',
-      plugins:['cssmin', 'uglify'],
-      tasks:[
-        {
-          name: 'build',
-          plugins: ['cssmin', 'uglify']
-        }
-      ],
+      name: null,
+      plugins:[],
+      tasks:[],
     },
     testing: 'Mocha'
   },
