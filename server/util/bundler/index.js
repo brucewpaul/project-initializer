@@ -50,8 +50,7 @@ module.exports = function(req, cb) {
                     name: 'build',
                     plugins: ['cssmin', 'uglify']
                   }
-                ],
-                console.log(req.body)
+                ]
               }
               assembleFiles(req.body, uniquePath, id, cb)
             }
