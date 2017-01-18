@@ -10,6 +10,7 @@ var sqlite = require(path.join(__dirname, '../../../../ingredients/package/sqlit
 var grunt = require(path.join(__dirname, '../../../../ingredients/package/grunt-dependencies.js'));
 var mochaEnzyme = require(path.join(__dirname, '../../../../ingredients/package/mocha-enzyme-dependencies.js'));
 var vue = require(path.join(__dirname, '../../../../ingredients/package/vue-dependencies.js'));
+var gulp = require(path.join(__dirname, '../../../../ingredients/package/gulp-dependencies.js'));
 
 module.exports = function(options) {
   var frontEndFramework, backEndDatabase, taskRunnerDependencies;
@@ -46,8 +47,13 @@ module.exports = function(options) {
       taskRunnerDependencies = Object.assign(taskRunnerDependencies, grunt[plugin]);
     });
     package.devDependencies = Object.assign(taskRunnerDependencies);
+  } else if ( options && options.devTools.taskRunner.name === 'Gulp' ) {
+    taskRunnerDependencies = Object.assign({}, gulp.mainDependencies);
+    _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
+      taskRunnerDependencies = Object.assign(taskRunnerDependencies, gulp[plugin]);
+    });
+    package.devDependencies = Object.assign(taskRunnerDependencies);
   }
-  // TODO: add gulp options as else if @chan
 
   if ( options && options.devTools.testing === 'Mocha' ) {
     if ( options.frontEnd.framework === 'React') {
