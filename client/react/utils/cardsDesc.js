@@ -75,7 +75,7 @@ export const download = {
         'Make and save edits directly to your project before you download.'
       ],
       button: {
-        className: 'selector advanced'
+        className: 'selector advanced',
         name: 'View',
         link: '/view',
         shadowType: 'advanced'
