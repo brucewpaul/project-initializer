@@ -10,18 +10,23 @@ import {  FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 class NameRepo extends React.Component {
   render() {
       return (
-        <form>
-          <FormGroup>
-            <ControlLabel>
-              Enter your project name
-            </ControlLabel>
-            <FormControl
-              type='text'
-              value={this.props.options.user.projectName || ''}
-              onChange={(e)=> this.props.projectName(e.target.value)}
-            />
-          </FormGroup>
-        </form>
+        <div>
+          <div className='guidedHeader'>
+            <h4>Name your project</h4>
+          </div>
+          <form>
+            <FormGroup>
+              <ControlLabel>
+                Enter your project name
+              </ControlLabel>
+              <FormControl
+                type='text'
+                value={this.props.options.user.projectName || ''}
+                onChange={(e)=> this.props.projectName(e.target.value)}
+              />
+            </FormGroup>
+          </form>
+        </div>
       )
     }
   }
