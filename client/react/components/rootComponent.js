@@ -8,19 +8,29 @@ import { connect } from 'react-redux';
 class Root extends React.Component {
   constructor(props) {
     super(props)
+    console.log(this.props)
   }
 
   render() {
+
+    if ( this.props.location.pathname === '/') {
+
+      var isLoggedIn = this.props.options.username;
+
+      var button = null;
+      if ( isLoggedIn === undefined ) {
+        button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
+      } else {
+        button = <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem>
+      }
+
+    }
+
     return (
       <div>
         <Navbar>
           <Nav pullRight>
-            <NavItem eventKey={1}
-            onClick={()=>{
-              console.log('login clicked');
-              loginToGit();
-            }}
-            >Login</NavItem>
+            {button}
           </Nav>
         </Navbar>
         {this.props.children}
@@ -43,6 +53,10 @@ function matchDispatchToProps(dispatch) {
 
 function loginToGit() {
    window.location.assign('/auth/github');
+}
+
+function logoutToGit() {
+   window.location.assign('/auth/logout');
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(Root);
