@@ -4,6 +4,61 @@ body {
   background-color: #f5f5f5;
 }
 
+.guidedHomeButton {
+  width: 220px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #2ca01c;
+}
+
+.advancedHomeButton {
+  width: 220px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #f6a623;
+}
+
+.card-description {
+  width: 220px;
+  height: 216px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.desc-list {
+  height: 36%;
+}
+
+.viewProject {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+}
+
+.cart {
+  width: 240px;
+  height: 245px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.cartButton {
+    width: 114%;
+    border-radius: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    font-family: 'Roboto Mono';
+    font-weight: bold;
+    padding: 13px;
+    margin-top: 32%;
+    background-color: #2ca01c;
+    margin-left: -7%;
+}
+
 .taskContainer {
   height: 400px;
   text-align: center;
@@ -64,18 +119,19 @@ body {
 }
 
 .homeButtons .button-description {
-  margin-top: 60px;
-  width: 100%;
-  height: 216px;
-  background-color: #ffffff;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 25px;
+    margin-top: 60px;
+    width: 100%;
+    height: 216px;
+    background-color: #ffffff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0px;
 }
 
 .homeButtons .button-description h4 {
   font-family: 'Roboto Mono';
   color: #404040;
+  text-align: center;
 }
 
 .homeButtons .button-description ul {
@@ -97,6 +153,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   padding: 13px;
+  margin-top: 25%;
 }
 
 .homeButtons .selector {
@@ -110,7 +167,7 @@ body {
   font-size: 12px;
   font-weight: bold;
   color: #ffffff;
-  padding: 13px;
+  padding: 15px;
   z-index: 1;
 }
 
@@ -149,6 +206,7 @@ body {
 .guidedHeader {
   width: 100%;
   border-bottom: 2px solid #d8d8d8;
+  margin-bottom: 3%
 }
 
 .guidedHeader h4 {
@@ -156,6 +214,17 @@ body {
   font-size: 24px;
   color: #404040;
   margin: 70px 0px 20px 0px;
+}
+
+.advancedHeader {
+  margin-left: 3%;
+}
+
+.advancedHeader h4 {
+  font-family: 'Roboto Mono';
+  font-size: 16px;
+  color: #404040;
+  margin: 10px 0px 10px 0px;
 }
 
 .guidedButtons {
@@ -194,6 +263,42 @@ body {
   margin: 18px 0px 18px 0px;
 }
 
+.cartHeader {
+  height: 50px;
+}
+
+.cartHeader h4 {
+  width: 58px;
+  height: 32px;
+  font-family: 'Roboto Mono';
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #404040;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.cart span {
+  font-family: 'Roboto Mono';
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  color: #404040;
+  text-align: right;
+}
+.choiceWord {
+
+}
+
+.line {
+  width: 200px;
+  height: 2px;
+  border: solid 1px #d8d8d8;
+}
+
 .navButtons .navButton-wrap {
   position: relative;
 }
@@ -228,6 +333,26 @@ body {
   height: 40px;
   border-radius: 5px;
   background-color: #4990e2;
+}
+
+.navButton1 {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: left;
+}
+
+.navButton2 {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: right;
 }
 
 .optionsView .row {
@@ -302,8 +427,22 @@ body {
   background-color: #4990e2;
   float: right;
 }
+.summary-download-btn,
+.summary-download-btn:hover,
+.final-nav-btn2,
+.final-nav-btn2:hover {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: left;
+}
 
 .fa-times {
   font-size: 14px;
   padding: 3px 0 0 10px;
 }
+
+

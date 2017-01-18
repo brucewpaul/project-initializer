@@ -35,14 +35,16 @@ export const frontEnd = {
       link: '/',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/backend',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
@@ -61,19 +63,10 @@ export const backEnd = {
     },
     {
       image1X:'',
-      image2X:'images/sqlite-logo@2x.png',
+      image2X:'images/sqlite-logo.png',
       image3X:'',
       name: 'Sqlite',
       payloadName: 'Sqlite',
-      xs: 4,
-      xsOffset: 0
-    },
-    {
-      image1X:'',
-      image2X:'images/mysql-logo@2x.png',
-      image3X:'',
-      name: 'Mysql',
-      payloadName: 'Mysql',
       xs: 4,
       xsOffset: 0
     }
@@ -84,14 +77,16 @@ export const backEnd = {
       link: '/frontend',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/taskrunner',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
@@ -124,34 +119,41 @@ export const task = {
       link: '/backend',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/checkout',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
 
 export const advanced ={
   header: 'Advanced Stack Builder',
+  front: 'Select a Front End Framework',
+  back: 'Select a DataBase',
+  task: 'Select a Task Runner',
   buttons: [
     {
       name: 'Home',
       link: '/',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/task',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }

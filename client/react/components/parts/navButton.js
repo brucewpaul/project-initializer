@@ -6,8 +6,8 @@ class NavButton extends React.Component {
 
   render() {
     return(
-      <Link to={this.props.button.link} className='navButton prev'>
-        <Button className='prevButton' bsSize='large'>
+      <Link to={this.props.button.link}>
+        <Button className={this.props.button.className} bsSize='large'>
           {this.props.button.name}
         </Button>
       </Link>

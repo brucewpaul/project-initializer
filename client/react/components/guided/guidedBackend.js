@@ -16,7 +16,7 @@ class GuidedBackend extends React.Component {
 
   render() {
     return (
-      <div>
+      <Col xs={6} xsOffset={1}>
         <div className='guidedHeader'>
           <h4>{backEnd.header}</h4>
         </div>
@@ -38,7 +38,7 @@ class GuidedBackend extends React.Component {
             )
           })}
         </Row>
-      </div>
+      </Col>
     )
   }
 }

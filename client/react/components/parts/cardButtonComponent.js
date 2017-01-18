@@ -9,7 +9,7 @@ class ButtonComponent extends React.Component {
 	render() {
 		return(
 			<Link to={this.props.data.link}>
-        <Button className='selector advanced' bsSize='large' onClick={()=>{
+        <Button className={this.props.data.className} bsSize='large' onClick={()=>{
           if (this.props.data.name === 'Download') {
             downloadBundle(this.props.options.bundleId);
           }
