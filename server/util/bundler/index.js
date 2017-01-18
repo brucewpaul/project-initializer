@@ -16,13 +16,16 @@ var animalNames = require('./animal-names.js');
 **/
 module.exports = function(req, cb) {
   // TODO: Change this to be unique id of user @chan @bruce
+  console.log('test', req.user);
   var id;
+  var uniquePath
   if ( req.user ) {
     id = req.user.username + req.body.user.projectName;
+    uniquePath = path.join(__dirname, '../../bundles', req.user.username, id);
   } else {
     id = 'stack-' + animalNames.names[Math.floor(Math.random()*animalNames.names.length)] + '-' + crypto.randomBytes(4).toString('hex');
+    uniquePath = path.join(__dirname, '../../bundles', id);
   }
-  var uniquePath = path.join(__dirname, '../../bundles', id);
   // check if folder for output already exists
   // TODO: create random generator, if it exists, call this function again @bruce
   fs.existsAsync(uniquePath)

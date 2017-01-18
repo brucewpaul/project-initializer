@@ -35,7 +35,6 @@ passport.serializeUser(function(profile, done) {
 authRouter.get('/github', passport.authenticate('github', {scope : ['repo user:email'], failureRedirect: '/github'}));
 
 authRouter.get('/me', function(req, res){
-  console.log('test', req.user);
   res.status(200).send(req.user);
 });
 

@@ -1,9 +1,27 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 import Card from '../components/parts/card';
+import { userID, userName } from '../actions/index.js'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { home } from '../utils/cardsDesc';
 
 class HomePage extends React.Component {
+
+  componentWillMount() {
+
+    axios.get('/auth/me')
+      .then((response) => {
+        if ( response.data.username !== undefined) {
+          this.props.userName(response.data.username)
+          this.props.userID(response.data.id)
+        }
+      })
+      .catch(function(error) {
+        console.log('err', error);
+      });
+  }
 
   render() {
     return(
@@ -27,4 +45,19 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage;
+function mapStateToProps(state) {
+  return {
+    options: state.options,
+    display: state.display
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({
+    userID: userID,
+    userName: userName
+  }, dispatch);
+}
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(HomePage);
