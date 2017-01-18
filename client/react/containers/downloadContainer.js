@@ -6,7 +6,6 @@ import NavButton from '../components/parts/navButton';
 import { connect } from 'react-redux';
 import { summaryNav } from '../utils/summaryDesc';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
 
 class DownloadContainer extends React.Component {
   render() {
