@@ -69,16 +69,16 @@ export const download = {
       xsOffset: 0,
     },
     {
-      name:"Save the Stack",
+      name:"View the Stack",
       descriptions: [
-        'Coming Soon!',
-        'Save the stack to your account'
+        'View your project and all of its files.',
+        'Make and save edits directly to your project before you download.'
       ],
       button: {
-        name: 'Save',
-        link: '/download',
-        shadowType: 'advanced',
         className: 'selector advanced'
+        name: 'View',
+        link: '/view',
+        shadowType: 'advanced'
       },
       xs:4,
       xsOffset: 0,
