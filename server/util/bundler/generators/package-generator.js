@@ -70,6 +70,11 @@ module.exports = function(options) {
   }
 
   // combine the different dependencies and scripts from front end and backend modules into the package.json
+
+  if ( options.user.projectName ) {
+    package.name = options.user.projectName
+  }
+
   package.scripts = Object.assign(
     package.scripts,
     frontEndFramework.scripts,
