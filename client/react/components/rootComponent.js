@@ -40,9 +40,9 @@ class Root extends React.Component {
         <Navbar>
           {this.props.location.pathname !== '/' ? <Navbar.Header><Navbar.Brand><Link to='/'>Stackbear</Link></Navbar.Brand></Navbar.Header> : null}
           <Nav pullRight>
-            {this.props.options.user.userName ? <Navbar.Text>Welcome {this.props.options.user.userName}!</Navbar.Text> : null}
             {button}
           </Nav>
+          {this.props.options.user.userName ? <Navbar.Text pullRight>Welcome {this.props.options.user.userName}!</Navbar.Text> : null}
         </Navbar>
         {this.props.children}
       </div>
