@@ -25,7 +25,6 @@ const routes = (
         <IndexRoute component={HomePage}/>
         <Route path ='/guided' component={GuidedContainer}>
           <IndexRoute component={GuidedFrontend}/>
-          <Route path='/frontend' component={HomePage}/>
           <Route path='/backend' component={GuidedBackend}/>
           <Route path='/taskrunner' component={GuidedTaskRunner}/>
         </Route>

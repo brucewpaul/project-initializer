@@ -18,21 +18,23 @@ class SummaryContainer extends React.Component {
     var summaries = selectionStatus(this.props.options).summaries;
     return(
       <Grid>
-        <div className='guidedHeader'>
-          <h4>Review your stack</h4>
-        </div>
-        {summaries.filter((summary, index)=>{
-          return summary.name !== null;
-        }).map((summary, index)=>{
-          return(
-            <SummaryRow summary={summary} key={index} type={summary.type}/>
-          )
-        })}
-        {this.props.options.user.userName && <NameRepo/>}
-        <div className='summaryButton'
-          onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
-         <NavButton button={summaryNav.build} />
-        </div>
+        <Row>
+            <div className='guidedHeader'>
+              <h4>Review your stack</h4>
+            </div>
+            {summaries.filter((summary, index)=>{
+              return summary.name !== null;
+            }).map((summary, index)=>{
+              return(
+                <SummaryRow summary={summary} key={index} type={summary.type}/>
+              )
+            })}
+            {this.props.options.user.userName && <NameRepo/>}
+            <div className='summaryButton'
+              onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
+             <NavButton button={summaryNav.build} />
+            </div>
+          </Row>
       </Grid>
     )
   }

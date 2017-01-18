@@ -28,7 +28,7 @@ class CFselections extends React.Component {
 
   render() {
     return(
-      <div >
+      <div className='cfButtons'>
       Suggested Plugins <br/>
         {this.props.tasks.cf.map((suggestion, index)=>{
           return(

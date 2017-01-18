@@ -34,6 +34,15 @@ export const summaryNav = {
     link: '/download',
     color: 'grey',
     xs:0,
-    xsOffset:0
+    xsOffset:0,
+    className: 'navButton3'
+  },
+  view: {
+    name: 'View Project',
+    link: '/view',
+    color: 'grey',
+    xs: 0,
+    xsOffset: 0,
+    className: 'final-nav-btn2'
   }
 }

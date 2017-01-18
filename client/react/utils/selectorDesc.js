@@ -74,7 +74,7 @@ export const backEnd = {
   buttons: [
     {
       name: 'Back',
-      link: '/frontend',
+      link: '/guided',
       color: 'grey',
       xs:3,
       xsOffset:0,

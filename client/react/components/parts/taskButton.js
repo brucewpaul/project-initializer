@@ -32,11 +32,10 @@ class TaskButton extends React.Component {
         }}
       >
       {this.props.task.name}
-      <Button
+      <i className="fa fa-trash" aria-hidden="true"
         onClick={()=>this.props.tasks.tasks.splice(this.props.id, 1)}
       >
-        {this.props.id}
-      </Button>
+      </i>
       </div>
     )
   }
