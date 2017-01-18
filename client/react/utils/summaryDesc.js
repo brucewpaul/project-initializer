@@ -42,7 +42,7 @@ export const summaryNav = {
     color: 'grey',
     xs: 0,
     xsOffset: 0,
-    className: 'final-nav-button'
+    className: 'final-nav-btn2'
   }
 
 }

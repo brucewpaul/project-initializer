@@ -29,6 +29,15 @@ body {
   height: 36%;
 }
 
+.viewProject {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+}
+
 .cart {
   width: 240px;
   height: 245px;
@@ -326,6 +335,26 @@ body {
   background-color: #4990e2;
 }
 
+.navButton1 {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: left;
+}
+
+.navButton2 {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: right;
+}
+
 .optionsView .row {
   margin-bottom: 20px;
 }
@@ -398,8 +427,22 @@ body {
   background-color: #4990e2;
   float: right;
 }
+.summary-download-btn,
+.summary-download-btn:hover,
+.final-nav-btn2,
+.final-nav-btn2:hover {
+  margin-top: 40px;
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4990e2;
+  float: left;
+}
 
 .fa-times {
   font-size: 14px;
   padding: 3px 0 0 10px;
 }
+
+

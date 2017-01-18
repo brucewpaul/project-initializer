@@ -35,14 +35,16 @@ export const frontEnd = {
       link: '/',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/backend',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
@@ -75,14 +77,16 @@ export const backEnd = {
       link: '/frontend',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/taskrunner',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
@@ -115,14 +119,16 @@ export const task = {
       link: '/backend',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/checkout',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
@@ -138,14 +144,16 @@ export const advanced ={
       link: '/',
       color: 'grey',
       xs:3,
-      xsOffset:0
+      xsOffset:0,
+      className: 'navButton1'
     },
     {
       name: 'Next',
       link: '/task',
       color: 'blue',
       xs:3,
-      xsOffset:6
+      xsOffset:6,
+      className: 'navButton2'
     }
   ]
 }
