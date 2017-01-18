@@ -26,12 +26,12 @@ bundleRouter.get('/:user/:id', (req, res) => {
   res.download(path.resolve(__dirname, 'bundles', req.params.user, fileName ));
 });
 
-bundleRouter.get('/contents/:id', (req, res) => {
-  var bundle = projectView.getProjectJSON(req.params.id);
+bundleRouter.get('/contents/:user/:id', (req, res) => {
+  var bundle = projectView.getProjectJSON(req.params.user + '/' + req.params.id);
   res.json(bundle);
 });
 
-bundleRouter.post('/contents/:id', (req, res) => {
+bundleRouter.post('/contents/:user/:id', (req, res) => {
   fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
     if (!err) {
       console.log('SUCCESS');
