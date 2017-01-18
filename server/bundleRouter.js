@@ -21,9 +21,9 @@ bundleRouter.post('/build/', function (req, res) {
   });
 });
 
-bundleRouter.get('/:id', (req, res) => {
+bundleRouter.get('/:user/:id', (req, res) => {
   var fileName = req.params.id + '.tar.gz';
-  res.download(path.resolve(__dirname, 'bundles', fileName ));
+  res.download(path.resolve(__dirname, 'bundles', req.params.user, fileName ));
 });
 
 bundleRouter.get('/contents/:id', (req, res) => {

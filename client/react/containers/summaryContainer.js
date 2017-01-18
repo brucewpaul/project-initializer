@@ -49,6 +49,7 @@ function mapStateToProps(state) {
 function setBundleId(options, cb) {
   axios.post('/bundle/build',options)
   .then((response)=>{
+    console.log(response.data)
     cb(response.data);;
   }).catch((err)=>{
     console.log(err);

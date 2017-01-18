@@ -8,6 +8,8 @@ var GITHUB_CLIENT_ID = "4797b2457cbad7cda803";
 var GITHUB_CLIENT_SECRET = "ce2471547163f864e2ef1af5507b1bb9437feca1";
 var session = require('express-session');
 var git = require('simple-git')();
+var Promise = require('bluebird');
+var fs = Promise.promisifyAll(require("fs"));
 
 authRouter.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 authRouter.use(passport.initialize());
@@ -44,7 +46,24 @@ authRouter.get('/logout', function(req, res){
 });
 
 authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '/login' }), function(req, res) {
-  console.log('callback',req.user)
+  var uniquePath = path.join(__dirname, 'bundles', req.user.username);
+  fs.existsAsync(uniquePath)
+    .then((exists) => {
+      if ( !exists ) {
+        fs.mkdirAsync(uniquePath)
+          .then((err) => {
+            if ( err ) {
+              console.log(new Error(err));
+            }
+          })
+          .catch((err) => {
+            console.log(new Error(err));
+          });
+      }
+    })
+    .catch((err) => {
+      // console.log(new Error(err));
+    });
   var user = {
     userid: req.user.id,
     username: req.user.username,
