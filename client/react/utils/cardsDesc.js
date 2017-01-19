@@ -5,7 +5,8 @@ export const home = {
       descriptions: [
         'Thing 1',
         'Thing 2',
-        'Thing 3'
+        'Thing 3',
+        'Thing 4'
       ],
       button: {
         name: 'Get Started',
@@ -13,8 +14,8 @@ export const home = {
         shadowType: 'guided',
         className: 'selector guided'
       },
-      xs:4,
-      xsOffset: 2,
+      xs:6,
+      xsOffset: 0,
 
     },
     {
@@ -30,7 +31,7 @@ export const home = {
         shadowType: 'advanced',
         className: 'selector advanced'
       },
-      xs:4,
+      xs:6,
       xsOffset: 0,
 
     }

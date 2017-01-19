@@ -1,12 +1,12 @@
 const initialTasks = {
   tasks: [{
-    name: 'Task',
+    name: 'Enter Task Name',
     plugins:[]
   }],
   plugins: [],
-  cf: ['fake cf data 1', 'fake cf data 2', 'something', 'user is lame', 'upity do dah'],
+  cf: [],
   currentTask: {
-    name: 'test',
+    name: '',
     plugins: []
   }
 }

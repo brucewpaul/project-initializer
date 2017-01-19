@@ -1,9 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
 
-import { Grid, Row, Col, Button} from 'react-bootstrap';
+import { Grid, Row, Col, Button, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 import TaskButton from '../parts/TaskButton';
 import NavButton from '../parts/navButton';
@@ -15,37 +16,33 @@ import { buildButton } from '../../utils/taskBuilderDesc';
 class TaskDisplay extends React.Component {
   render () {
     return(
-      <div className='taskDisplay'>
-        <div className='taskDisplayHeader'>
-          <Button
-            onClick={()=>{
-              this.props.changeTask(addNewTask(this.props.tasks.tasks));
-            }}
-          >
-            Add Task
+      <Row className='taskDisplay'>
+        <Panel header='Task List' bsStyle="default">
+          <ListGroup fill>
+            {this.props.tasks.tasks.map((task, index)=>{
+              return (
+                <ListGroupItem key={index}><TaskButton task={task} key={index} id={index}/></ListGroupItem>
+              )
+            })}
+          </ListGroup>
+          <Button bsStyle="primary" block
+              onClick={()=>{
+                this.props.changeTask(addNewTask(this.props.tasks.tasks));
+              }}
+            >
+              Add Task
           </Button>
-          <div className='line'></div>
-        </div>
-        <div className='taskContainer'>
-        {this.props.tasks.tasks.map((task, index)=>{
-          return (
-            <Row key={index}>
-              <TaskButton task={task} key={index} id={index}/>
-            </Row>
-          )
-        })}
-        </div>
-        <div className='taskContainerFooter'>
-          <Link to='/checkout'>
-             <Button className='cartButton' onClick={()=> {
-              this.props.tasksSet(this.props.tasks.tasks);
-              this.props.setPlugin(this.props.tasks.plugins);
-            }}>
-              Build
-            </Button>
-          </Link>
-        </div>
-      </div>
+        </Panel>
+
+        <LinkContainer to='/checkout'>
+          <Button className='cartButton'  onClick={()=> {
+            this.props.tasksSet(this.props.tasks.tasks);
+            this.props.setPlugin(this.props.tasks.plugins);
+          }}>
+            Build
+          </Button>
+        </LinkContainer>
+      </Row>
     )
   }
 }
@@ -67,7 +64,7 @@ function matchDispatchToProps(dispatch) {
 function addNewTask(tasks) {
 
   var newTask = {
-    name: 'Task',
+    name: 'Enter Task Name',
     plugins:[]
   }
   tasks.push(newTask);
