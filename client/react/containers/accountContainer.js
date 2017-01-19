@@ -16,14 +16,14 @@ class AccountContainer extends React.Component {
   }
 
   deleteBundleHandler(bundleName) {
-    // axios.post(`/bundle/delete`, {
-    //   userName: this.props.options.user.userName,
-    //   bundleName: bundleName
-    //   })
     axios.post(`/bundle/delete`, {
-      userName: 'vinhvanvu',
+      userName: this.props.options.user.userName,
       bundleName: bundleName
       })
+    // axios.post(`/bundle/delete`, {
+    //   userName: 'vinhvanvu',
+    //   bundleName: bundleName
+    //   })
       .then(function(response) {
         console.log(response);
         this.getUserBundles();
@@ -34,8 +34,8 @@ class AccountContainer extends React.Component {
   }
 
   getUserBundles() {
-    // axios.get(`/bundle/${this.props.options.user.userName}`)
-    axios.get('/bundle/vinhvanvu')
+    axios.get(`/bundle/${this.props.options.user.userName}`)
+    // axios.get('/bundle/vinhvanvu')
       .then(function(response) {
         var rows = [];
         for (var i = 0; i < response.data.length; i+=4) {
