@@ -1,13 +1,13 @@
 import React from 'react';
 import CardButtonComponent from './cardButtonComponent';
 
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 class Card extends React.Component {
 
   render() {
     return(
-      <Col className ='button-description'>
+      <div className ='card-defaul button-description'>
         <h4>{this.props.card.name}</h4>
         <div className='desc-list'>
           <ul>
@@ -16,8 +16,10 @@ class Card extends React.Component {
           })}
           </ul>
         </div>
-        <CardButtonComponent data = {this.props.card.button}/>
-      </Col>
+        <Row>
+          <CardButtonComponent data={this.props.card.button}/>
+        </Row>
+      </div>
     )
   }
 }

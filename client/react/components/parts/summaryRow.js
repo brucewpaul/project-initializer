@@ -11,12 +11,12 @@ class SummaryRow extends React.Component {
   render() {
     return (
       <Row className='summary-row'>
-        <Col xs={2}>
+        <Col xs={4}>
           <div className='summary-image-wrap'>
             <Image src={this.props.summary.logo}></Image>
           </div>
         </Col>
-        <Col xs={8}>
+        <Col xs={6}>
           <h4>{this.props.summary.name}</h4>
           <ul>
             <li>{this.props.summary.desc}</li>
