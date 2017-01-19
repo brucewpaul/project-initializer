@@ -2,3 +2,7 @@
 p {
   font-family: fantasy;
 }
+
+.listHolder {
+  height: 250px;
+}
