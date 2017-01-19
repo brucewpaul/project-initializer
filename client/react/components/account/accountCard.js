@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 class AccountCard extends React.Component {
   constructor(props) {
@@ -7,7 +7,11 @@ class AccountCard extends React.Component {
   }
   render() {
     return(
-      <div>{this.props.bundleName}</div>
+      <Col xs={4}>
+        <div className='account-card'>
+          <h4>{this.props.bundle}</h4>
+        </div>
+      </Col>
     )
   }
 }

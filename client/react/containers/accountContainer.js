@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Grid } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import AccountCard from '../components/parts/accountCard.js';
+import AccountRow from '../components/account/accountRow.js';
 
 class AccountContainer extends React.Component {
   constructor(props) {
@@ -12,10 +12,15 @@ class AccountContainer extends React.Component {
     }
   }
   componentWillMount() {
-    axios.get(`/bundle/${this.props.options.user.userName}`)
+    // axios.get(`/bundle/${this.props.options.user.userName}`)
+    axios.get('/bundle/vinhvanvu')
       .then(function(response) {
+        var rows = [];
+        for (var i = 0; i < response.data.length; i+=3) {
+          rows.push([response.data[i], response.data[i+1], response.data[i+2]])
+        }
         this.setState({
-          userBundles: response.data.slice()
+          userBundles: rows
         });
       }.bind(this))
       .catch(function(error) {
@@ -25,8 +30,8 @@ class AccountContainer extends React.Component {
   render() {
     return(
       <Grid>
-        {this.state.userBundles.map(function(bundle, index) {
-          return <AccountCard key={index} bundleName={bundle}/>
+        {this.state.userBundles.map(function(bundleRow, index) {
+          return <AccountRow key={index} bundleRow={bundleRow}/>
         })}
       </Grid>
     )
