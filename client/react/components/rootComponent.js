@@ -12,7 +12,6 @@ class Root extends React.Component {
     this.state = {
       isLoggedIn: false
     }
-    console.log(this.props.location.pathname)
   }
 
   componentWillReceiveProps() {
