@@ -21,28 +21,33 @@ class SelectorDiv extends React.Component {
     }
 
     var styles = {
-      border: 'solid 2px #F2F2F2',
-      backgroundColor: '#ffffff',
-      color: '#babec5'
+      container: {
+        border: 'solid 2px #F2F2F2',
+        backgroundColor: '#ffffff'
+      },
+      text: {
+        color: '#babec5'
+      }
     };
 
     if (isSelected) {
-      styles.border = 'solid 2px #2ca01c';
-      styles.backgroundColor = '#f2fff0';
-      styles.color = '#2ca01c';
+      styles.container.border = 'solid 2px #2ca01c';
+      styles.container.backgroundColor = '#f2fff0';
+      styles.text.color = '#2ca01c';
     }
 
     return styles;
   }
   render() {
+    var styles = this.setSelectionStyle();
     return (
-      <div style={this.setSelectionStyle()} className='guidedButton'
+      <div style={styles.container} className='guidedButton'
        onClick={()=> { this.props.choice(this.props.selector.payloadName);}}>
         <div className='logo'>
           <img src={this.props.selector.image2X} />
         </div>
         <div className='title'>
-          <p>{this.props.selector.name}</p>
+          <p style={styles.text}>{this.props.selector.name}</p>
         </div>
       </div>
     )
