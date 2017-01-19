@@ -105,14 +105,12 @@ class BundleViewContainer extends React.Component {
     return(
       <Grid fluid>
         <Row className='directory-viewer'>
-          <Col xs={3}>
-            <div className='file-directory-wrap'>
-              <FileDirectory
-                setActiveTabFromFile={this.setActiveTabFromFile.bind(this)}
-                addNewTab={this.addNewTab.bind(this)}
-                setCurrentFile={this.setCurrentFile.bind(this)}
-                directoryItems={this.state.bundleContents.children}/>
-            </div>
+          <Col xs={3} className='file-directory-wrap'>
+            <FileDirectory
+              setActiveTabFromFile={this.setActiveTabFromFile.bind(this)}
+              addNewTab={this.addNewTab.bind(this)}
+              setCurrentFile={this.setCurrentFile.bind(this)}
+              directoryItems={this.state.bundleContents.children}/>
           </Col>
           <Col xs={9}>
             <FileTabs

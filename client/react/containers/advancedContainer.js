@@ -6,7 +6,7 @@ class AdvancedContainer extends React.Component {
 
   render() {
     return (
-      <Grid>
+      <Grid className='container-wrapper'>
         <Row>
           {this.props.children}
           <GuidedCartContainer />

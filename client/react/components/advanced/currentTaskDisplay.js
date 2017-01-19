@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
+import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel, Panel, Form, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { currentTask, loadCf } from '../../actions/index';
 
 import { backButton } from '../../utils/taskBuilderDesc';
@@ -17,32 +17,39 @@ class CurrentTaskDisplay extends React.Component {
   }
 
   render() {
+    var title = (
+      <Form inline>
+        <FormGroup>
+          <ControlLabel>
+            Task Name
+          </ControlLabel>
+          {' '}
+          <FormControl
+            type='text'
+            value={this.props.tasks.currentTask.name}
+            onChange={
+              (e)=>{this.props.currentTask(changeCurrentTaskName(this.props.tasks.currentTask, e.target.value))}
+            }
+            />
+        </FormGroup>
+      </Form>
+    );
 
     return (
-      <Col xsOffset={2}>
-        <div className='currentTaskDisplay'>
-          <form>
-            <FormGroup>
-              <ControlLabel>
-                Enter Task Name
-              </ControlLabel>
-              <FormControl
-                type='text'
-                value={this.props.tasks.currentTask.name}
-                onChange={
-                  (e)=>{this.props.currentTask(changeCurrentTaskName(this.props.tasks.currentTask, e.target.value))}
-                }
-                />
-            </FormGroup>
-          </form>
-          <ul>
+      <div className='currentTaskDisplay'>
+        <Panel header={title} bsStyle="default">
+          <ListGroup fill>
             {this.props.tasks.currentTask.plugins.map((plugin, index)=>{
-              return <li key={index}>{plugin}</li>
+              return <ListGroupItem key={index}>{plugin}</ListGroupItem>
             })}
-          </ul>
-        </div>
-        <NavButton button={backButton}/>
-      </Col>
+          </ListGroup>
+        </Panel>
+        <Row>
+          <Col xs={4}>
+            <NavButton button={backButton}/>
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

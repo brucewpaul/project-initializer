@@ -11,7 +11,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 class DownloadContainer extends React.Component {
   render() {
     return(
-      <Grid>
+      <Grid className='container-wrapper'>
         <div className='guidedHeader'>
           <h4>Your stack has been created</h4>
         </div>

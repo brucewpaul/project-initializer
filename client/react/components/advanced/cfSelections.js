@@ -5,7 +5,7 @@ import axios from 'axios';
 import { loadCf } from '../../actions/index';
 
 
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, ButtonToolbar } from 'react-bootstrap';
 
 import PluginButton from '../parts/pluginButton';
 
@@ -29,12 +29,14 @@ class CFselections extends React.Component {
   render() {
     return(
       <div className='cfButtons'>
-      Suggested Plugins <br/>
-        {this.props.tasks.cf.map((suggestion, index)=>{
-          return(
-            <PluginButton pluginName={suggestion} key={index}/>
-          )
-        })}
+        <p>Suggested Plugins</p>
+        <ButtonToolbar>
+          {this.props.tasks.cf.length > 0 ? this.props.tasks.cf.map((suggestion, index)=>{
+            return(
+              <PluginButton pluginName={suggestion} key={index}/>
+            )
+          }) : <div className='loading'><p>loading...</p></div>}
+        </ButtonToolbar>
       </div>
     )
   }
