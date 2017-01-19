@@ -16,9 +16,9 @@ var gulpOptions = {
 };
 
 var gulpTasks = {
-  sass: '\ngulp.task(\'build-sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  less: '\ngulp.task(\'build-less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  cssmin: '\ngulp.task(\'build-css\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  sass: '\ngulp.task(\'sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  less: '\ngulp.task(\'less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  cssmin: '\ngulp.task(\'css\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
   uglify: '\ngulp.task(\'uglify\', function () {\n  return gulp.src([\'client/assets/*.js\', \'client/assets/!*.min.js\'])\n    .pipe(gulp-uglify())\n    .pipe(extname(\'.min.js\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
   watch: ''
 };
