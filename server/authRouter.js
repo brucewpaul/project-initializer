@@ -81,10 +81,15 @@ authRouter.post('/push', function(req, res) {
   .then(function (response) {
     console.log('successful repo create\npushing files into repo');
     var rootDirectory = path.resolve(__dirname, 'bundles', req.user.username, req.body.user.projectName);
-    var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName;
+    var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName + '.git';
     var accessToken = req.user.token;
-    git.cwd(rootDirectory).addRemote('stackBear', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')
-      .push('stackBear', 'master').removeRemote('stackBear');
+    git.cwd(rootDirectory)
+      .init()
+      .addRemote('stackBear', gitHubUrl)
+      .add('.')
+      .commit('Initial commit from Stack Bear. Good luck hacking!')
+      .push('stackBear', 'master')
+      .removeRemote('stackBear');
     res.status(201).send('successful');
   })
   .catch(function(err) {
