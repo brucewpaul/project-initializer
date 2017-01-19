@@ -56,6 +56,7 @@ bundleRouter.get('/contents/:user/:id', (req, res) => {
 bundleRouter.post('/contents/:user/:id', (req, res) => {
   fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
     if (!err) {
+      // rezip folder and overwrite old zip
       res.sendStatus(200);
     } else {
       res.sendStatus(500);

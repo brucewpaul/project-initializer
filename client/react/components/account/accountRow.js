@@ -10,7 +10,13 @@ class AccountRow extends React.Component {
     return(
       <Row>
         {this.props.bundleRow.map(function(bundle, index) {
-          return <AccountCard deleteBundleHandler={this.props.deleteBundleHandler} key={index} bundle={bundle}/>
+          return (
+            <AccountCard
+              deleteBundleHandler={this.props.deleteBundleHandler}
+              downloadBundleHandler={this.props.downloadBundleHandler}
+              key={index}
+              bundle={bundle}/>
+            )
         }.bind(this))}
       </Row>
     )
