@@ -13,7 +13,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 class TaskBuildContainer extends React.Component {
   render() {
     return (
-      <Grid>
+      <Grid className='container-wrapper'>
         <Row>
           <Col xs={8}>
             <div className='guidedHeader'>

@@ -4,7 +4,7 @@ body {
   background-color: #f5f5f5;
 }
 
-#app {
+.container-wrapper {
   padding-bottom: 50px;
 }
 
@@ -697,6 +697,7 @@ body {
 
 .directory-viewer .file-directory-wrap {
   border-right: 1px solid grey;
+  background: #fff;
   padding: 30px 10px;
 }
 
@@ -714,3 +715,16 @@ body {
   padding: 2px 6px 0px 0px;
 }
 
+.DraftEditor-editorContainer {
+  background-color: #333;
+  color: #eee;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.directory-viewer pre {
+  border: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}

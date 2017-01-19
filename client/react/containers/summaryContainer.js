@@ -17,7 +17,7 @@ class SummaryContainer extends React.Component {
   render() {
     var summaries = selectionStatus(this.props.options).summaries;
     return(
-      <Grid>
+      <Grid className='container-wrapper'>
         <Row>
           <Col xs={12}>
             <Row>

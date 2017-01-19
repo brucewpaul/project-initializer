@@ -29,7 +29,7 @@ class HomePage extends React.Component {
         <Grid className='homepage-header' fluid>
           <h3><span>Stackbear</span> is a modular node.js application scaffolding tool.</h3>
         </Grid>
-        <Grid>
+        <Grid className='container-wrapper'>
           <Row className='homeButtons'>
             <Col xs={8} xsOffset={2}>
               <Row className='flexbox-container'>
