@@ -6,6 +6,8 @@ var bundler = require('./util/bundler/index.js');
 var filter = require('ger-neo4j');
 var projectView = require('./util/pv/projectView.js');
 var fs = require('fs');
+var exec = require('child_process').exec;
+
 
 bundleRouter.post('/build/', function (req, res) {
   bundler(req, function(err, folderName) {
@@ -17,6 +19,17 @@ bundleRouter.post('/build/', function (req, res) {
       filter.queueConfig({category: framework, items: packages});
 
       res.status(201).send(folderName);
+    }
+  });
+});
+
+bundleRouter.post('/delete', function(req, res) {
+  var bundlePath = path.resolve(__dirname, 'bundles', req.body.userName, req.body.bundleName);
+  exec('rm -r ' + bundlePath, function (err, stdout, stderr) {
+    if (!err) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
     }
   });
 });
