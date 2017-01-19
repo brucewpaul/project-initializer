@@ -21,6 +21,15 @@ bundleRouter.post('/build/', function (req, res) {
   });
 });
 
+bundleRouter.get('/:user', (req, res) => {
+  // get all files from the bundle folder
+  var userPath = path.resolve(__dirname, 'bundles', req.params.user);
+  var userSaves = fs.readdirSync(userPath).filter(function(file) {
+    return fs.statSync(path.join(userPath, file)).isDirectory();
+  });
+  res.send(userSaves);
+});
+
 bundleRouter.get('/:user/:id', (req, res) => {
   var fileName = req.params.id + '.tar.gz';
   res.download(path.resolve(__dirname, 'bundles', req.params.user, fileName ));
