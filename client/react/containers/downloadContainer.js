@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { download } from '../utils/cardsDesc';
 import Card from '../components/parts/card';
 import NavButton from '../components/parts/navButton';
@@ -14,7 +15,7 @@ class DownloadContainer extends React.Component {
         <div className='guidedHeader'>
           <h4>Your stack has been created</h4>
         </div>
-        <Row className='homeButtons'>
+        <Row className='homeButtons flexbox-container'>
           {download.cards.map((card, index)=>{
             if ( card.name !== 'Push to Github' ) {
               return (
@@ -31,12 +32,16 @@ class DownloadContainer extends React.Component {
             }
           })}
         </Row>
-        <Link to ='/'>
-          <Button
-            className='final-nav-btn'>
-            Home
-          </Button>
-        </Link>
+        <Row className='bottom-row'>
+          <Col xs={4}>
+            <LinkContainer to ='/'>
+              <Button
+                className='nav-button final-nav-btn'>
+                Home
+              </Button>
+            </LinkContainer>
+          </Col>
+        </Row>
       </Grid>
     )
   }
