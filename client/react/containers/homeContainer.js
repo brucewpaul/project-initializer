@@ -31,13 +31,17 @@ class HomePage extends React.Component {
         </Grid>
         <Grid>
           <Row className='homeButtons'>
-            {home.cards.map((card, index)=>{
-              return (
-                <Col xs={card.xs} xsOffset={card.xsOffset} key={index}>
-                  <Card card={card} key={index}/>
-                </Col>
-              )
-            })}
+            <Col xs={8} xsOffset={2}>
+              <Row className='flexbox-container'>
+                {home.cards.map((card, index)=>{
+                  return (
+                    <Col xs={card.xs} xsOffset={card.xsOffset} key={index}>
+                      <Card card={card} key={index}/>
+                    </Col>
+                  )
+                })}
+              </Row>
+            </Col>
           </Row>
         </Grid>
       </div>

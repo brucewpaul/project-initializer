@@ -126,10 +126,10 @@ body {
     background-color: #4990e2;
     border-color: #4990e2;
   }
-  .taskDisplay .panel-body .btn:hover, .taskDisplay .panel-body .btn:active, .taskDisplay .panel-body .btn:active:hover, .taskDisplay .panel-body .btn.active:hover, .taskDisplay .panel-body .btn.active, .taskDisplay .panel-body .btn:focus {
-      background-color: #4284d0;
-      border-color: #4284d0;
-  }
+    .taskDisplay .panel-body .btn:hover, .taskDisplay .panel-body .btn:active, .taskDisplay .panel-body .btn:active:hover, .taskDisplay .panel-body .btn.active:hover, .taskDisplay .panel-body .btn.active, .taskDisplay .panel-body .btn:focus {
+        background-color: #4284d0;
+        border-color: #4284d0;
+    }
 
 .taskDisplay button {
   border: none;
@@ -145,6 +145,20 @@ body {
     margin-top: -1%;
     background-color: #2ca01c;
     margin-left: 0%;
+}
+
+.taskDisplay .cartButton {
+    background-color: #2ca01c;
+    border-color: #2ca01c;
+  }
+    .taskDisplay .cartButton:hover, .taskDisplay .cartButton:active, .taskDisplay .cartButton:active:hover, .taskDisplay .cartButton.active:hover, .taskDisplay .cartButton.active, .taskDisplay .cartButton:focus {
+        background-color: #248217;
+        border-color: #248217;
+        color: #fff;
+    }
+
+.loading {
+  text-align: center;
 }
 
 .taskDisplay .fa{
@@ -291,6 +305,7 @@ body {
   padding: 13px;
   margin-top: 15px;
   margin-bottom: -5px;
+  bottom: 0;
 }
 
 .homeButtons .selector {
@@ -563,12 +578,12 @@ body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  overflow: hidden;
+  /*overflow: hidden;*/
   -webkit-align-items: stretch;
   align-items: stretch;
 }
 
-.flexbox-container .col-xs-4 {
+.flexbox-container > [class*='col-'] {
   flex: 1;
   align-items: strech;
 }
@@ -613,7 +628,7 @@ body {
   width: 100%;
   padding: 20px 0px 20px 0px;
   border-bottom: solid 2px #e7e7e7;
-  margin: 0;
+  /*margin: 0;*/
 }
 
 .summary-row h4 {

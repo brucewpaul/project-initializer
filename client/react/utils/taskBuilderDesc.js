@@ -12,5 +12,5 @@ export const backButton = {
   color: 'grey',
   xs:3,
   xsOffset:0,
-  className: 'navButton1'
+  className: 'nav-button nav-button navButton1'
 }

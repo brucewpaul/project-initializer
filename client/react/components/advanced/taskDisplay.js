@@ -19,9 +19,6 @@ class TaskDisplay extends React.Component {
       <Row className='taskDisplay'>
         <Panel header='Task List' bsStyle="default">
           <ListGroup fill>
-            {this.props.tasks.currentTask.plugins.map((plugin, index)=>{
-              return <ListGroupItem key={index}>{plugin}</ListGroupItem>
-            })}
             {this.props.tasks.tasks.map((task, index)=>{
               return (
                 <ListGroupItem key={index}><TaskButton task={task} key={index} id={index}/></ListGroupItem>
@@ -67,7 +64,7 @@ function matchDispatchToProps(dispatch) {
 function addNewTask(tasks) {
 
   var newTask = {
-    name: 'Task',
+    name: 'Enter Task Name',
     plugins:[]
   }
   tasks.push(newTask);

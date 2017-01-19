@@ -20,9 +20,11 @@ class SummaryContainer extends React.Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <div className='guidedHeader'>
-              <h4>Review your stack</h4>
-            </div>
+            <Row>
+              <Col xs={12} className='guidedHeader'>
+                <h4>Review your stack</h4>
+              </Col>
+            </Row>
             {summaries.filter((summary, index)=>{
               return summary.name !== null;
             }).map((summary, index)=>{
@@ -33,18 +35,12 @@ class SummaryContainer extends React.Component {
           </Col>
         </Row>
         <Row className="spacer">
-          <Col xs={12}>
-            {this.props.options.user.userName && <NameRepo/>}
-          </Col>
+          {this.props.options.user.userName && <NameRepo/>}
         </Row>
         <Row className="spacer">
-          <Col xs={12}>
-            <Col xs={4}>
-              <div className='summaryButton'
+          <Col xs={12} className='summaryButton'
                 onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
                <NavButton button={summaryNav.build} />
-              </div>
-            </Col>
           </Col>
         </Row>
       </Grid>

@@ -101,7 +101,6 @@ class AdvancedSelection extends React.Component {
         </div>
         <Row className='navButtons'>
           {advanced.buttons.map((button, index)=>{
-            console.log(button)
             if ( button.name === 'Next' && (!this.state.frontEndSelected || !this.state.backEndSelected || !this.state.taskSelected) ) {
             } else {
               return (

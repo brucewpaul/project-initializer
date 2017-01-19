@@ -44,7 +44,11 @@ class CurrentTaskDisplay extends React.Component {
             })}
           </ListGroup>
         </Panel>
-        <NavButton button={backButton}/>
+        <Row>
+          <Col xs={4}>
+            <NavButton button={backButton}/>
+          </Col>
+        </Row>
       </div>
     )
   }

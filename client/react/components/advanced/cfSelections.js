@@ -31,11 +31,11 @@ class CFselections extends React.Component {
       <div className='cfButtons'>
         <p>Suggested Plugins</p>
         <ButtonToolbar>
-          {this.props.tasks.cf.map((suggestion, index)=>{
+          {this.props.tasks.cf.length > 0 ? this.props.tasks.cf.map((suggestion, index)=>{
             return(
               <PluginButton pluginName={suggestion} key={index}/>
             )
-          })}
+          }) : <div className='loading'><p>loading...</p></div>}
         </ButtonToolbar>
       </div>
     )
