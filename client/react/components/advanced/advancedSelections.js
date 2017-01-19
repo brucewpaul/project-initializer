@@ -41,58 +41,64 @@ class AdvancedSelection extends React.Component {
 
   render() {
     return(
-      <Col xs={6} xsOffset={1}>
+      <Col xs={8}>
         <div className='guidedHeader'>
           <h4>{advanced.header}</h4>
         </div>
-        <Row>
-          <Col>
-          <div className='advancedHeader'>
-            <h4>{advanced.front}</h4>
-          </div>
-          {frontEnd.selectors.map((selector, index)=>{
-            return (
-              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
-                <div onClick={this.haveSelectedFrontEnd.bind(this)} key={index}>
-                  <SelectorDiv selector={selector} choice={this.props.selectFramework.bind(this)} key={index}/>
-                </div>
-              </Col>
-            )
-          })}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <div className='advancedHeader'>
-            <h4>{advanced.back}</h4>
-          </div>
-          {backEnd.selectors.map((selector, index)=>{
-            return (
-              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
-                <div onClick={this.haveSelectedBackEnd.bind(this)} key={index}>
-                  <SelectorDiv selector={selector} choice={this.props.selectDatabase.bind(this)} key={index}/>
-                </div>
-              </Col>
-            )
-          })}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          <div className='advancedHeader'>
-            <h4>{advanced.task}</h4>
-          </div>
-          {task.selectors.map((selector, index)=>{
-            return (
-              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
-                <div onClick={this.haveSelectedTask.bind(this)} key={index}>
-                  <SelectorDiv selector={selector} choice={this.props.taskRunner.bind(this)} key={index}/>
-                </div>
-              </Col>
-            )
-          })}
-          </Col>
-        </Row>
+
+        <div className='advanced-container'>
+          <Row>
+            <div className='advancedHeader'>
+              <h4>{advanced.front}</h4>
+            </div>
+          </Row>
+          <Row>
+            {frontEnd.selectors.map((selector, index)=>{
+              return (
+                <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+                  <div onClick={this.haveSelectedFrontEnd.bind(this)} key={index}>
+                    <SelectorDiv selector={selector} choice={this.props.selectFramework.bind(this)} key={index}/>
+                  </div>
+                </Col>
+              )
+            })}
+          </Row>
+        </div>
+
+        <div className='advanced-container'>
+          <Row>
+            <div className='advancedHeader'>
+              <h4>{advanced.back}</h4>
+            </div>
+          </Row>
+          <Row>
+            {backEnd.selectors.map((selector, index)=>{
+              return (
+                <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+                  <div onClick={this.haveSelectedBackEnd.bind(this)} key={index}>
+                    <SelectorDiv selector={selector} choice={this.props.selectDatabase.bind(this)} key={index}/>
+                  </div>
+                </Col>
+              )
+            })}
+          </Row>
+        </div>
+        <div className='advanced-container'>
+          <Row>
+            <div className='advancedHeader'>
+              <h4>{advanced.task}</h4>
+            </div>
+            {task.selectors.map((selector, index)=>{
+              return (
+                <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+                  <div onClick={this.haveSelectedTask.bind(this)} key={index}>
+                    <SelectorDiv selector={selector} choice={this.props.taskRunner.bind(this)} key={index}/>
+                  </div>
+                </Col>
+              )
+            })}
+          </Row>
+        </div>
         <Row className='navButtons'>
           {advanced.buttons.map((button, index)=>{
             console.log(button)

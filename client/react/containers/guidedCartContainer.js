@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
-import { Button, Col} from 'react-bootstrap';
+import { Button, Row, Col} from 'react-bootstrap';
 
 class GuidedCart extends React.Component {
 
@@ -12,12 +13,16 @@ class GuidedCart extends React.Component {
           <h4>Cart</h4>
         </div>
         <div className='line'></div>
-        <span> Front-end </span> <span className='choiceWord'>{this.props.options.frontEnd.framework || ''}</span><br/>
-          <span> Database {this.props.options.backEnd.database || ''}</span><br/>
-          <span> Task Runner  {this.props.options.devTools.taskRunner.name || ''}</span><br/>
-        <Link to='/checkout'>
-          <Button className='cartButton'>Build</Button>
-        </Link>
+        {this.props.options.frontEnd.framework ? <span> Front-end <span className='choiceWord'>{this.props.options.frontEnd.framework}</span></span> : <span className="disabled"> Front-end </span> }<br/>
+        <div className='line-low'></div>
+        {this.props.options.backEnd.database ?  <span>Database <span className='choiceWord'>{this.props.options.backEnd.database}</span></span>: <span className="disabled">Database</span> }
+        <div className='line-low'></div>
+        {this.props.options.devTools.taskRunner.name ? <span>Task Runner <span className='choiceWord'> {this.props.options.devTools.taskRunner.name}</span></span> : <span className="disabled">Task Runner <span className='choiceWord'> {this.props.options.devTools.taskRunner.name}</span></span> }
+        <Row>
+          <LinkContainer to='/checkout'>
+            <Button className={!this.props.options.devTools.taskRunner.name || !this.props.options.backEnd.database || !this.props.options.frontEnd.framework ? 'disabled cartButton' : 'cartButton'}>Build</Button>
+          </LinkContainer>
+        </Row>
       </Col>
     )
   }

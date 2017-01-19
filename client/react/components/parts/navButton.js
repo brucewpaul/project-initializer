@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
 
 class NavButton extends React.Component {
 
   render() {
     return(
-      <Link to={this.props.button.link}>
-        <Button className={this.props.button.className} bsSize='large'>
+      <LinkContainer to={this.props.button.link}>
+        <Button className={this.props.button.className}>
           {this.props.button.name}
         </Button>
-      </Link>
+      </LinkContainer>
     )
   }
 }

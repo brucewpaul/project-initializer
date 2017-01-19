@@ -34,17 +34,17 @@ export const frontEnd = {
       name: 'Home',
       link: '/',
       color: 'grey',
-      xs:3,
+      xs:4,
       xsOffset:0,
-      className: 'navButton1'
+      className: 'nav-button navButton1'
     },
     {
       name: 'Next',
       link: '/backend',
       color: 'blue',
-      xs:3,
-      xsOffset:6,
-      className: 'navButton2'
+      xs:4,
+      xsOffset:4,
+      className: 'nav-button navButton2'
     }
   ]
 }
@@ -58,7 +58,7 @@ export const backEnd = {
       image3X:'',
       name: 'Mongo',
       payloadName: 'Mongo',
-      xs: 4,
+      xs: 6,
       xsOffset: 0
     },
     {
@@ -67,7 +67,7 @@ export const backEnd = {
       image3X:'',
       name: 'Sqlite',
       payloadName: 'Sqlite',
-      xs: 4,
+      xs: 6,
       xsOffset: 0
     }
   ],
@@ -75,10 +75,10 @@ export const backEnd = {
     {
       name: 'Back',
       link: '/guided',
-      color: 'grey',
+      color: 'primary',
       xs:3,
       xsOffset:0,
-      className: 'navButton1'
+      className: 'nav-button navButton1'
     },
     {
       name: 'Next',
@@ -86,7 +86,7 @@ export const backEnd = {
       color: 'blue',
       xs:3,
       xsOffset:6,
-      className: 'navButton2'
+      className: 'nav-button navButton2'
     }
   ]
 }
@@ -100,7 +100,7 @@ export const task = {
       image3X:'',
       name: 'Gulp',
       payloadName: 'Gulp',
-      xs: 4,
+      xs: 6,
       xsOffset: 0
     },
     {
@@ -109,7 +109,7 @@ export const task = {
       image3X:'',
       name: 'Grunt',
       payloadName: 'Grunt',
-      xs: 4,
+      xs: 6,
       xsOffset: 0
     }
   ],
@@ -120,7 +120,7 @@ export const task = {
       color: 'grey',
       xs:3,
       xsOffset:0,
-      className: 'navButton1'
+      className: 'nav-button navButton1'
     },
     {
       name: 'Next',
@@ -128,7 +128,7 @@ export const task = {
       color: 'blue',
       xs:3,
       xsOffset:6,
-      className: 'navButton2'
+      className: 'nav-button navButton2'
     }
   ]
 }
@@ -145,7 +145,7 @@ export const advanced ={
       color: 'grey',
       xs:3,
       xsOffset:0,
-      className: 'navButton1'
+      className: 'nav-button nav-button navButton1'
     },
     {
       name: 'Next',
@@ -153,7 +153,7 @@ export const advanced ={
       color: 'blue',
       xs:3,
       xsOffset:6,
-      className: 'navButton2'
+      className: 'nav-button navButton2'
     }
   ]
 }

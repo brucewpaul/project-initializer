@@ -13,8 +13,8 @@ export const home = {
         shadowType: 'guided',
         className: 'selector guided'
       },
-      xs:3,
-      xsOffset: 3,
+      xs:4,
+      xsOffset: 2,
 
     },
     {
@@ -30,7 +30,7 @@ export const home = {
         shadowType: 'advanced',
         className: 'selector advanced'
       },
-      xs:3,
+      xs:4,
       xsOffset: 0,
 
     }

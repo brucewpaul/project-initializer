@@ -16,7 +16,7 @@ class GuidedBackend extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDisabled: true,
+      isDisabled: this.props.options.backEnd.database ? false : true,
     }
   }
 
@@ -28,7 +28,7 @@ class GuidedBackend extends React.Component {
 
   render() {
     return (
-      <Col xs={6} xsOffset={1}>
+      <Col xs={8}>
         <div className='guidedHeader'>
           <h4>{backEnd.header}</h4>
         </div>

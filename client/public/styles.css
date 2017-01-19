@@ -4,8 +4,12 @@ body {
   background-color: #f5f5f5;
 }
 
+#app {
+  padding-bottom: 50px;
+}
+
 .navbar {
-  padding: 10px;
+  padding-top: 10px;
 }
 
 .navbar a.navbar-brand {
@@ -72,24 +76,38 @@ body {
 }
 
 .cart {
-  width: 240px;
-  height: 245px;
+  /*width: 240px;
+  height: 245px;*/
   border-radius: 10px;
   background-color: #ffffff;
+  margin-top: 70px;
 }
 
-.cartButton {
-    width: 114%;
+.cart .row {
+  margin-top:20px;
+}
+
+.cartButton, .cartButton.active {
+    width: 100%;
     border-radius: 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border: none;
     font-family: 'Roboto Mono';
     font-weight: bold;
-    padding: 13px;
-    margin-top: 32%;
+    padding: 15px;
+    margin-bottom: -5px;
     background-color: #2ca01c;
-    margin-left: -7%;
+    color: #fff;
+}
+.cartButton:hover, .cartButton:active, .cartButton:active:hover, .cartButton:focus {
+  background-color: #248217;
+  color: #fff;
+}
+
+.cartButton.disabled {
+  background-color: #666;
+  cursor: not-allowed;
 }
 
 .taskDisplay {
@@ -204,7 +222,7 @@ body {
     background-color: #ffffff;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 0px;
+    padding: 15px 15px 0;
 }
 
 .homeButtons .button-description h4 {
@@ -228,7 +246,7 @@ body {
   border-bottom-right-radius: 10px;
   border: none;
   font-family: 'Roboto Mono';
-  font-size: 12px;
+  /*font-size: 14px;*/
   font-weight: bold;
   color: #ffffff;
   padding: 13px;
@@ -244,20 +262,33 @@ body {
   border-bottom-right-radius: 10px;
   border: none;
   font-family: 'Roboto Mono';
-  font-size: 12px;
+  /*font-size: 12px;*/
   font-weight: bold;
   color: #ffffff;
   padding: 15px;
   z-index: 1;
 }
 
-.homeButtons .selector.guided {
-  background-color: #2ca01c;
-}
 
-.homeButtons .selector.advanced {
-  background-color: #f6a623;
+.homeButtons .selector.guided, .homeButtons .selector.guided.active {
+  background-color: #2ca01c;
+  box-shadow: inset 0 0  0 rgba(0,0,0,0);
 }
+  .homeButtons .selector.guided:hover, .homeButtons .selector.guided:active, .homeButtons .selector.guided.active:hover, .homeButtons .selector.guided:focus {
+    background-color: #248217;
+    color: #fff;
+    box-shadow: inset 0 0  0 rgba(0,0,0,0);
+  }
+
+.homeButtons .selector.advanced, .homeButtons .selector.advanced.active {
+  background-color: #f6a623;
+  box-shadow: inset 0 0  0 rgba(0,0,0,0);
+}
+  .homeButtons .selector.advanced:hover, .homeButtons .selector.advanced:active, .homeButtons .selector.advanced.active:hover, .homeButtons .selector.advanced:focus {
+    background-color: #de9620;
+    color: #fff;
+    box-shadow: inset 0 0  0 rgba(0,0,0,0);
+  }
 
 .homeButtons .button-shadow {
   width: 100%;
@@ -286,7 +317,7 @@ body {
 .guidedHeader {
   width: 100%;
   border-bottom: 2px solid #d8d8d8;
-  margin-bottom: 1%
+  margin-bottom: 30px;
 }
 
 .guidedHeader h4 {
@@ -294,6 +325,10 @@ body {
   font-size: 24px;
   color: #404040;
   margin: 70px 0px 20px 0px;
+}
+
+.advanced-container {
+  margin-bottom: 30px;
 }
 
 .advancedHeader {
@@ -317,6 +352,7 @@ body {
   width: 100%;
   border-radius: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .guidedButton .title, .guidedButton .logo {
@@ -347,12 +383,12 @@ body {
 }
 
 .cartHeader {
-  height: 50px;
+  /*height: 50px;*/
 }
 
 .cartHeader h4 {
-  width: 58px;
-  height: 32px;
+  /*width: 58px;
+  height: 32px*/;
   font-family: 'Roboto Mono';
   font-size: 24px;
   font-weight: normal;
@@ -360,12 +396,16 @@ body {
   font-stretch: normal;
   color: #404040;
   margin-top: 20px;
-  margin-left: 10px;
+  margin-bottom: 15px;
+}
+
+.cart .disabled {
+  color: #babec5;
 }
 
 .cart span {
   font-family: 'Roboto Mono';
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -373,13 +413,25 @@ body {
   text-align: right;
 }
 .choiceWord {
-
+  float: right;
 }
 
 .line {
-  width: 200px;
+  width: 100%;
   height: 2px;
   border: solid 1px #d8d8d8;
+  margin: 5px 0 15px;
+}
+
+.line-low {
+  width: 100%;
+  height: 1px;
+  border: solid 1px #f3f3f3;
+  margin: 5px 0 15px;
+}
+
+.navButtons  {
+  margin-top: 30px;
 }
 
 .navButtons .navButton-wrap {
@@ -418,57 +470,75 @@ body {
   background-color: #4990e2;
 }
 
-.navButton1 {
-  margin-top: 40px;
+.nav-button {
+  padding: 10px 15px;
+  width: 100%;
+  cursor: pointer;
+  border-style: solid;
+  font-size: 16px;
   font-family: 'Roboto Mono';
-  font-size: 14px;
-  color: #ffffff;
   border-radius: 5px;
-  background-color: #4990e2;
+}
+  .nav-button:hover, .nav-button:active, .nav-button:active:hover, .nav-button.active:hover, .nav-button.active, .nav-button:focus {
+    color: #ffffff;
+    box-shadow: inset 0 0  0 rgba(0,0,0,0);
+  }
+
+.navButton1, .navButton1.active {
+  color: #ffffff;
+  background-color: #d8d8d8;
+  border-color: #d8d8d8;
   float: left;
 }
+  .navButton1:hover, .navButton1:active, .navButton1:active:hover, .navButton1.active:hover, .navButton1:focus {
+    background-color: #cdcdcd;
+    border-color: #cdcdcd;
+  }
 
 .navButton2 {
-  margin-top: 40px;
-  font-family: 'Roboto Mono';
-  font-size: 14px;
   color: #ffffff;
-  border-radius: 5px;
   background-color: #4990e2;
+  border-color: #4990e2;
   float: right;
 }
+  .navButton2:hover, .navButton2:active, .navButton2:active:hover,  .navButton2.active:hover, .navButton2.active, .navButton2:focus {
+    background-color: #4284d0;
+    border-color: #4284d0;
+  }
 
 .navButton3 {
-  margin-top: 40px;
-  font-family: 'Roboto Mono';
-  font-size: 14px;
   color: #ffffff;
-  border-radius: 5px;
   background-color: #4990e2;
   float: left;
 }
+  .navButton3:hover, .navButton3:active, .navButton3:active:hover,  .navButton3.active:hover, .navButton3.active, .navButton3:focus {
+    background-color: #4284d0;
+    border-color: #4284d0;
+  }
 
 .optionsView .row {
   margin-bottom: 20px;
 }
 
+.spacer {
+  margin: 15px 0;
+}
+
+.spacer .guidedHeader h4 {
+  margin-top: 30px;
+}
+
 .summary-image-wrap {
-  min-width: 105px;
-  min-height: 160px;
   background-color: #ffffff;
-  position: relative;
   border-radius: 10px;
+  padding: 30px 10px;
 }
 
 .summary-image-wrap img {
-  position:absolute;
-  top:0;
-  bottom:0;
-  left: 0;
-  right: 0;
-  margin:auto;
-  max-height: 110px;
-  max-width: 110px;
+  max-width: 100%;
+  width: auto;
+  margin: auto;
+  display: block;
 }
 
 .summary-row {

@@ -6,10 +6,12 @@ class GuidedContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.props.children}
-        <GuidedCartContainer />
-      </div>
+      <Grid>
+        <Row>
+          {this.props.children}
+          <GuidedCartContainer />
+        </Row>
+      </Grid>
     )
   }
 }

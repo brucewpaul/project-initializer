@@ -35,7 +35,7 @@ export const summaryNav = {
     color: 'grey',
     xs:0,
     xsOffset:0,
-    className: 'navButton3'
+    className: 'nav-button navButton3'
   },
   view: {
     name: 'View Project',
