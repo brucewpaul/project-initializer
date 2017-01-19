@@ -14,6 +14,7 @@ class AccountRow extends React.Component {
             <AccountCard
               deleteBundleHandler={this.props.deleteBundleHandler}
               downloadBundleHandler={this.props.downloadBundleHandler}
+              viewBundleHandler={this.props.viewBundleHandler}
               key={index}
               bundle={bundle}/>
             )

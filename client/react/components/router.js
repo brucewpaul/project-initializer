@@ -36,6 +36,7 @@ const routes = (
         <Route path='/task' component={TaskBuildContainer} />
         <Route path ='/checkout' component={SummaryContainer}/>
         <Route path ='/view' component={BundleViewContainer}/>
+        <Route path ='/view/:userName/:bundleId' component={BundleViewContainer}/>
         <Route path ='/download' component={DownloadContainer}/>
       </Route>
     </Router>

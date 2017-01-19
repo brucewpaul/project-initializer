@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import AccountRow from '../components/account/accountRow.js';
 
@@ -20,10 +21,6 @@ class AccountContainer extends React.Component {
       userName: this.props.options.user.userName,
       bundleName: bundleName
       })
-    // axios.post(`/bundle/delete`, {
-    //   userName: 'vinhvanvu',
-    //   bundleName: bundleName
-    //   })
       .then(function(response) {
         console.log(response);
         this.getUserBundles();
@@ -33,14 +30,16 @@ class AccountContainer extends React.Component {
       })
   }
 
+  viewBundleHandler(bundleName) {
+    browserHistory.push(`/view/${this.props.options.user.userName}/${bundleName}`);
+  }
+
   downloadBundleHandler(bundleName) {
     window.location.assign(`/bundle/${this.props.options.user.userName}/${bundleName}`)
-    // window.location.assign(`/bundle/vinhvanvu/${bundleName}`);
   }
 
   getUserBundles() {
     axios.get(`/bundle/${this.props.options.user.userName}`)
-    // axios.get('/bundle/vinhvanvu')
       .then(function(response) {
         var rows = [];
         for (var i = 0; i < response.data.length; i+=4) {
@@ -64,6 +63,7 @@ class AccountContainer extends React.Component {
               key={index}
               downloadBundleHandler={this.downloadBundleHandler.bind(this)}
               deleteBundleHandler={this.deleteBundleHandler.bind(this)}
+              viewBundleHandler={this.viewBundleHandler.bind(this)}
               bundleRow={bundleRow}/>
           )
         }.bind(this))}
