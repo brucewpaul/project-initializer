@@ -1,0 +1,43 @@
+{
+  "name": "31",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/burly-bulls/project-initializer.git",
+  "author": "Burly Bulls",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node server/server.js",
+    "start-nodemon": "nodemon server/server.js",
+    "start-webpack": "webpack --config config.webpack.js --watch --colors --progress",
+    "test": "mocha ./Test/React/.babelSetup.js ./Test/React/reactTest.jsx ./Test/ --recursive"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "body-parser": "^1.15.2",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "axios": "^0.15.3",
+    "mongoose": "^4.7.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-extname": "^0.2.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "nodemon": "^1.11.0",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "webpack": "^1.14.0",
+    "babel": "^6.5.2",
+    "babel-register": "^6.18.0",
+    "jsdom": "^9.9.1",
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "enzyme": "^2.7.0",
+    "react-addons-test-utils": "^15.4.2"
+  }
+}
