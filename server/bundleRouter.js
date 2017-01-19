@@ -57,7 +57,13 @@ bundleRouter.post('/contents/:user/:id', (req, res) => {
   fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
     if (!err) {
       // rezip folder and overwrite old zip
-      res.sendStatus(200);
+      exec(`cd server/bundles/${req.params.user}/ && tar -zcvf ${req.params.id}.tar.gz ${req.params.id}`, (error, stdout, stderr) => {
+        if (error) {
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      });
     } else {
       res.sendStatus(500);
     }

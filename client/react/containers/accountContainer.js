@@ -34,13 +34,13 @@ class AccountContainer extends React.Component {
   }
 
   downloadBundleHandler(bundleName) {
-    // window.location.assign(`/bundle/${this.props.options.user.userName}/${bundleName}`)
-    window.location.assign(`/bundle/vinhvanvu/${bundleName}`);
+    window.location.assign(`/bundle/${this.props.options.user.userName}/${bundleName}`)
+    // window.location.assign(`/bundle/vinhvanvu/${bundleName}`);
   }
 
   getUserBundles() {
-    // axios.get(`/bundle/${this.props.options.user.userName}`)
-    axios.get('/bundle/vinhvanvu')
+    axios.get(`/bundle/${this.props.options.user.userName}`)
+    // axios.get('/bundle/vinhvanvu')
       .then(function(response) {
         var rows = [];
         for (var i = 0; i < response.data.length; i+=4) {
