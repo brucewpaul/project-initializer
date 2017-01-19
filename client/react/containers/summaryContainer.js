@@ -19,7 +19,7 @@ class SummaryContainer extends React.Component {
     return(
       <Grid className='container-wrapper'>
         <Row>
-          <Col xs={12}>
+          <Col xs={8}>
             <Row>
               <Col xs={12} className='guidedHeader'>
                 <h4>Review your stack</h4>
@@ -33,14 +33,17 @@ class SummaryContainer extends React.Component {
               )
             })}
           </Col>
-        </Row>
-        <Row className="spacer">
-          {this.props.options.user.userName && <NameRepo/>}
-        </Row>
-        <Row className="spacer">
-          <Col xs={12} className='summaryButton'
-                onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
-               <NavButton button={summaryNav.build} />
+          <Col xs={3} xsOffset={1}>
+            <div className='guidedHeader'>
+              <h4>When You're Ready</h4>
+            </div>
+
+            {this.props.options.user.userName && <NameRepo/>}
+
+            <div xs={12} className='summaryButton'
+                  onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
+                 <NavButton button={summaryNav.build} />
+            </div>
           </Col>
         </Row>
       </Grid>

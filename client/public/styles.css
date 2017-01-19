@@ -64,6 +64,19 @@ body {
 
 .desc-list {
   padding: 5px 10px;
+  font-size: 16px;
+}
+
+.intro {
+  text-align:center;
+  margin-bottom: 70px;
+  font-weight: 26px;
+}
+
+.home-footer {
+  text-align:center;
+  margin-top: 100px;
+  font-weight: 26px;
 }
 
 .viewProject {
@@ -264,7 +277,7 @@ body {
 }
 
 .homeButtons {
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 .homeButtons .button-description {
@@ -536,6 +549,24 @@ body {
   .nav-button:hover, .nav-button:active, .nav-button:active:hover, .nav-button.active:hover, .nav-button.active, .nav-button:focus {
     color: #ffffff;
     box-shadow: inset 0 0  0 rgba(0,0,0,0);
+  }
+
+.home-btn, .home-btn.active {
+  width: auto;
+  background-color: #444;
+  border-color: #444;
+  font-size: 18px;
+  margin-top: 5px;
+  color: #fff;
+}
+  .home-btn i {
+    float: left;
+    margin-right: 10px;
+  }
+  .home-btn:hover, .home-btn:active, .home-btn:focus, .home-btn:active:hover, .home-btn.active:hover, .home-btn.active:focus {
+    background-color: #2b2b2b;
+    border-color: #2b2b2b;
+    color: #fff;
   }
 
 .navButton1, .navButton1.active {
