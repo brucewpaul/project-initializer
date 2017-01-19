@@ -728,3 +728,35 @@ body {
   margin: 0;
   border-radius: 0;
 }
+
+.account-card {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  height: 150px;
+  margin-top: 20px;
+  border: solid 2px #F2F2F2;
+  padding: 30px;
+  font-family: 'Roboto Mono';
+}
+
+.account-card h4 {
+  text-align: center;
+  font-size: 2em;
+  margin: 0;
+}
+
+.account-card .fa-buttons {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.account-card .fa {
+  float: left;
+  padding: 0px 15px;
+}
+
+.account-card .fa-trash {
+  padding-bottom: 4px;
+}

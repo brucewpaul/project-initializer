@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import axios from 'axios';
-
+import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -25,13 +25,13 @@ class Root extends React.Component {
 
   render() {
 
-    var button;
+    var logButton;
 
     if ( this.props.location.pathname === '/' ) {
       if (this.state.isLoggedIn) {
-        button = <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem>
+        logButton = <NavItem eventKey={1} onClick={()=>{ logoutToGit(); }} >Logout</NavItem>
       } else {
-        button = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
+        logButton = <NavItem eventKey={1} onClick={()=>{ loginToGit(); }} >Login</NavItem>
       }
     }
 
@@ -40,7 +40,8 @@ class Root extends React.Component {
         <Navbar>
           {this.props.location.pathname !== '/' ? <Navbar.Header><Navbar.Brand><Link to='/'>Stackbear</Link></Navbar.Brand></Navbar.Header> : null}
           <Nav pullRight>
-            {button}
+            {this.state.isLoggedIn && <NavItem eventKey={0} onClick={()=>{browserHistory.push('/account')}}>Account</NavItem>}
+            {logButton}
           </Nav>
           {this.props.options.user.userName ? <Navbar.Text pullRight>Welcome {this.props.options.user.userName}!</Navbar.Text> : null}
         </Navbar>

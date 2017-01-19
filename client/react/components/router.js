@@ -6,6 +6,7 @@ import SummaryContainer from '../containers/summaryContainer';
 import DownloadContainer from '../containers/downloadContainer';
 import AdvancedContainer from '../containers/advancedContainer';
 import BundleViewContainer from '../containers/bundleViewContainer';
+import AccountContainer from '../containers/accountContainer';
 import RootComponent from './rootComponent';
 import GuidedFrontend from '../components/guided/guidedFrontend';
 import GuidedBackend from '../components/guided/guidedBackend';
@@ -23,7 +24,8 @@ const routes = (
     <Router history ={browserHistory} >
       <Route path='/' component={RootComponent}>
         <IndexRoute component={HomePage}/>
-        <Route path ='/guided' component={GuidedContainer}>
+        <Route path='/account' component={AccountContainer}/>
+        <Route path='/guided' component={GuidedContainer}>
           <IndexRoute component={GuidedFrontend}/>
           <Route path='/backend' component={GuidedBackend}/>
           <Route path='/taskrunner' component={GuidedTaskRunner}/>
@@ -34,6 +36,7 @@ const routes = (
         <Route path='/task' component={TaskBuildContainer} />
         <Route path ='/checkout' component={SummaryContainer}/>
         <Route path ='/view' component={BundleViewContainer}/>
+        <Route path ='/view/:userName/:bundleId' component={BundleViewContainer}/>
         <Route path ='/download' component={DownloadContainer}/>
       </Route>
     </Router>

@@ -19,6 +19,7 @@ class BundleViewContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.params.userName, this.props.params.bundleId)
     this.getDirectory();
   }
 
@@ -68,11 +69,9 @@ class BundleViewContainer extends React.Component {
   setActiveTabFromFile(selectedFile) {
     this.state.tabs.forEach(function(tab, index) {
       if (tab.fileId === selectedFile.fileId) {
-        console.log(index);
         this.setState({
           activeTabKey: index
         }, function() {
-          // console.log(this.state.activeTabKey);
           this.setCurrentFile(this.state.tabs[index]);
         }.bind(this));
       }
@@ -90,7 +89,11 @@ class BundleViewContainer extends React.Component {
   }
 
   getDirectory() {
-    axios.get(`/bundle/contents/${this.props.options.bundleId}`)
+    var bundleUrl = `/bundle/contents/${this.props.options.bundleId}`;
+    if (this.props.params.userName) {
+      bundleUrl = `/bundle/contents/${this.props.params.userName}/${this.props.params.bundleId}`
+    }
+    axios.get(bundleUrl)
       .then(function(response) {
         this.setState({
           bundleContents: response.data
