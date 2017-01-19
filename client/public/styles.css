@@ -111,10 +111,25 @@ body {
 }
 
 .taskDisplay {
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
   border-radius: 10px;
+  padding: 0;
   font-family: 'Roboto Mono';
+  margin-top: 100px;
 }
+
+.taskDisplay .panel {
+  margin-bottom: 0;
+}
+  .taskDisplay .panel-body .btn {
+    margin: 15px 0;
+    background-color: #4990e2;
+    border-color: #4990e2;
+  }
+  .taskDisplay .panel-body .btn:hover, .taskDisplay .panel-body .btn:active, .taskDisplay .panel-body .btn:active:hover, .taskDisplay .panel-body .btn.active:hover, .taskDisplay .panel-body .btn.active, .taskDisplay .panel-body .btn:focus {
+      background-color: #4284d0;
+      border-color: #4284d0;
+  }
 
 .taskDisplay button {
   border: none;
@@ -144,12 +159,22 @@ body {
 
 .taskDisplayHeader {
   text-align: center;
-  margin-top: -35px;
 }
+  .taskDisplayHeader h3 {
+    margin-top: 0;
+  }
 
-.taskDisplayHeader button {
-    font-size: 24px;
+.taskContainer button.btn {
+  /*font-size: 24px;*/
+  background-color: #4990e2;
+  border-color: #4990e2;
+  margin-top: 30px;
+  float: right;
 }
+  .taskContainer button:hover, .taskContainer button:active, .taskContainer button:active:hover, .taskContainer button.active:hover, .taskContainer button.active, .taskContainer button:focus {
+      background-color: #4284d0;
+      border-color: #4284d0;
+  }
 
 .taskContainerFooter {
   text-align: center;
@@ -157,23 +182,32 @@ body {
 
 .currentTaskDisplay {
   margin-top: 50px;
-  border-radius: 10px;
+  /*border-radius: 10px;
   background-color: #ffffff;
-  width: 500px;
-  height: 200px;
+  width: 100%;
+  min-height: 200px;
   font-family: 'Roboto Mono';
-  padding: 10px
+  padding: 10px*/
 }
 
 .currentTaskDisplay label {
-    margin-left: 1%;
-    margin-top: 1%;
+    /*margin-left: 1%;
+    margin-top: 1%;*/
 }
 
 .currentTaskDisplay .form-group {
-      background: #4990e2;
+      /*background: #4990e2;*/
 }
 
+.btn-toolbar .btn {
+  margin-bottom: 5px;
+}
+
+.panel-default>.panel-heading {
+  border-color: #4990e2;
+  background-color: #4990e2;
+  color: #fff;
+}
 .cfButtons {
   font-family: 'Roboto Mono';
 }
