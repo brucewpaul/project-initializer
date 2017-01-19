@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { projectName } from '../../actions/index';
 
-import {  FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Col, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class NameRepo extends React.Component {
   render() {
@@ -14,18 +14,20 @@ class NameRepo extends React.Component {
           <div className='guidedHeader'>
             <h4>Name your project</h4>
           </div>
-          <form>
-            <FormGroup>
-              <ControlLabel>
-                Enter your project name
-              </ControlLabel>
-              <FormControl
-                type='text'
-                value={this.props.options.user.projectName || ''}
-                onChange={(e)=> this.props.projectName(e.target.value)}
-              />
-            </FormGroup>
-          </form>
+          <Col xs={12}>
+            <form>
+              <FormGroup>
+                <ControlLabel>
+                  Enter your project name
+                </ControlLabel>
+                <FormControl
+                  type='text'
+                  value={this.props.options.user.projectName || ''}
+                  onChange={(e)=> this.props.projectName(e.target.value)}
+                />
+              </FormGroup>
+            </form>
+          </Col>
         </div>
       )
     }

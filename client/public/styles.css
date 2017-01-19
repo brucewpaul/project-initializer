@@ -215,14 +215,19 @@ body {
     font-weight: bold;
 }
 
+.homeButtons {
+  padding-top: 60px;
+}
+
 .homeButtons .button-description {
-    margin-top: 60px;
     width: 100%;
     /*height: 216px;*/
     background-color: #ffffff;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 15px 15px 0;
+    padding: 15px 15px 50px;
+    height: 100%;
+    position: relative;
 }
 
 .homeButtons .button-description h4 {
@@ -255,7 +260,7 @@ body {
 }
 
 .homeButtons .selector {
-  position: relative;
+  position: absolute;
   width: 100%;
   border-radius: 0px;
   border-bottom-left-radius: 10px;
@@ -495,7 +500,7 @@ body {
     border-color: #cdcdcd;
   }
 
-.navButton2 {
+.navButton2, .navButton2.active {
   color: #ffffff;
   background-color: #4990e2;
   border-color: #4990e2;
@@ -506,7 +511,7 @@ body {
     border-color: #4284d0;
   }
 
-.navButton3 {
+.navButton3, .navButton3.active {
   color: #ffffff;
   background-color: #4990e2;
   float: left;
@@ -516,12 +521,41 @@ body {
     border-color: #4284d0;
   }
 
+.bottom-row {
+  margin-top:60px;
+}
+
+.flexbox-container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+
+.flexbox-container .col-xs-4 {
+  flex: 1;
+  align-items: strech;
+}
+
+.final-nav-btn, .final-nav-btn.active {
+  color: #ffffff;
+  background-color: #d8d8d8;
+  border-color: #d8d8d8;
+}
+  .final-nav-btn:hover, .final-nav-btn:active, .final-nav-btn:active:hover,  .final-nav-btn.active:hover, .final-nav-btn.active, .final-nav-btn:focus {
+    background-color: #cdcdcd;
+    border-color: #cdcdcd;
+  }
+
 .optionsView .row {
   margin-bottom: 20px;
 }
 
 .spacer {
-  margin: 15px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .spacer .guidedHeader h4 {
@@ -578,7 +612,7 @@ body {
   padding: 10px;
 }
 
-.summary-download-btn,
+/*.summary-download-btn,
 .summary-download-btn:hover,
 .final-nav-btn,
 .final-nav-btn:hover {
@@ -601,7 +635,7 @@ body {
   border-radius: 5px;
   background-color: #4990e2;
   float: left;
-}
+}*/
 
 .fa-times {
   font-size: 14px;

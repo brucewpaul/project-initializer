@@ -7,7 +7,7 @@ class Card extends React.Component {
 
   render() {
     return(
-      <div className ='card-defaul button-description'>
+      <div className ='card-default button-description'>
         <h4>{this.props.card.name}</h4>
         <div className='desc-list'>
           <ul>
