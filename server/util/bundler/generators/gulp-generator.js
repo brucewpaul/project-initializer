@@ -40,14 +40,10 @@ function createGulpFile (options) {
   _.forEach(options.devTools.taskRunner.plugins, function(plugin) {
     gulpModulesTemp.push(gulpOptions[plugin]);
     rawTasks.push(gulpTasks[plugin]);
-    console.log('iuts getting here');
   });
-
-  console.log('gulpModulesTemp', gulpModulesTemp);
 
   _.forEach(gulpModulesTemp, function(dependency) {
     gulpFile += dependency;
-    console.log('dependancy adding gulpModulesTemp', dependency);
   }); //writes the require statements
 
   _.forEach(rawTasks, function(task) {

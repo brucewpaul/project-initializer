@@ -69,8 +69,7 @@ authRouter.get('/callback', passport.authenticate('github', { failureRedirect: '
   res.status(300).redirect('/'); //REDIRECT TO HOME??
 });
 
-authRouter.get('/push', function(req, res) {
-  console.log('push', req.user)
+authRouter.post('/push', function(req, res) {
   axios.post('https://api.github.com/user/repos', {
     name: req.body.user.projectName,
     description: 'Project started on Stack Bear :]',
@@ -81,7 +80,7 @@ authRouter.get('/push', function(req, res) {
   })
   .then(function (response) {
     console.log('successful repo create\npushing files into repo');
-    var rootDirectory = path.resolve(__dirname, 'bundles', '1483481489861');
+    var rootDirectory = path.resolve(__dirname, 'bundles', req.user.username, req.body.user.projectName);
     var gitHubUrl = req.user.profileUrl + '/' + req.body.user.projectName;
     var accessToken = req.user.token;
     git.cwd(rootDirectory).addRemote('stackBear', gitHubUrl).add('.').commit('Initial commit from Stack Bear. Good luck hacking!')

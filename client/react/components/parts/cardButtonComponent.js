@@ -12,6 +12,8 @@ class ButtonComponent extends React.Component {
         <Button className={this.props.data.className} bsSize='large' onClick={()=>{
           if (this.props.data.name === 'Download') {
             downloadBundle(this.props.options.bundleId);
+          } else if (this.props.data.name === 'Push') {
+            push(this.props.options);
           }
         }} >
           {this.props.data.name}
@@ -32,6 +34,17 @@ function mapStateToProps(state) {
 function downloadBundle(id) {
     window.location.assign('/bundle/' + id);
 }
+
+function push(options) {
+  axios.post('/auth/push', options)
+  .then(function(response) {
+    console.log('success', response);
+  })
+  .catch(function(error) {
+    console.log('fail', error);
+  })
+}
+
 
 
 export default connect(mapStateToProps)(ButtonComponent);
