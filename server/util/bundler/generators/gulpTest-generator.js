@@ -26,20 +26,16 @@ function makeCombinedTaskTest (taskObj) {
 };
 
 function createGulpTestFile (options) {
-  console.log('gulptestmaker got called');
   var gulpTestFile = '';
   var closing = '});';
 
   _.forEach(gulpTestModules, function (line) {
     gulpTestFile += line;
   }); //writes up all the modules and the first testForExistance
-  console.log('made it past line 36')
   for (var i = 0; i < options.devTools.taskRunner.tasks.length; i++) {
     gulpTestFile += makeCombinedTaskTest(options.devTools.taskRunner.tasks[i]);
   };
-  console.log('made it past line 40')
   gulpTestFile += closing;
-  console.log('gulpTestFile', gulpTestFile);
   return gulpTestFile;
 };
 
