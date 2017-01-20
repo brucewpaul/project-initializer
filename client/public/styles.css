@@ -856,3 +856,7 @@ body {
 .directory-viewer .nav-tabs>li>a:hover {
   color: black;
 }
+
+.fa-github {
+  font-size: 26px;
+}
