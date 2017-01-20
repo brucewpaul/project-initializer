@@ -42,6 +42,8 @@ class HomePage extends React.Component {
     return(
       <div>
         <Grid className='homepage-header' fluid>
+
+          <img className='landing-logo' src="images/stackbearlogo.png"/>
           <h3><span>Stackbear</span> is a modular node.js application scaffolding tool.</h3>
         </Grid>
         <Grid className='container-wrapper'>
