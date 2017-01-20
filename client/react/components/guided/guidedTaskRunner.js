@@ -35,9 +35,12 @@ class GuidedTaskRunner extends React.Component {
         <Row>
           {task.selectors.map((selector, index)=>{
             return (
-              <Col xs={selector.xs} xsOffset={selector.xsOffset} key ={index}>
+              <Col xs={selector.xs} xsOffset={selector.xsOffset} key={index}>
                 <div onClick={this.haveSelected.bind(this)} key={index}>
                   <SelectorDiv selector={selector} choice={this.props.taskRunner.bind(this)} key={index}/>
+                </div>
+                <div className='description'>
+                  <p>{selector.desc}</p>
                 </div>
               </Col>
             )

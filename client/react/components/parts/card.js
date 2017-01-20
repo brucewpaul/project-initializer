@@ -8,7 +8,7 @@ class Card extends React.Component {
   render() {
     return(
       <div className ='card-default button-description'>
-        <h4>{this.props.card.name}</h4>
+        <h3>{this.props.card.name}</h3>
         <div className='desc-list'>
           <ul>
           {this.props.card.descriptions.map((desc, index)=>{

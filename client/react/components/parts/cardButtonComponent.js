@@ -38,7 +38,12 @@ function downloadBundle(id) {
 function push(options) {
   axios.post('/auth/push', options)
   .then(function(response) {
-    console.log('success', response);
+    setTimeout(
+      function(){
+        window.location.assign(response.data);
+      }
+      , 2000
+    );
   })
   .catch(function(error) {
     console.log('fail', error);
