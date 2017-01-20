@@ -792,6 +792,7 @@ body {
 .account-card .fa {
   float: left;
   padding: 0px 15px;
+  font-size: 22px;
 }
 
 .account-card .fa-trash {
