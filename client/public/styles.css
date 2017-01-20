@@ -749,7 +749,6 @@ body {
 .fa-folder, .fa-file-text {
   font-size: 16px;
   float: left;
-  padding: 2px 6px 0px 0px;
 }
 
 .DraftEditor-editorContainer {
@@ -796,4 +795,65 @@ body {
 
 .account-card .fa-trash {
   padding-bottom: 4px;
+}
+
+.editor-wrap .save-btn {
+  position: absolute;
+  top: 10px;
+  left: -110px;
+  background: #2ca01c;
+  border-color: #2ca01c;
+  color: white;
+  font-family: 'roboto mono';
+  width: 100px;
+  padding: 10px;
+}
+
+.editor-wrap .save-btn:hover {
+  background-color: #248217;
+}
+
+.file-editor-wrap {
+  padding: 0;
+}
+
+.file-directory-wrap {
+  font-family: 'roboto mono';
+  cursor: default;
+  background: #f5f5f5;
+}
+
+.file-directory-wrap .fa-folder {
+  font-size: 20px;
+  padding: 0px 6px 0px 1px;
+}
+
+.file-directory-wrap .fa-file-text {
+  font-size: 13px;
+  padding: 3px 5px 0px 0px;
+}
+
+.directory-viewer pre, .DraftEditor-editorContainer, .directory-viewer.row {
+  background-color: #333
+}
+
+.directory-viewer .nav.nav-tabs {
+  background: #3D3D3D;
+  font-family: 'roboto mono';
+}
+
+.directory-viewer .nav-tabs>li>a {
+  color: #F0F0F0;
+}
+
+.directory-viewer .nav-tabs>li.active a{
+  color: #333;
+<<<<<<< HEAD
+  background: #f5f5f5;
+=======
+>>>>>>> cb10da33484c19212cace8dfc18e7570486389bb
+}
+
+.directory-viewer .nav-tabs>li>a:hover {
+  color: black;
 }

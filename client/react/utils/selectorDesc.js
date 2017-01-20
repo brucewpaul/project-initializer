@@ -2,9 +2,9 @@ export const frontEnd = {
   header: 'Select a Front End Framework',
   selectors: [
     {
-      image1X:'',
+      image1X:'images/react-logo.png',
       image2X:'images/react-logo@2x.png',
-      image3X:'',
+      image3X:'images/react-logo@3x.png',
       name: 'React',
       payloadName: 'React',
       desc:'"React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes."',
@@ -12,9 +12,9 @@ export const frontEnd = {
       xsOffset: 0
     },
     {
-      image1X:'',
+      image1X:'images/angular-logo.png',
       image2X:'images/angular-logo@2x.png',
-      image3X:'',
+      image3X:'images/angular-logo@3x.png',
       name: 'Angular',
       payloadName: 'Angular',
       xs: 4,
@@ -22,9 +22,9 @@ export const frontEnd = {
       desc: '"AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop."'
     },
     {
-      image1X:'',
+      image1X:'images/vue-logo.png',
       image2X:'images/vue-logo@2x.png',
-      image3X:'',
+      image3X:'images/vue-logo@3x.png',
       name: 'Vue',
       payloadName: 'Vue',
       xs: 4,
@@ -56,9 +56,9 @@ export const backEnd = {
   header: 'Select a DataBase',
   selectors: [
     {
-      image1X:'',
+      image1X:'images/mongo-logo.png',
       image2X:'images/mongo-logo@2x.png',
-      image3X:'',
+      image3X:'images/mongo-logo@3x.png',
       name: 'Mongo',
       payloadName: 'Mongo',
       xs: 6,
@@ -66,9 +66,9 @@ export const backEnd = {
       desc: '"MongoDB is the leading NoSQL database, empowering businesses to be more agile and scalable."'
     },
     {
-      image1X:'',
-      image2X:'images/sqlite-logo.png',
-      image3X:'',
+      image1X:'images/sqlite-logo.png',
+      image2X:'images/sqlite-logo@2x.png',
+      image3X:'images/sqlite-logo@3x.png',
       name: 'Sqlite',
       payloadName: 'Sqlite',
       xs: 6,
@@ -100,9 +100,9 @@ export const task = {
   header: 'Select a Task Runner',
   selectors: [
     {
-      image1X:'',
+      image1X:'images/gulp-logo.png',
       image2X:'images/gulp-logo@2x.png',
-      image3X:'',
+      image3X:'images/gulp-logo@3x.png',
       name: 'Gulp',
       payloadName: 'Gulp',
       xs: 6,
@@ -110,9 +110,9 @@ export const task = {
       desc: '"gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something."'
     },
     {
-      image1X:'',
+      image1X:'images/grunt-logo.png',
       image2X:'images/grunt-logo@2x.png',
-      image3X:'',
+      image3X:'images/grunt-logo@3x.png',
       name: 'Grunt',
       payloadName: 'Grunt',
       xs: 6,

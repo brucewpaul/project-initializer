@@ -34,11 +34,13 @@ class FileContentDisplay extends React.Component {
   }
   render(){
     return (
-      <div>
+      <div className="editor-wrap">
         <pre>
-          <Editor editorState={this.state.editorState} onChange={this.onChange} />
+          <code className="language-javascript">
+            <Editor editorState={this.state.editorState} onChange={this.onChange} />
+          </code>
         </pre>
-        <Button onClick={this.onSaveHandler.bind(this)}>Save</Button>
+        <Button className="save-btn" onClick={this.onSaveHandler.bind(this)}>Save</Button>
       </div>
     )
   }
