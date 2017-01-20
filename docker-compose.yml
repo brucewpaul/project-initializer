@@ -10,7 +10,7 @@ services:
       - "7687:7687"
 
   web:
-    image: project-initializer
+    image: gunbladesniper/project-initializer
     build: .
     environment:
       NEO4J_URL: http://my-neo4j-db:7474

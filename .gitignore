@@ -5,6 +5,7 @@ test/testdata/sites.txt
 server/bundles/!*.txt
 server/config.js
 ingredients/db-sqlite/data/*
+neo4j-data/*
 
 ###OSX###
 
