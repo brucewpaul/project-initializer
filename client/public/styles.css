@@ -797,3 +797,39 @@ body {
 .account-card .fa-trash {
   padding-bottom: 4px;
 }
+
+.editor-wrap .save-btn {
+  position: absolute;
+  top: 10px;
+  left: -110px;
+  background: #2ca01c;
+  border-color: #2ca01c;
+  color: white;
+  font-family: 'roboto mono';
+  width: 100px;
+  padding: 10px;
+}
+
+.editor-wrap .save-btn:hover {
+  background-color: #248217;
+}
+
+.file-editor-wrap {
+  padding: 0;
+}
+
+.directory-viewer pre, .DraftEditor-editorContainer, .directory-viewer.row {
+  background-color: #333
+}
+
+.directory-view .nav.nav-tabs {
+  background: #3D3D3D;
+}
+
+.nav-tabs>li>a {
+  color: #F0F0F0;
+}
+
+.nav-tabs>li>a:hover {
+  color: black;
+}

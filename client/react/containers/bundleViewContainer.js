@@ -115,7 +115,7 @@ class BundleViewContainer extends React.Component {
               setCurrentFile={this.setCurrentFile.bind(this)}
               directoryItems={this.state.bundleContents.children}/>
           </Col>
-          <Col xs={9}>
+          <Col xs={9} className='file-editor-wrap'>
             <FileTabs
               activeTabKey={this.state.activeTabKey}
               setActiveTabFromTab={this.setActiveTabFromTab.bind(this)}
