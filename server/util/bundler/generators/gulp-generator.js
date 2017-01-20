@@ -11,22 +11,22 @@ var gulpOptions = {
   sass: 'var sass = require(\'gulp-sass\');\n',
   less: 'var less = require(\'gulp-less\');\n',
   cssmin: 'var cleanCSS = require(\'gulp-clean-css\');\n',
-  uglify: 'var gulp-uglify = require(\'gulp-uglify\');\n',
+  uglify: 'var uglify = require(\'gulp-uglify\');\n',
   watch: ''
 };
 
 var gulpTasks = {
-  sass: '\ngulp.task(\'sass\', function () {\n  return gulp.src(\'client/public/assets/*.scss\')\n    .pipe(sass())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  less: '\ngulp.task(\'less\', function () {\n  return gulp.src(\'client/public/assets/*.less\')\n    .pipe(less())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  cssmin: '\ngulp.task(\'css\', function () {\n  return gulp.src(\'client/public/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
-  uglify: '\ngulp.task(\'uglify\', function () {\n  return gulp.src([\'client/assets/*.js\', \'client/assets/!*.min.js\'])\n    .pipe(gulp-uglify())\n    .pipe(extname(\'.min.js\'))\n    .pipe(gulp.dest(\'client/public/assets\'));\n});\n',
+  sass: '\ngulp.task(\'sass\', function () {\n  return gulp.src(\'client/assets/*.scss\')\n    .pipe(sass())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/assets\'));\n});\n',
+  less: '\ngulp.task(\'less\', function () {\n  return gulp.src(\'client/assets/*.less\')\n    .pipe(less())\n    .pipe(extname(\'.css\'))\n    .pipe(gulp.dest(\'client/assets\'));\n});\n',
+  cssmin: '\ngulp.task(\'css\', function () {\n  return gulp.src(\'client/assets/*.css\')\n    .pipe(cleanCSS())\n    .pipe(extname(\'.min.css\'))\n    .pipe(gulp.dest(\'client/assets\'));\n});\n',
+  uglify: '\ngulp.task(\'uglify\', function () {\n  return gulp.src([\'client/assets/*.js\', \'client/assets/!*.min.js\'])\n    .pipe(uglify())\n    .pipe(extname(\'.min.js\'))\n    .pipe(gulp.dest(\'client/assets\'));\n});\n',
   watch: ''
 };
 
 function createCombinedTasks (taskObj) {
   if (taskObj.plugins.includes('watch')) {
     taskObj.plugins.splice(taskObj.plugins.indexOf('watch'), 1);
-    return '\ngulp.watch(\'client/public/assets\', ' + JSON.stringify(taskObj.plugins) + ');\n';
+    return '\ngulp.watch(\'client/assets\', ' + JSON.stringify(taskObj.plugins) + ');\n';
   } else {
     return '\ngulp.task(\'' + taskObj.name + '\', ' + JSON.stringify(taskObj.plugins) + ');\n';
   }
