@@ -6,6 +6,8 @@ var bundler = require('./util/bundler/index.js');
 var filter = require('ger-neo4j');
 var projectView = require('./util/pv/projectView.js');
 var fs = require('fs');
+var exec = require('child_process').exec;
+
 
 bundleRouter.post('/build/', function (req, res) {
   bundler(req, function(err, folderName) {
@@ -21,6 +23,26 @@ bundleRouter.post('/build/', function (req, res) {
   });
 });
 
+bundleRouter.post('/delete', function(req, res) {
+  var bundlePath = path.resolve(__dirname, 'bundles', req.body.userName, req.body.bundleName);
+  exec('rm -r ' + bundlePath, function (err, stdout, stderr) {
+    if (!err) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(500);
+    }
+  });
+});
+
+bundleRouter.get('/:user', (req, res) => {
+  // get all files from the bundle folder
+  var userPath = path.resolve(__dirname, 'bundles', req.params.user);
+  var userSaves = fs.readdirSync(userPath).filter(function(file) {
+    return fs.statSync(path.join(userPath, file)).isDirectory();
+  });
+  res.send(userSaves);
+});
+
 bundleRouter.get('/:user/:id', (req, res) => {
   var fileName = req.params.id + '.tar.gz';
   res.download(path.resolve(__dirname, 'bundles', req.params.user, fileName ));
@@ -34,7 +56,14 @@ bundleRouter.get('/contents/:user/:id', (req, res) => {
 bundleRouter.post('/contents/:user/:id', (req, res) => {
   fs.writeFile(req.body.path, req.body.content, 'utf8', function(err) {
     if (!err) {
-      res.sendStatus(200);
+      // rezip folder and overwrite old zip
+      exec(`cd server/bundles/${req.params.user}/ && tar -zcvf ${req.params.id}.tar.gz ${req.params.id}`, (error, stdout, stderr) => {
+        if (error) {
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      });
     } else {
       res.sendStatus(500);
     }

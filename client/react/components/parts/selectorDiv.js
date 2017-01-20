@@ -41,13 +41,15 @@ class SelectorDiv extends React.Component {
   render() {
     var styles = this.setSelectionStyle();
     return (
-      <div style={styles.container} className='guidedButton'
-       onClick={()=> { this.props.choice(this.props.selector.payloadName);}}>
-        <div className='logo'>
-          <img src={this.props.selector.image2X} />
-        </div>
-        <div className='title'>
-          <p style={styles.text}>{this.props.selector.name}</p>
+      <div>
+        <div style={styles.container} className='guidedButton'
+         onClick={()=> { this.props.choice(this.props.selector.payloadName);}}>
+          <div className='logo'>
+            <img src={this.props.selector.image2X} />
+          </div>
+          <div className='title'>
+            <p style={styles.text}>{this.props.selector.name}</p>
+          </div>
         </div>
       </div>
     )

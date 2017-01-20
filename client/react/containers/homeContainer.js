@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { LinkContainer } from 'react-router-bootstrap';
 import Card from '../components/parts/card';
 import { userID, userName } from '../actions/index.js'
 import { bindActionCreators } from 'redux';
@@ -8,6 +9,12 @@ import { connect } from 'react-redux';
 import { home } from '../utils/cardsDesc';
 
 class HomePage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoggedIn: false
+    }
+  }
 
   componentWillMount() {
 
@@ -23,6 +30,14 @@ class HomePage extends React.Component {
       });
   }
 
+  componentWillReceiveProps() {
+    if (this.props.options.user.userName) {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }
+
   render() {
     return(
       <div>
@@ -32,6 +47,14 @@ class HomePage extends React.Component {
         <Grid className='container-wrapper'>
           <Row className='homeButtons'>
             <Col xs={8} xsOffset={2}>
+
+              <Row>
+                <Col xs={12} className="lead intro">
+                  <p>Create a node.js application to start learning different aspects of full-stack development or just get started with some basic scaffolding.</p>
+                  {this.state.isLoggedIn ? null : <div><p>Want to create a github repo when you're finished?</p><Button className='nav-button home-btn' onClick={()=>{ loginToGit(); }}><i className="fa fa-github" aria-hidden="true"></i> Login to Github</Button></div>}
+                </Col>
+              </Row>
+
               <Row className='flexbox-container'>
                 {home.cards.map((card, index)=>{
                   return (
@@ -40,6 +63,12 @@ class HomePage extends React.Component {
                     </Col>
                   )
                 })}
+              </Row>
+
+              <Row>
+                <Col xs={12} className="lead home-footer">
+                  <p>Stackbear is an open source project and contributions are welcome. Checkout the <a href="https://github.com/burly-bulls/project-initializer">github repo</a> to see how to get involved</p>
+                </Col>
               </Row>
             </Col>
           </Row>
@@ -63,5 +92,8 @@ function matchDispatchToProps(dispatch) {
   }, dispatch);
 }
 
+function loginToGit() {
+   window.location.assign('/auth/github');
+}
 
 export default connect(mapStateToProps, matchDispatchToProps)(HomePage);

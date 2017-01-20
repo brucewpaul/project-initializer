@@ -3,10 +3,8 @@ export const home = {
     {
       name:'Guided',
       descriptions: [
-        'Thing 1',
-        'Thing 2',
-        'Thing 3',
-        'Thing 4'
+        'If full-stack applications are new to you, this might be a good place to start',
+        'Receive information about the different ingredients as you are selecting them to make educated selections',
       ],
       button: {
         name: 'Get Started',
@@ -21,9 +19,8 @@ export const home = {
     {
       name:'Advanced',
       descriptions: [
-        'Thing 1',
-        'Thing 2',
-        'Thing 3'
+        'Quickly select the frontend framework, database and taskrunner',
+        'Create custom tasks with different plugins'
       ],
       button: {
         name: 'Advanced',
@@ -43,8 +40,7 @@ export const download = {
     {
       name:'Push to Github',
       descriptions: [
-        'Coming Soon!',
-        'Push your application to Github.'
+        'Push your newly created application to your Github.'
       ],
       button: {
         name: 'Push',

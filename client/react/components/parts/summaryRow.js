@@ -18,9 +18,9 @@ class SummaryRow extends React.Component {
         </Col>
         <Col xs={6}>
           <h4>{this.props.summary.name}</h4>
-          <ul>
-            <li>{this.props.summary.desc}</li>
-          </ul>
+          {this.props.type === 'backEnd' ? this.props.summary.desc[this.props.options.backEnd.database.toLowerCase()] : null}
+          {this.props.type === 'frontEnd' ? this.props.summary.desc[this.props.options.frontEnd.framework.toLowerCase()] : null}
+          {this.props.type === 'taskRunner' ? this.props.summary.desc[this.props.options.devTools.taskRunner.name.toLowerCase()] : null}
         </Col>
         <Col xs={2}>
           <div className='summary-modify-wrap'>
