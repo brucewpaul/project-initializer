@@ -1,15 +1,20 @@
 <!-- Here we create a container div, assigned the HomeController -->
 <!-- More Info: https://docs.angularjs.org/api/ng/directive/ngController -->
 <div id='container' ng-controller="HomeController">
+  <h1>Stackbear Angular Sample App!</h1>
+  <h2>Have fun coding!</h2>
   <p>This is the partial for home.</p>
-
-  <form name="newItem" ng-submit="submitForm(item)" novalidate>
-    <input type="text" name="item" ng-model="item" required />
-    <button type="submit" ng-disabled="shortenLink.$invalid">Submit</button>
-  </form>
+  <div class="form-wrapper">
+    <form name="newItem" ng-submit="submitForm(item)" novalidate>
+      <input type="text" name="item" ng-model="item" required />
+      <button type="submit" ng-disabled="shortenLink.$invalid">Submit</button>
+    </form>
+  </div>
   <!-- Foreach item in the data.items, we want to display the item.text -->
   <!-- More Info: https://docs.angularjs.org/api/ng/directive/ngRepeat -->
-  <div ng-repeat='item in data.items'>
-    <p>- {{item.text}}</p>
+  <div class="list-wrapper">
+    <ul>
+      <li ng-repeat='item in data.items'>{{item.text}}</li>
+    </ul>
   </div>
 </div>
