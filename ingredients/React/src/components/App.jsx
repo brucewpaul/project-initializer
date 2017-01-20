@@ -28,7 +28,9 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='app-wrapper'>
+        <h1>Stackbear React Sample App!</h1>
+        <h2>Have fun coding!</h2>
         <ListInput getListItems={this.getListItems}/>
         <List listItems={this.state.listItems}/>
       </div>
