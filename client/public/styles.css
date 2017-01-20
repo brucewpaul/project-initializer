@@ -749,7 +749,6 @@ body {
 .fa-folder, .fa-file-text {
   font-size: 16px;
   float: left;
-  padding: 2px 6px 0px 0px;
 }
 
 .DraftEditor-editorContainer {
@@ -818,18 +817,38 @@ body {
   padding: 0;
 }
 
+.file-directory-wrap {
+  font-family: 'roboto mono';
+  cursor: default;
+}
+
+.file-directory-wrap .fa-folder {
+  font-size: 20px;
+  padding: 0px 6px 0px 1px;
+}
+
+.file-directory-wrap .fa-file-text {
+  font-size: 13px;
+  padding: 3px 5px 0px 0px;
+}
+
 .directory-viewer pre, .DraftEditor-editorContainer, .directory-viewer.row {
   background-color: #333
 }
 
-.directory-view .nav.nav-tabs {
+.directory-viewer .nav.nav-tabs {
   background: #3D3D3D;
+  font-family: 'roboto mono';
 }
 
-.nav-tabs>li>a {
+.directory-viewer .nav-tabs>li>a {
   color: #F0F0F0;
 }
 
-.nav-tabs>li>a:hover {
+.directory-viewer .nav-tabs>li.active a{
+  color: #333;
+}
+
+.directory-viewer .nav-tabs>li>a:hover {
   color: black;
 }
