@@ -7,11 +7,13 @@ class List extends Component {
   }
   render() {
     return (
-      <ul>
-        {this.props.listItems.map(function(listItem, index) {
-          return <ListItem content={listItem} key={index}/>
-        })}
-      </ul>
+      <div className='list-wrapper'>
+        <ul>
+          {this.props.listItems.map(function(listItem, index) {
+            return <ListItem content={listItem} key={index}/>
+          })}
+        </ul>
+      </div>
     );
   }
 }

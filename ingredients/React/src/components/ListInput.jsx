@@ -31,6 +31,10 @@ class ListInput extends Component {
       .then(function (response) {
         console.log(response);
         this.props.getListItems();
+        this.setState({
+          title: '',
+          text: ''
+        })
       }.bind(this))
       .catch(function (error) {
         console.log(error);
@@ -40,17 +44,21 @@ class ListInput extends Component {
 
   render() {
     return (
-    <form onSubmit={this.handleSubmit}>
-      <label>
-        <span>Title: </span>
-        <input value={this.state.title} onChange={this.handleTitleChange} type="text" name="title" />
-      </label>
-      <label>
-        <span>Text: </span>
-        <input value={this.state.text} onChange={this.handleTextChange} type="text" name="text" />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <div className='form-wrapper'>
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <span>Title: </span>
+          <input value={this.state.title} onChange={this.handleTitleChange} type="text" name="title" />
+        </label>
+        <br/>
+        <label>
+          <span>Text: </span>
+          <input value={this.state.text} onChange={this.handleTextChange} type="text" name="text" />
+        </label>
+        <br/>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
     );
   }
 }
