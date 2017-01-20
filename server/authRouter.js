@@ -90,7 +90,8 @@ authRouter.post('/push', function(req, res) {
       .commit('Initial commit from Stack Bear. Good luck hacking!')
       .push('stackBear', 'master')
       .removeRemote('stackBear');
-    res.status(201).send('successful');
+    res.status(201).send(req.user.profileUrl + '/' + req.body.user.projectName);
+    // res.redirect(req.user.profileUrl + '/' + req.body.user.projectName); //REDIRECT TO HOME??
   })
   .catch(function(err) {
     console.log('error pushing to github');

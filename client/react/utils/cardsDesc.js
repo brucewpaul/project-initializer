@@ -40,8 +40,7 @@ export const download = {
     {
       name:'Push to Github',
       descriptions: [
-        'Coming Soon!',
-        'Push your application to Github.'
+        'Push your newly created application to your Github.'
       ],
       button: {
         name: 'Push',

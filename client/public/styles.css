@@ -34,7 +34,7 @@ body {
 
 .navbar-text {
   margin: 13px 15px;
-  padding-right: 15px;
+  /*padding-right: 15px;*/
 }
 
 .navbar .nav>li>a:hover, .navbar .nav>li>a:active, .navbar .nav>li>a:focus {
@@ -63,7 +63,7 @@ body {
 }
 
 .desc-list {
-  padding: 5px 10px;
+  padding: 5px 15px 5px 10px;
   font-size: 16px;
 }
 
@@ -249,6 +249,10 @@ body {
     border: none;
 }
 
+.navbar-nav>li {
+  margin-left: 15px;
+}
+
 .navbar-default .navbar-nav>.disabled>a, .navbar-default .navbar-nav>.disabled>a:focus, .navbar-default .navbar-nav>.disabled>a:hover {
     padding-top: 12px;
     font-family: 'Roboto Mono';
@@ -291,10 +295,11 @@ body {
     position: relative;
 }
 
-.homeButtons .button-description h4 {
+.homeButtons .button-description h3 {
   font-family: 'Roboto Mono';
   color: #404040;
   text-align: center;
+  margin-top: 5px;
 }
 
 .homeButtons .button-description ul {
@@ -420,6 +425,7 @@ body {
   border-radius: 10px;
   position: relative;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
 .guidedButton .title, .guidedButton .logo {

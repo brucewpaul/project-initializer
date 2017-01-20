@@ -40,7 +40,7 @@ class SummaryContainer extends React.Component {
 
             {this.props.options.user.userName && <NameRepo/>}
 
-            <div xs={12} className='summaryButton'
+            <div className='summaryButton'
                   onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
                  <NavButton button={summaryNav.build} />
             </div>

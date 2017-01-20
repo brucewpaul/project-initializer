@@ -7,6 +7,7 @@ export const frontEnd = {
       image3X:'',
       name: 'React',
       payloadName: 'React',
+      desc:'"React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes."',
       xs: 4,
       xsOffset: 0
     },
@@ -17,7 +18,8 @@ export const frontEnd = {
       name: 'Angular',
       payloadName: 'Angular',
       xs: 4,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop."'
     },
     {
       image1X:'',
@@ -26,7 +28,8 @@ export const frontEnd = {
       name: 'Vue',
       payloadName: 'Vue',
       xs: 4,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"Vue is a progressive framework for building user interfaces…The core library is focused on the view layer only, and is very easy to pick up."'
     }
   ],
   buttons: [
@@ -59,7 +62,8 @@ export const backEnd = {
       name: 'Mongo',
       payloadName: 'Mongo',
       xs: 6,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"MongoDB is the leading NoSQL database, empowering businesses to be more agile and scalable."'
     },
     {
       image1X:'',
@@ -68,7 +72,8 @@ export const backEnd = {
       name: 'Sqlite',
       payloadName: 'Sqlite',
       xs: 6,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine. SQLite is the most used database engine in the world. "'
     }
   ],
   buttons: [
@@ -101,7 +106,8 @@ export const task = {
       name: 'Gulp',
       payloadName: 'Gulp',
       xs: 6,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"gulp is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something."'
     },
     {
       image1X:'',
@@ -110,7 +116,8 @@ export const task = {
       name: 'Grunt',
       payloadName: 'Grunt',
       xs: 6,
-      xsOffset: 0
+      xsOffset: 0,
+      desc: '"The Grunt ecosystem is huge and it\'s growing every day. With literally hundreds of plugins to choose from, you can use Grunt to automate just about anything with a minimum of effort."'
     }
   ],
   buttons: [

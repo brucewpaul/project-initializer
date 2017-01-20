@@ -39,6 +39,9 @@ class GuidedFrontend extends React.Component {
                 <div onClick={this.haveSelected.bind(this)} key={index}>
                   <SelectorDiv selector={selector} choice={this.props.selectFramework.bind(this)} key={index}/>
                 </div>
+                <div className='description'>
+                  <p>{selector.desc}</p>
+                </div>
               </Col>
             )
           })}
