@@ -10,7 +10,7 @@ var bundlePackage = require('./generators/package-generator.js');
 var bundleGruntfile = require('./generators/grunt-generator.js');
 var bundleGulpfile = require('./generators/gulp-generator.js');
 var bundleReadme = require('./generators/readme-generator.js');
-
+var bundleGulpTestfile = require('./generators/gulpTest-generator.js');
 // files for Angular
 var bowerFile = require('../../../ingredients/bower/bower.js');
 var bowerrcFile = require('../../../ingredients/bower/bowerrc.js');
@@ -43,11 +43,11 @@ module.exports = function(options, outputPath, id, cb) {
   if (options.devTools.taskRunner.name === 'Grunt') {
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options)));
   } else if (options.devTools.taskRunner.name === 'Gulp') {
-    asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gulpfile.js'),
-      bundleGulpfile(options)));
+    asyncTasks.push(fs.mkdirAsync(path.join(outputPath, 'test', 'Gulp')).then(function () {
+      asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gulpfile.js'), bundleGulpfile(options)));
+      asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'test', 'Gulp', 'gulpTest.js'), bundleGulpTestfile(options)));
+    }));
   }
-
-  // TODO: add gulp @chan
 
   // add bower if is angular
   if (frontEndFramework === 'Angular') {
