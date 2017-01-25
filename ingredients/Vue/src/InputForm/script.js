@@ -3,7 +3,7 @@ export default {
   name: 'InputForm',
   data () {
     return {
-      todo: 'Figure out Vue',
+      todo: 'Type Here',
       todos:[]
     }
   },

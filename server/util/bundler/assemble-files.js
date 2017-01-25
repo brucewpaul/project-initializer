@@ -44,8 +44,8 @@ module.exports = function(options, outputPath, id, cb) {
     asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gruntfile.js'), bundleGruntfile(options)));
   } else if (options.devTools.taskRunner.name === 'Gulp') {
     asyncTasks.push(fs.mkdirAsync(path.join(outputPath, 'test', 'Gulp')).then(function () {
-      asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'Gulpfile.js'), bundleGulpfile(options)));
-      asyncTasks.push(fs.writeFileAsync(path.join(outputPath, 'test', 'Gulp', 'gulpTest.js'), bundleGulpTestfile(options)));
+      fs.writeFileAsync(path.join(outputPath, 'Gulpfile.js'), bundleGulpfile(options));
+      fs.writeFileAsync(path.join(outputPath, 'test', 'Gulp', 'gulpTest.js'), bundleGulpTestfile(options));
     }));
   }
 

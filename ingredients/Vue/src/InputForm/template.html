@@ -3,11 +3,13 @@
 <div>
   <form v-on:submit.prevent='onSubmit'>
     <input type="text" v-model='todo'/>
-    <button type='submit'></button>
+    <button type='submit'>Press Here</button>
   </form>
-  <ul>
-    <li v-for='(todo, index) in todos' v-on:click='todos.splice(index, 1)'>
-      {{ todo }}
-    </li>
-  </ul>
+  <div class='listHolder'>
+	  <ul>
+	    <li v-for='(todo, index) in todos' v-on:click='todos.splice(index, 1)'>
+	      {{ todo }}
+	    </li>
+	  </ul>
+  </div>
 </div>
