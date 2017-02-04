@@ -10,7 +10,8 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 class DownloadContainer extends React.Component {
   componentWillMount() {
-    if ( !this.props.options.bundleID ) {
+    console.log(this.props.options)
+    if ( !this.props.options.bundleId ) {
       browserHistory.push('/bundle-error');
     }
   }

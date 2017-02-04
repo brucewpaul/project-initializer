@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, browserHistory } from 'react-router';
 import { Grid, Row, Col, Button} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -18,8 +19,13 @@ class BundleViewContainer extends React.Component {
     }
   }
 
+  componentWillMount() {
+    if ( !this.props.options.frontEnd.framework || !this.props.options.backEnd.database || !this.props.options.devTools.taskRunner.name ) {
+      browserHistory.push('/');
+    }
+  }
+
   componentDidMount() {
-    console.log(this.props.params.userName, this.props.params.bundleId)
     this.getDirectory();
   }
 

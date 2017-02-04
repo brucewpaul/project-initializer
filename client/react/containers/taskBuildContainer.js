@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link, browserHistory } from 'react-router';
 
 import CfSelection from '../components/advanced/cfSelections';
 import TaskDisplay from '../components/advanced/taskDisplay';
@@ -11,6 +12,11 @@ import NavButton from '../components/parts/navButton';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 class TaskBuildContainer extends React.Component {
+  componentWillMount() {
+    if ( !this.props.options.frontEnd.framework || !this.props.options.backEnd.database || !this.props.options.devTools.taskRunner.name ) {
+      browserHistory.push('/');
+    }
+  }
   render() {
     return (
       <Grid className='container-wrapper'>
@@ -31,4 +37,11 @@ class TaskBuildContainer extends React.Component {
   }
 }
 
-export default TaskBuildContainer;
+function mapStateToProps(state) {
+  return {
+    options: state.options,
+    display: state.display
+  };
+}
+
+export default connect(mapStateToProps)(TaskBuildContainer);

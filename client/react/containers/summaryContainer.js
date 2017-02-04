@@ -13,7 +13,11 @@ import { selectionStatus, summaryNav } from '../utils/summaryDesc';
 
 
 class SummaryContainer extends React.Component {
-
+  componentWillMount() {
+    if ( !this.props.options.frontEnd.framework || !this.props.options.backEnd.database || !this.props.options.devTools.taskRunner.name ) {
+      browserHistory.push('/');
+    }
+  }
   render() {
     var summaries = selectionStatus(this.props.options).summaries;
     return(

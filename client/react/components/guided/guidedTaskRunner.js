@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link, browserHistory } from 'react-router';
 
 import { taskRunner } from '../../actions/index';
 
@@ -17,6 +18,12 @@ class GuidedTaskRunner extends React.Component {
     super(props);
     this.state = {
       isDisabled: this.props.options.devTools.taskRunner.name ? false : true,
+    }
+  }
+
+  componentWillMount() {
+    if ( !this.props.options.backEnd.database ) {
+      browserHistory.push('/');
     }
   }
 
