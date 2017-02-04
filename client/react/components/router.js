@@ -4,6 +4,7 @@ import HomePage from '../containers/homeContainer';
 import GuidedContainer from '../containers/guidedContainer';
 import SummaryContainer from '../containers/summaryContainer';
 import DownloadContainer from '../containers/downloadContainer';
+import BundleErrorContainer from '../containers/bundleErrorContainer';
 import AdvancedContainer from '../containers/advancedContainer';
 import BundleViewContainer from '../containers/bundleViewContainer';
 import AccountContainer from '../containers/accountContainer';
@@ -38,6 +39,7 @@ const routes = (
         <Route path ='/view' component={BundleViewContainer}/>
         <Route path ='/view/:userName/:bundleId' component={BundleViewContainer}/>
         <Route path ='/download' component={DownloadContainer}/>
+        <Route path ='/bundle-error' component={BundleErrorContainer}/>
       </Route>
     </Router>
   </Provider>

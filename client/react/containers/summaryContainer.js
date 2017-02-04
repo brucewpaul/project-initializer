@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -42,7 +42,9 @@ class SummaryContainer extends React.Component {
 
             <div className='summaryButton'
                   onClick={()=> setBundleId(this.props.options, this.props.bundleID || '')}>
-                 <NavButton button={summaryNav.build} />
+                  <Button className='nav-button navButton3'>
+                    Build
+                  </Button>
             </div>
           </Col>
         </Row>
@@ -61,8 +63,9 @@ function mapStateToProps(state) {
 function setBundleId(options, cb) {
   axios.post('/bundle/build',options)
   .then((response)=>{
-    console.log(response.data)
-    cb(response.data);;
+    console.log(response.data);
+    cb(response.data);
+    browserHistory.push('/download');
   }).catch((err)=>{
     console.log(err);
   })
