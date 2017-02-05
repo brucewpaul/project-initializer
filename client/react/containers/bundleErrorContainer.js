@@ -9,41 +9,23 @@ import { summaryNav } from '../utils/summaryDesc';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 class DownloadContainer extends React.Component {
-  componentWillMount() {
-    console.log(this.props.options)
-    if ( !this.props.options.bundleId ) {
-      browserHistory.push('/bundle-error');
-    }
-  }
 
   render() {
     return(
       <Grid className='container-wrapper'>
         <div className='guidedHeader'>
-          <h4>Your stack has been created</h4>
+          <h4>error</h4>
         </div>
-        <Row className='homeButtons flexbox-container'>
-          {download.cards.map((card, index)=>{
-            if ( card.name !== 'Push to Github' ) {
-              return (
-                <Col xs={card.xs} key={index}>
-                  <Card card={card} key={index}/>
-                </Col>
-              )
-            } else if (this.props.options && this.props.options.user.userName && card.name === 'Push to Github' ) {
-              return (
-                <Col xs={card.xs} key={index}>
-                  <Card card={card} key={index}/>
-                </Col>
-              )
-            }
-          })}
+        <Row className='bottom-row'>
+          <Col xs={12}>
+            <p>A stack was not found. Please proceed to the front page and select the different parts of the stack you want.</p>
+          </Col>
         </Row>
         <Row className='bottom-row'>
           <Col xs={4}>
-            <LinkContainer to ='/'>
+            <LinkContainer to='/'>
               <Button
-                className='nav-button final-nav-btn'>
+                className='nav-button navButton3'>
                 Home
               </Button>
             </LinkContainer>

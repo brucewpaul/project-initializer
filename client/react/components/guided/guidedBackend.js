@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link, browserHistory } from 'react-router';
 
 import { selectDatabase } from '../../actions/index';
 
@@ -17,6 +18,12 @@ class GuidedBackend extends React.Component {
     super(props);
     this.state = {
       isDisabled: this.props.options.backEnd.database ? false : true,
+    }
+  }
+
+  componentWillMount() {
+    if ( !this.props.options.frontEnd.framework ) {
+      browserHistory.push('/');
     }
   }
 
