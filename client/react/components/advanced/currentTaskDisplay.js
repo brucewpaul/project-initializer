@@ -28,7 +28,11 @@ class CurrentTaskDisplay extends React.Component {
             type='text'
             value={this.props.tasks.currentTask.name}
             onChange={
-              (e)=>{this.props.currentTask(changeCurrentTaskName(this.props.tasks.currentTask, e.target.value))}
+              (e)=>{
+                if (!e.target.value.includes(' ')) {
+                  this.props.currentTask(changeCurrentTaskName(this.props.tasks.currentTask, e.target.value))
+                }
+              }
             }
             />
         </FormGroup>

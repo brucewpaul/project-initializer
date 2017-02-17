@@ -18,7 +18,11 @@ class NameRepo extends React.Component {
             <FormControl
               type='text'
               value={this.props.options.user.projectName || ''}
-              onChange={(e)=> this.props.projectName(e.target.value)}
+              onChange={(e)=> {
+                if (!e.target.value.includes(' ')) {
+                  this.props.projectName(e.target.value)}
+                }
+              }
             />
           </FormGroup>
         </form>

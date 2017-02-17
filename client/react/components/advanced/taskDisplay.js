@@ -30,7 +30,7 @@ class TaskDisplay extends React.Component {
                 this.props.changeTask(addNewTask(this.props.tasks.tasks));
               }}
             >
-              Add Task
+              Add New Task
           </Button>
         </Panel>
 
